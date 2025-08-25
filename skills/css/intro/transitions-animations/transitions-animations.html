@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>CSS Transitions & Animations</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, sans-serif;
+      background: #f0f9ff;
+      color: #183a5c;
+      padding: 2rem;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 2.4rem;
+      color: #155d8b;
+      margin-bottom: 1.5rem;
+    }
+
+    .video-container {
+      max-width: 800px;
+      margin: auto;
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    video {
+      width: 100%;
+      display: block;
+    }
+
+    .content {
+      max-width: 800px;
+      margin: 2rem auto;
+      background: #ffffff;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+    }
+
+    .content h2 {
+      color: #1a608e;
+      margin-top: 1.5rem;
+    }
+
+    .content p, li {
+      font-size: 1.1rem;
+      margin-bottom: 1rem;
+    }
+
+    pre {
+      background: #f4f4f4;
+      padding: 1rem;
+      border-radius: 8px;
+      overflow-x: auto;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 2rem;
+    }
+
+    .back-button {
+      display: inline-block;
+      padding: 0.75rem 1.5rem;
+      border: 2px solid #0e5d8a;
+      border-radius: 8px;
+      color: #0e5d8a;
+      text-decoration: none;
+      font-weight: bold;
+      transition: all 0.3s ease;
+    }
+
+    .back-button:hover {
+      background-color: #0e5d8a;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>CSS Transitions & Animations</h1>
+
+  <div class="video-container">
+    <video controls>
+      <source src="../../../assets/videos/css/transitions.mp4" type="video/mp4" />
+      Your browser does not support the video tag.
+    </video>
+  </div>
+
+  <section class="content">
+    <h2>Introduction</h2>
+    <p>CSS allows you to add motion and smooth changes using transitions and animations. These effects can make your interfaces more dynamic and engaging.</p>
+
+    <h2>Transitions</h2>
+    <ul>
+      <li>Used for smooth changes between property values.</li>
+      <li>Common with hover effects, like button color or size.</li>
+      <li>Key property: <code>transition: all 0.3s ease;</code></li>
+    </ul>
+
+    <h2>Animations</h2>
+    <ul>
+      <li>Enable more complex movements and sequences.</li>
+      <li>Use <code>@keyframes</code> to define animation steps.</li>
+      <li>Can loop, reverse, delay, and run indefinitely.</li>
+    </ul>
+
+    <h2>Example:</h2>
+    <pre>
+.box {
+  transition: background-color 0.3s ease;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
+}
+    </pre>
+  </section>
+
+  <footer>
+    <a href="../../index.html" class="back-button">
+      <i class="fas fa-arrow-left"></i> Back to Curriculum
+    </a>
+  </footer>
+
+</body>
+</html>

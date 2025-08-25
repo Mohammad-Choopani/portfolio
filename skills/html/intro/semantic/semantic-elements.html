@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Semantic HTML Masterclass | Mohammad Choopani</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    :root {
+      --primary: #2e7d32;
+      --accent: #00c853;
+      --bg: #f1fdf7;
+      --card: #ffffff;
+      --text: #1a3e2e;
+      --hover: #e0f7ea;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      padding: 2rem 1rem;
+      line-height: 1.8;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 2.5rem;
+      color: var(--primary);
+      margin-bottom: 2rem;
+    }
+
+    .video-container {
+      max-width: 800px;
+      margin: 0 auto 2rem;
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    video {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .section {
+      max-width: 900px;
+      background: var(--card);
+      margin: 2rem auto;
+      padding: 2rem;
+      border-radius: 16px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    .tag-box {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+      border-left: 4px solid var(--accent);
+      padding-left: 1rem;
+      transition: transform 0.3s ease, background-color 0.3s ease;
+    }
+
+    .tag-box:hover {
+      background-color: var(--hover);
+      transform: scale(1.02);
+    }
+
+    .tag-icon {
+      font-size: 1.5rem;
+      color: var(--accent);
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.15); }
+    }
+
+    .tag-content {
+      flex: 1;
+    }
+
+    .tag-content h2 {
+      font-size: 1.2rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .tag-content code {
+      background: #eefaf2;
+      padding: 0.2rem 0.4rem;
+      border-radius: 5px;
+      font-family: monospace;
+      color: #2c6e49;
+    }
+
+    pre {
+      background: #f8fffa;
+      padding: 1rem;
+      margin: 1.5rem 0;
+      border-left: 5px solid var(--accent);
+      border-radius: 8px;
+      overflow-x: auto;
+    }
+
+   .editor {
+  max-width: 900px;
+  margin: 3rem auto;
+  background: #111827;
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
+  border: 1px solid #1f2937;
+}
+
+textarea {
+  width: 100%;
+  height: 220px;
+  font-family: 'Courier New', monospace;
+  background: #0d1117;
+  color: #00ff99;
+  border: 1px solid #333;
+  padding: 1rem;
+  font-size: 1rem;
+  border-radius: 10px;
+  resize: vertical;
+  box-shadow: inset 0 0 10px rgba(0,255,153,0.1);
+  transition: border-color 0.3s ease;
+}
+
+textarea:focus {
+  border-color: #00ff99;
+  outline: none;
+}
+
+button.run-btn {
+  margin-top: 1.2rem;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: bold;
+  background: linear-gradient(135deg, #00ff99, #00b386);
+  color: #000;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  box-shadow: 0 6px 16px rgba(0,255,153,0.3);
+  transition: all 0.3s ease;
+}
+
+button.run-btn:hover {
+  background: linear-gradient(135deg, #00e699, #00cc88);
+  transform: scale(1.05);
+  box-shadow: 0 10px 24px rgba(0,255,153,0.4);
+}
+
+.output {
+  margin-top: 1.5rem;
+  padding: 1rem;
+  background: #0d1117;
+  color: #00ff99;
+  border-radius: 12px;
+  border: 1px dashed #00ff99;
+  min-height: 150px;
+  font-size: 1rem;
+  box-shadow: inset 0 0 15px rgba(0,255,153,0.1);
+  white-space: pre-wrap;
+}
+
+
+    footer {
+      text-align: center;
+      margin-top: 3rem;
+    }
+
+    .back-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      text-decoration: none;
+      font-weight: 600;
+      color: #2e7d32;
+      border: 2px solid #4caf50;
+      padding: 0.6rem 1.2rem;
+      border-radius: 10px;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    .back-button:hover {
+      background-color: #4caf50;
+      color: white;
+    }
+
+    @media (max-width: 600px) {
+      h1 { font-size: 2rem; }
+      .section, .editor { padding: 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Semantic HTML Masterclass</h1>
+
+  <div class="video-container">
+    <video controls>
+      <source src="../../../assets/videos/html/lesson-semantic.mp4" type="video/mp4" />
+      Your browser does not support the video tag.
+    </video>
+  </div>
+  <div class="section">
+    <!-- نمونه تگ‌ها با آیکون و توضیح -->
+    <div class="tag-box">
+      <i class="fas fa-flag tag-icon"></i>
+      <div class="tag-content">
+        <h2>&lt;header&gt;</h2>
+        <p>Defines a page or section header.</p>
+        <code>&lt;header&gt;Welcome&lt;/header&gt;</code>
+      </div>
+    </div>
+
+    <div class="tag-box">
+      <i class="fas fa-bars tag-icon"></i>
+      <div class="tag-content">
+        <h2>&lt;nav&gt;</h2>
+        <p>Contains navigation links.</p>
+        <code>&lt;nav&gt;&lt;a href=\"#\"&gt;Home&lt;/a&gt;&lt;/nav&gt;</code>
+      </div>
+    </div>
+
+    <div class="tag-box">
+      <i class="fas fa-align-left tag-icon"></i>
+      <div class="tag-content">
+        <h2>&lt;main&gt;</h2>
+        <p>Main content container.</p>
+        <code>&lt;main&gt;Content here&lt;/main&gt;</code>
+      </div>
+    </div>
+
+    <div class="tag-box">
+      <i class="fas fa-layer-group tag-icon"></i>
+      <div class="tag-content">
+        <h2>&lt;section&gt;</h2>
+        <p>Defines a document section.</p>
+        <code>&lt;section&gt;About us&lt;/section&gt;</code>
+      </div>
+    </div>
+
+    <div class="tag-box">
+      <i class="fas fa-newspaper tag-icon"></i>
+      <div class="tag-content">
+        <h2>&lt;article&gt;</h2>
+        <p>Independent self-contained content.</p>
+        <code>&lt;article&gt;Post content&lt;/article&gt;</code>
+      </div>
+    </div>
+
+    <div class="tag-box">
+      <i class="fas fa-columns tag-icon"></i>
+      <div class="tag-content">
+        <h2>&lt;aside&gt;</h2>
+        <p>Side information (e.g., sidebar).</p>
+        <code>&lt;aside&gt;Tip or note&lt;/aside&gt;</code>
+      </div>
+    </div>
+
+    <div class="tag-box">
+      <i class="fas fa-image tag-icon"></i>
+      <div class="tag-content">
+        <h2>&lt;figure&gt; + &lt;figcaption&gt;</h2>
+        <p>Figure with caption (e.g., image).</p>
+        <code>&lt;figure&gt;&lt;img src=\"img.jpg\"&gt;&lt;figcaption&gt;This is a cat&lt;/figcaption&gt;&lt;/figure&gt;</code>
+      </div>
+    </div>
+
+    <div class="tag-box">
+      <i class="fas fa-lightbulb tag-icon"></i>
+      <div class="tag-content">
+        <h2>&lt;mark&gt;</h2>
+        <p>Highlights part of the text.</p>
+        <code>&lt;p&gt;This is &lt;mark&gt;important&lt;/mark&gt;.&lt;/p&gt;</code>
+      </div>
+    </div>
+
+    <div class="tag-box">
+      <i class="fas fa-clock tag-icon"></i>
+      <div class="tag-content">
+        <h2>&lt;time&gt;</h2>
+        <p>Represents a date/time.</p>
+        <code>&lt;time datetime=\"2025-07-28\"&gt;July 28, 2025&lt;/time&gt;</code>
+      </div>
+    </div>
+
+    <div class="tag-box">
+      <i class="fas fa-chevron-circle-down tag-icon"></i>
+      <div class="tag-content">
+        <h2>&lt;details&gt; + &lt;summary&gt;</h2>
+        <p>Expandable content block.</p>
+        <code>&lt;details&gt;&lt;summary&gt;More&lt;/summary&gt;Hidden text here.&lt;/details&gt;</code>
+      </div>
+    </div>
+
+    <div class="tag-box">
+      <i class="fas fa-envelope tag-icon"></i>
+      <div class="tag-content">
+        <h2>&lt;address&gt;</h2>
+        <p>Contact or location info.</p>
+        <code>&lt;address&gt;Mohammad, Windsor, Canada&lt;/address&gt;</code>
+      </div>
+    </div>
+
+    <div class="tag-box">
+      <i class="fas fa-font tag-icon"></i>
+      <div class="tag-content">
+        <h2>&lt;abbr&gt;</h2>
+        <p>Defines an abbreviation with tooltip.</p>
+        <code>&lt;abbr title=\"HyperText Markup Language\"&gt;HTML&lt;/abbr&gt;</code>
+      </div>
+    </div>
+
+    <pre><code>
+&lt;header&gt;
+  &lt;h1&gt;Welcome&lt;/h1&gt;
+&lt;/header&gt;
+
+&lt;nav&gt;
+  &lt;a href=\"#\"&gt;Home&lt;/a&gt;
+&lt;/nav&gt;
+
+&lt;main&gt;
+  &lt;article&gt;
+    &lt;h2&gt;Semantic Tags&lt;/h2&gt;
+    &lt;p&gt;Learn semantic HTML with ease.&lt;/p&gt;
+  &lt;/article&gt;
+&lt;/main&gt;
+
+&lt;footer&gt;
+  &lt;p&gt;Made with ❤️ by Mohammad Choopani&lt;/p&gt;
+&lt;/footer&gt;
+    </code></pre>
+  </div>
+  <div class="editor">
+    <h2>🎯 Try it Yourself</h2>
+    <textarea id="editorInput" placeholder="Write your semantic HTML here..."></textarea>
+    <button class="run-btn" onclick="runCode()">Run Code</button>
+    <div class="output" id="outputBox"></div>
+  </div>
+
+  <footer>
+  <a href="../../index.html" class="back-button">
+    <i class="fas fa-arrow-left"></i> Back to Curriculum
+  </a>
+  <a href="../advanced/audio-video.html" class="back-button" style="margin-left: 1rem;">
+    Next Lesson <i class="fas fa-arrow-right"></i>
+  </a>
+</footer>
+ <script>
+  function runCode() {
+    const input = document.getElementById("editorInput").value;
+    const output = document.getElementById("outputBox");
+
+    // لیست تگ‌های مجاز سمانتیک (همه با حروف کوچک)
+    const allowedTags = [
+      'header','nav','main','section','article','aside','footer',
+      'figure','figcaption','mark','time','details','summary','address','abbr',
+      'h1','h2','h3','h4','h5','h6',
+      'p','ul','ol','li','a','strong','em','br','hr','pre','code','img'
+    ];
+
+    // استخراج تمام تگ‌ها از ورودی کاربر
+    const tags = input.match(/<\/?([a-zA-Z0-9]+)/g) || [];
+
+    const isValid = tags.every(tag => {
+      const cleanTag = tag.replace(/[<\/>]/g, '').toLowerCase();
+      return allowedTags.includes(cleanTag);
+    });
+
+    if (isValid) {
+      output.innerHTML = input;
+    } else {
+      output.innerHTML = "<span style='color:red; font-weight:bold;'>🚫 Only semantic HTML tags are allowed!</span>";
+    }
+  }
+</script>
+
+</body>
+</html>

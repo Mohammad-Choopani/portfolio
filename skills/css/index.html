@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>CSS Course Curriculum | Mohammad Choopani</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0; padding: 0;
+    }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #e6f2e6;
+      color: #024d02;
+      line-height: 1.5;
+      padding: 1.5rem;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      scroll-behavior: smooth;
+    }
+    h1 {
+      font-size: 2.8rem;
+      margin-bottom: 1rem;
+      text-align: center;
+      text-shadow: 1px 1px 3px #c0e6c0;
+    }
+
+    .course-intro {
+      max-width: 860px;
+      width: 100%;
+      background: linear-gradient(145deg, #e1f7e1, #c3eac3);
+      border: 2px solid #a5d6a7;
+      border-radius: 18px;
+      padding: 2rem;
+      margin: 2rem 0;
+      box-shadow: 0 8px 24px rgba(4, 80, 4, 0.2);
+      text-align: center;
+      position: relative;
+    }
+
+    .course-intro video {
+      width: 100%;
+      max-height: 420px;
+      border-radius: 16px;
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+      margin-bottom: 1.5rem;
+      outline: 4px solid #98d498;
+    }
+
+    .intro-text {
+      font-size: 1.15rem;
+      color: #0d3d0d;
+      background-color: #d9f7d9;
+      padding: 1rem 1.5rem;
+      border-left: 4px solid #4caf50;
+      border-radius: 8px;
+      box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.05);
+      display: inline-block;
+      margin-top: 1rem;
+    }
+
+    .lesson-list {
+      max-width: 720px;
+      width: 100%;
+      background: #f7fff7;
+      border-radius: 16px;
+      box-shadow: 0 12px 36px rgba(2, 77, 2, 0.2);
+      padding: 2rem 2.5rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.8rem;
+    }
+
+    .lesson-item {
+      background: #d9f0d9;
+      border-radius: 12px;
+      padding: 1.5rem 1.8rem;
+      box-shadow: 0 4px 14px rgba(2, 77, 2, 0.15);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .lesson-item:hover {
+      transform: translateY(-8px) scale(1.04);
+      box-shadow: 0 10px 28px rgba(2, 77, 2, 0.35);
+    }
+
+    .lesson-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: #124012;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .lesson-desc {
+      font-size: 0.95rem;
+      color: #2e7d32;
+    }
+
+    .lesson-meta {
+      font-size: 0.85rem;
+      color: #145214;
+      font-style: italic;
+    }
+
+    .back-btn {
+      margin-top: 4rem;
+      padding: 1rem 2rem;
+      background-color: #4CAF50;
+      color: white;
+      font-weight: bold;
+      font-size: 1rem;
+      border: none;
+      border-radius: 12px;
+      text-decoration: none;
+      transition: background-color 0.3s ease;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.2);
+      align-self: center;
+    }
+
+    .back-btn:hover {
+      background-color: #388e3c;
+    }
+
+    @media (max-width: 600px) {
+      h1 { font-size: 2rem; }
+      .lesson-list { grid-template-columns: 1fr; }
+      .course-intro { padding: 1rem; }
+      .intro-text { font-size: 1rem; }
+      .course-intro video { max-height: 240px; }
+    }
+  </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+
+  <h1>CSS Course Curriculum</h1>
+
+  <section class="course-intro" tabindex="0">
+    <video controls poster="../../assets/images/html-course-poster.jpg">
+      <source src="../../assets/videos/welcome.mp4" type="video/mp4" />
+      Your browser does not support the video tag.
+    </video>
+    <p class="intro-text">
+      🌱 Welcome to your CSS learning journey! This course will guide you from the basics of styling to advanced layouts and animations. Let's bring your websites to life!
+    </p>
+  </section>
+
+  <section class="lesson-list" aria-label="CSS Lessons List" tabindex="0">
+
+    <a href="intro/what-is-css/what-is-css.html" class="lesson-item">
+      <h2 class="lesson-title"><i class="fab fa-css3-alt"></i> What is CSS?</h2>
+      <p class="lesson-desc">Learn what CSS is and how it styles the web.</p>
+      <p class="lesson-meta">Duration: 8 mins | Level: Beginner</p>
+    </a>
+
+    <a href="intro/css-syntax/css-syntax.html" class="lesson-item">
+      <h2 class="lesson-title"><i class="fas fa-code"></i> CSS Syntax</h2>
+      <p class="lesson-desc">Understand selectors, properties, and values.</p>
+      <p class="lesson-meta">Duration: 12 mins | Level: Beginner</p>
+    </a>
+
+    <a href="intro/selectors/selectors.html" class="lesson-item">
+      <h2 class="lesson-title"><i class="fas fa-mouse-pointer"></i> CSS Selectors</h2>
+      <p class="lesson-desc">Target HTML elements with selectors and combinators.</p>
+      <p class="lesson-meta">Duration: 18 mins | Level: Beginner</p>
+    </a>
+
+    <a href="intro/color-background/color-background.html" class="lesson-item">
+      <h2 class="lesson-title"><i class="fas fa-palette"></i> Colors & Backgrounds</h2>
+      <p class="lesson-desc">Explore color formats and background styling.</p>
+      <p class="lesson-meta">Duration: 15 mins | Level: Beginner</p>
+    </a>
+
+    <a href="intro/typography/typography-fonts.html" class="lesson-item">
+      <h2 class="lesson-title"><i class="fas fa-font"></i> Typography Basics</h2>
+      <p class="lesson-desc">Manage fonts, sizes, line height, and text properties.</p>
+      <p class="lesson-meta">Duration: 14 mins | Level: Intermediate</p>
+    </a>
+
+    <a href="intro/box-model/box-model.html" class="lesson-item">
+      <h2 class="lesson-title"><i class="fas fa-border-style"></i> Box Model Deep Dive</h2>
+      <p class="lesson-desc">Master margins, padding, borders, and sizing.</p>
+      <p class="lesson-meta">Duration: 18 mins | Level: Intermediate</p>
+    </a>
+
+    <a href="intro/visibility-control/visibility.html" class="lesson-item">
+      <h2 class="lesson-title"><i class="fas fa-eye-slash"></i> Z-index & Visibility</h2>
+      <p class="lesson-desc">Control stacking, visibility, and overflow behaviors.</p>
+      <p class="lesson-meta">Duration: 14 mins | Level: Intermediate</p>
+    </a>
+
+    <a href="intro/layout/layout.html" class="lesson-item">
+      <h2 class="lesson-title"><i class="fas fa-th-large"></i> Layout & Positioning</h2>
+      <p class="lesson-desc">Understand box model, display, positioning, and flexbox/grid basics.</p>
+      <p class="lesson-meta">Duration: 22 mins | Level: Advanced</p>
+    </a>
+
+    <a href="intro/responsive/responsive.html" class="lesson-item">
+      <h2 class="lesson-title"><i class="fas fa-mobile-alt"></i> Responsive Design</h2>
+      <p class="lesson-desc">Build websites that work across all devices using media queries.</p>
+      <p class="lesson-meta">Duration: 15 mins | Level: Advanced</p>
+    </a>
+
+    <a href="intro/transitions-animations/transitions-animations.html" class="lesson-item">
+      <h2 class="lesson-title"><i class="fas fa-magic"></i> Transitions & Animations</h2>
+      <p class="lesson-desc">Add movement and smooth transitions to your designs.</p>
+      <p class="lesson-meta">Duration: 20 mins | Level: Advanced</p>
+    </a>
+
+  </section>
+
+  <a href="../../index.html" class="back-btn">
+    <i class="fas fa-arrow-left"></i> Back to Main Page
+  </a>
+
+</body>
+</html>

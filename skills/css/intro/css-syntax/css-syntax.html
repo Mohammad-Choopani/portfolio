@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>CSS Syntax | Mohammad Choopani</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #f0f8ff, #d9eafa);
+      color: #1a3c5d;
+      padding: 2rem 1.5rem;
+      line-height: 1.8;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 2.5rem;
+      color: #004a99;
+      margin-bottom: 1.5rem;
+      text-shadow: 1px 1px 3px #c2e2ff;
+    }
+
+    .video-container {
+      max-width: 800px;
+      margin: 2rem auto;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    }
+    video { width: 100%; height: auto; display: block; }
+
+    .content {
+      max-width: 800px;
+      margin: 2rem auto;
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 2rem;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+    }
+
+    .content p { font-size: 1.1rem; margin-bottom: 1rem; color: #1f4966; }
+    .content h2, .content h3 {
+      color: #004a99;
+      margin-top: 1.75rem;
+      margin-bottom: 0.8rem;
+      font-size: 1.25rem;
+    }
+
+    ul { padding-left: 1.25rem; margin-bottom: 1rem; }
+    ul li { margin-bottom: 0.6rem; }
+
+    pre {
+      background: #f4f4f4;
+      padding: 1rem;
+      border-radius: 8px;
+      overflow-x: auto;
+    }
+
+    .console-box {
+      margin-top: 2rem;
+      background: #222;
+      color: #0f0;
+      border-radius: 12px;
+      padding: 1rem;
+      box-shadow: 0 0 12px rgba(0,0,0,0.25);
+    }
+
+    .console-box h2 { color: #fff; margin-bottom: 0.75rem; }
+
+    .field {
+      margin-bottom: 1rem;
+    }
+    .field label {
+      display: block;
+      color: #dfefff;
+      font-weight: 600;
+      margin-bottom: 0.4rem;
+    }
+
+    .console-box textarea {
+      width: 100%;
+      min-height: 140px;
+      background: #111;
+      color: #0f0;
+      border: 1px solid #2e2e2e;
+      padding: 0.9rem 1rem;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-size: 0.95rem;
+      border-radius: 10px;
+      resize: vertical;
+      outline: none;
+      box-shadow: inset 0 0 0 1px #333;
+      transition: box-shadow 0.2s ease, border-color 0.2s ease;
+    }
+    .console-box textarea:focus {
+      border-color: #4caf50;
+      box-shadow: inset 0 0 0 1px #4caf50, 0 0 0 3px rgba(76,175,80,0.15);
+    }
+    .console-box textarea.error {
+      border-color: #e74c3c !important;
+      box-shadow: inset 0 0 0 1px #e74c3c !important;
+    }
+
+    .error-inline {
+      display: none;
+      margin-top: 0.5rem;
+      background: #ffdddd;
+      color: #a6211d;
+      border-left: 5px solid #e74c3c;
+      border-radius: 6px;
+      padding: 0.55rem 0.75rem;
+      font-weight: 600;
+      font-size: 0.92rem;
+    }
+
+    .actions {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      align-items: center;
+      margin-top: 0.25rem;
+    }
+
+    .console-box button {
+      background: #004a99;
+      color: #fff;
+      border: none;
+      padding: 0.65rem 1.2rem;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.25s ease, transform 0.15s ease;
+      font-weight: 600;
+    }
+    .console-box button:hover { background: #003a78; transform: translateY(-1px); }
+
+    .hint {
+      color: #cfe7ff;
+      font-size: 0.9rem;
+      margin-left: auto;
+    }
+
+    .preview-wrap {
+      margin-top: 1rem;
+      border: 1px solid #3a3a3a;
+      border-radius: 10px;
+      overflow: hidden;
+      background: #000;
+    }
+    iframe {
+      width: 100%;
+      height: 240px;
+      border: none;
+      background: #fff;
+      display: block;
+    }
+
+    .nav-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      margin-top: 3rem;
+    }
+    .nav-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      text-decoration: none;
+      font-weight: 600;
+      color: #004a99;
+      border: 2px solid #004a99;
+      padding: 0.6rem 1.2rem;
+      border-radius: 10px;
+      transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+    }
+    .nav-button:hover { background-color: #004a99; color: #fff; transform: translateY(-2px); }
+
+    @media (max-width: 700px) {
+      .console-box textarea { min-height: 160px; font-size: 1rem; }
+      iframe { height: 260px; }
+    }
+    @media (max-width: 420px) {
+      body { padding: 1.25rem 1rem; }
+      h1 { font-size: 2rem; }
+      .content { padding: 1.25rem; }
+      .console-box textarea { min-height: 180px; }
+      iframe { height: 280px; }
+      .hint { width: 100%; margin-left: 0; margin-top: 0.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>CSS Syntax</h1>
+
+  <div class="video-container">
+    <video controls>
+      <source src="../../../assets/videos/css/lesson2.mp4" type="video/mp4" />
+      Your browser does not support the video tag.
+    </video>
+  </div>
+
+  <section class="content">
+    <p>In this lesson, you'll learn the correct structure of a CSS rule and how to write it properly.</p>
+
+    <h2>What is CSS Syntax?</h2>
+    <p>Each CSS rule consists of:</p>
+    <ul>
+      <li><strong>Selector</strong> – selects the HTML element</li>
+      <li><strong>Property</strong> – the style you want to change</li>
+      <li><strong>Value</strong> – the new style setting</li>
+    </ul>
+
+    <h2>Structure</h2>
+    <pre>
+selector {
+  property: value;
+}
+    </pre>
+
+    <h2>Example</h2>
+    <pre>
+h1 {
+  color: blue;
+  font-size: 24px;
+}
+    </pre>
+
+    <h2>Multiple Properties</h2>
+    <pre>
+p {
+  color: green;
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+}
+    </pre>
+
+    <h2>CSS Comments</h2>
+    <pre>
+/* This is a CSS comment */
+    </pre>
+
+    <!-- Console -->
+    <div class="console-box">
+      <h2>🎯 Try it Yourself</h2>
+
+      <div class="field">
+        <label for="htmlInput">HTML</label>
+        <textarea id="htmlInput" placeholder="Type your HTML here...">&lt;h1&gt;Hello World&lt;/h1&gt;
+&lt;p&gt;This is styled with CSS!&lt;/p&gt;</textarea>
+        <div id="htmlError" class="error-inline">⚠️ Please enter valid HTML (use proper tags like &lt;h1&gt;, &lt;p&gt;, ...)</div>
+      </div>
+
+      <div class="field">
+        <label for="cssInput">CSS</label>
+        <textarea id="cssInput" placeholder="Type your CSS here (without &lt;style&gt;)">h1 {
+  color: #2e7d32;
+  font-size: 32px;
+  text-align: center;
+}
+
+p {
+  color: #1f4966;
+  font-style: italic;
+}</textarea>
+        <div id="cssError" class="error-inline">⚠️ Please enter valid CSS (e.g., selector { property: value; })</div>
+      </div>
+
+      <div class="actions">
+        <button type="button" onclick="runCode()">Run Code</button>
+        <button type="button" onclick="resetConsole()">Reset</button>
+        <span class="hint">Tip: You can fill either HTML, CSS, or both.</span>
+      </div>
+
+      <div class="preview-wrap">
+        <iframe id="previewFrame"></iframe>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="nav-buttons">
+      <a href="../../index.html" class="nav-button">
+        <i class="fas fa-arrow-left"></i> Back to Curriculum
+      </a>
+      <a href="../selectors/selectors.html" class="nav-button">
+        Next Lesson <i class="fas fa-arrow-right"></i>
+      </a>
+    </div>
+  </footer>
+
+  <script>
+    // Basic validators for HTML/CSS inputs
+    function isLikelyHTML(str) {
+      // Has at least one HTML-like tag
+      return /<\s*[a-zA-Z][\s\S]*?>/.test(str);
+    }
+    function isLikelyCSS(str) {
+      // Has at least one selector block: something { ... }
+      return /[^{]+\{[^}]*\}/.test(str);
+    }
+
+    function runCode() {
+      const htmlTA = document.getElementById('htmlInput');
+      const cssTA  = document.getElementById('cssInput');
+      const html   = htmlTA.value.trim();
+      const css    = cssTA.value.trim();
+
+      const htmlError = document.getElementById('htmlError');
+      const cssError  = document.getElementById('cssError');
+      const frame     = document.getElementById('previewFrame');
+
+      // Determine if user provided inputs
+      const providedHTML = html.length > 0;
+      const providedCSS  = css.length > 0;
+
+      // Validate individually (only if provided)
+      const htmlValid = !providedHTML || isLikelyHTML(html);
+      const cssValid  = !providedCSS  || isLikelyCSS(css);
+
+      // Show per-field error states
+      if (!htmlValid) {
+        htmlTA.classList.add('error');
+        htmlError.style.display = 'block';
+      } else {
+        htmlTA.classList.remove('error');
+        htmlError.style.display = 'none';
+      }
+
+      if (!cssValid) {
+        cssTA.classList.add('error');
+        cssError.style.display = 'block';
+      } else {
+        cssTA.classList.remove('error');
+        cssError.style.display = 'none';
+      }
+
+      // If nothing was provided, or any provided field is invalid -> do not render
+      if ((!providedHTML && !providedCSS) || !htmlValid || !cssValid) {
+        frame.srcdoc = '';
+        return;
+      }
+
+      // Build preview safely
+      const doc = `
+        <!DOCTYPE html>
+        <html>
+          <head>
+            <meta charset="UTF-8" />
+            ${providedCSS ? `<style>${css}</style>` : ''}
+          </head>
+          <body>
+            ${providedHTML ? html : ''}
+          </body>
+        </html>
+      `;
+      frame.srcdoc = doc;
+    }
+
+    function resetConsole() {
+      const htmlTA = document.getElementById('htmlInput');
+      const cssTA  = document.getElementById('cssInput');
+      const frame  = document.getElementById('previewFrame');
+
+      htmlTA.value = '';
+      cssTA.value  = '';
+      htmlTA.classList.remove('error');
+      cssTA.classList.remove('error');
+      document.getElementById('htmlError').style.display = 'none';
+      document.getElementById('cssError').style.display = 'none';
+      frame.srcdoc = '';
+    }
+  </script>
+</body>
+</html>

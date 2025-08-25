@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>What is HTML? | Mohammad Choopani</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #e4f8ee, #d1f0db);
+      color: #1a3e2e;
+      padding: 2rem 1.5rem;
+      line-height: 1.8;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      text-align: center;
+      color: #2e7d32;
+      margin-bottom: 1.5rem;
+      text-shadow: 1px 1px 3px #b5e9c3;
+    }
+
+    .video-container {
+      max-width: 800px;
+      margin: 2rem auto;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    video {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .content {
+      max-width: 800px;
+      margin: 2rem auto;
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 2rem;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+    }
+
+    .content p, .content li {
+      font-size: 1.1rem;
+      margin-bottom: 1rem;
+      color: #2b5d3b;
+    }
+
+    .content h2 {
+      color: #267a3e;
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+      font-size: 1.4rem;
+    }
+
+    ol, ul {
+      margin-left: 1rem;
+      padding-left: 1rem;
+    }
+
+    pre {
+      background: #f4f4f4;
+      padding: 1rem;
+      border-radius: 8px;
+      overflow-x: auto;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 3rem;
+    }
+
+    .back-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      text-decoration: none;
+      font-weight: 600;
+      color: #2e7d32;
+      border: 2px solid #4caf50;
+      padding: 0.6rem 1.2rem;
+      border-radius: 10px;
+      transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+    }
+
+    .back-button:hover {
+      background-color: #4caf50;
+      color: #fff;
+      transform: translateY(-3px);
+    }
+
+    .interactive-box {
+      margin-top: 3rem;
+      background: #eef9f1;
+      border: 1px solid #c3e6cb;
+      border-radius: 12px;
+      padding: 1.5rem;
+      transition: all 0.4s ease-in-out;
+    }
+
+    .editor-container {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    #code-input {
+      width: 100%;
+      height: 180px;
+      font-family: monospace;
+      font-size: 1rem;
+      padding: 1rem;
+      border: 1px solid #a5d6a7;
+      border-radius: 10px;
+      background: #ffffff;
+      resize: vertical;
+      transition: border 0.3s ease;
+    }
+
+    #code-input:focus {
+      border-color: #66bb6a;
+      outline: none;
+    }
+
+    #run-btn {
+      align-self: flex-start;
+      background-color: #4caf50;
+      color: white;
+      font-weight: bold;
+      padding: 0.6rem 1.2rem;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.2s;
+    }
+
+    #run-btn:hover {
+      background-color: #388e3c;
+      transform: translateY(-2px);
+    }
+
+    .output {
+      opacity: 1;
+      max-height: 500px;
+      transition: all 0.5s ease;
+      overflow: hidden;
+    }
+
+    .output.hidden {
+      opacity: 0;
+      max-height: 0;
+      pointer-events: none;
+    }
+
+    #result-frame {
+      width: 100%;
+      height: 200px;
+      border: 1px solid #a5d6a7;
+      border-radius: 8px;
+      background: #fff;
+    }
+
+    .message {
+      display: none;
+      padding: 1rem;
+      color: #721c24;
+      background-color: #f8d7da;
+      border: 1px solid #f5c6cb;
+      border-radius: 8px;
+      font-weight: bold;
+      margin-top: -10px;
+      margin-bottom: 10px;
+    }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 2rem;
+      }
+
+      .content {
+        padding: 1.5rem;
+      }
+
+      .back-button {
+        font-size: 0.95rem;
+      }
+
+      #code-input {
+        height: 150px;
+      }
+
+      #result-frame {
+        height: 180px;
+      }
+    }
+    .footer-buttons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.navigation-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-top: 3rem;
+  flex-wrap: wrap;
+}
+
+.nav-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  font-weight: 600;
+  color: #2e7d32;
+  border: 2px solid #4caf50;
+  padding: 0.6rem 1.4rem;
+  border-radius: 10px;
+  transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+  background-color: transparent;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.nav-button:hover {
+  background-color: #4caf50;
+  color: #ffffff;
+  transform: translateY(-2px);
+}
+
+  </style>
+</head>
+<body>
+
+  <h1>What is HTML?</h1>
+
+  <div class="video-container">
+    <video controls>
+      <source src="../../../assets/videos/html/lesson1.mp4" type="video/mp4" />
+      Your browser does not support the video tag.
+    </video>
+  </div>
+
+  <section class="content">
+    <p><strong>HTML</strong> stands for <em>HyperText Markup Language</em>. It is the fundamental building block of the Web. Every webpage you’ve ever visited was created using HTML — even this one!</p>
+
+    <h2>In this lesson, you will learn:</h2>
+    <ol>
+      <li>What HTML is and how it powers the web</li>
+      <li>Basic structure of an HTML document</li>
+      <li>How to write your first HTML page</li>
+    </ol>
+
+    <h2>Key Terms:</h2>
+    <ul>
+      <li><strong>Tag:</strong> A keyword wrapped in angle brackets like <code>&lt;h1&gt;</code>.</li>
+      <li><strong>Element:</strong> A complete set of start and end tags with content.</li>
+      <li><strong>Attribute:</strong> Adds additional info to elements like <code>href</code> or <code>src</code>.</li>
+    </ul>
+
+    <h2>Example:</h2>
+    <pre>
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;title&gt;My First Page&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;h1&gt;Hello, HTML!&lt;/h1&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+    </pre>
+  </section>
+
+  <section class="content interactive-box">
+    <h2>Practice Here:</h2>
+    <div class="editor-container">
+      <textarea id="code-input" placeholder="Write HTML here..."></textarea>
+      <button id="run-btn">Run ▶️</button>
+      <div id="message" class="message">⚠️ Only valid HTML code will be rendered in the output!</div>
+      <div id="output-box" class="output hidden">
+        <h3>Console Output:</h3>
+        <iframe id="result-frame"></iframe>
+      </div>
+    </div>
+  </section>
+
+ <footer class="navigation-buttons">
+  <a href="../index.html" class="nav-button">
+    <i class="fas fa-arrow-left"></i> Back to Curriculum
+  </a>
+  <a href="text/headings.html" class="nav-button">
+    Next Lesson <i class="fas fa-arrow-right"></i>
+  </a>
+</footer>
+
+  <script>
+    const runBtn = document.getElementById("run-btn");
+    const codeInput = document.getElementById("code-input");
+    const resultFrame = document.getElementById("result-frame");
+    const outputBox = document.getElementById("output-box");
+    const message = document.getElementById("message");
+
+    runBtn.addEventListener("click", () => {
+      const code = codeInput.value.trim();
+      const isValidHTML = /^<[^>]+>[\s\S]*<\/[^>]+>$/.test(code);
+
+      if (code === "") {
+        resultFrame.srcdoc = "";
+        message.style.display = "none";
+        outputBox.classList.add("hidden");
+        return;
+      }
+
+      if (isValidHTML) {
+        resultFrame.srcdoc = code;
+        message.style.display = "none";
+        outputBox.classList.remove("hidden");
+      } else {
+        resultFrame.srcdoc = "";
+        outputBox.classList.add("hidden");
+        message.style.display = "block";
+      }
+    });
+  </script>
+
+</body>
+</html>

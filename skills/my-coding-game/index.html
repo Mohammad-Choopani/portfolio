@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Turn Your Child Into a Coder!</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/a2d9d5a4fd.js" crossorigin="anonymous"></script>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Orbitron', sans-serif;
+      background: url('https://media.istockphoto.com/id/1140203966/photo/arch-gate-path-neon-glowing-sci-fi-purple-blue-futuristic-concrete-empty-grunge-reflective.jpg?s=612x612&w=0&k=20&c=juxvBBNZVkGKMvpL1ZncsC920ArnbGjN5Mv8jvaiBSo=') no-repeat fixed;
+      background-size: cover;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      padding: 2rem 1rem;
+      transition: background 0.5s ease;
+    }
+
+    .container {
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(10px);
+      padding: 2rem;
+      border-radius: 20px;
+      max-width: 900px;
+      width: 100%;
+      text-align: center;
+    }
+
+    .video-box {
+      margin-bottom: 1.5rem;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 0 20px #00f5ff;
+    }
+
+    video {
+      width: 100%;
+      max-height: 360px;
+      background: black;
+    }
+
+    h1 {
+      font-size: 2rem;
+      text-shadow: 0 0 10px #0ff;
+    }
+
+    p {
+      font-size: 1.1rem;
+      color: #ccffff;
+    }
+
+    .selectors {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .select-block {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.8rem;
+    }
+
+    select, .theme-buttons button {
+      padding: 0.8rem 1.3rem;
+      border: none;
+      border-radius: 10px;
+      font-size: 1rem;
+      font-weight: bold;
+      font-family: 'Orbitron', sans-serif;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    select {
+      background: #000000cc;
+      color: #00ffe7;
+      border: 2px solid #00ffe7;
+      box-shadow: 0 0 15px rgba(0, 255, 255, 0.4);
+    }
+
+    .theme-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+    }
+
+    .theme-buttons button {
+      background: linear-gradient(135deg, #00e5ff, #8a2be2);
+      color: white;
+      box-shadow: 0 0 18px #8a2be2;
+    }
+
+    .theme-buttons button:hover {
+      transform: scale(1.07);
+      box-shadow: 0 0 28px #00ffff;
+    }
+
+    .message-box {
+      margin-top: 1.5rem;
+      background: rgba(0,0,0,0.5);
+      border: 1px dashed #00ffe7;
+      padding: 1rem;
+      border-radius: 12px;
+      color: #00fff2;
+      font-size: 1.1rem;
+      display: none;
+    }
+
+    .continue-btn {
+      display: none;
+      margin-top: 1.2rem;
+      background: linear-gradient(135deg, #00ffcb, #005aff);
+      box-shadow: 0 0 15px #00e1ff;
+      color: white;
+      padding: 0.8rem 1.4rem;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+    }
+
+    .qr-code {
+      margin-top: 2rem;
+      padding-top: 1rem;
+      border-top: 1px dashed #333;
+      opacity: 0.9;
+    }
+
+    .qr-code img {
+      width: 140px;
+      height: 140px;
+      margin-top: 0.5rem;
+      filter: drop-shadow(0 0 8px #00ffe7);
+    }
+
+    @media (max-width: 768px) {
+      h1 { font-size: 1.4rem; }
+      .selectors { flex-direction: column; }
+      video { max-height: 220px; }
+      .theme-buttons { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+  <audio id="clickSound" src="https://cdn.pixabay.com/audio/2022/03/15/audio_d8497dcfa7.mp3" preload="auto"></audio>
+
+  <div class="container">
+    <div class="video-box">
+      <video controls poster="https://i.ibb.co/QCFsbbS/course-coming-soon.png">
+        <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+    </div>
+
+    <h1>TURN YOUR CHILD INTO A CODER!</h1>
+    <p>Get ready for an exciting journey! Experience a unique gamified way of learning to code.</p>
+
+    <div class="selectors">
+      <div class="select-block">
+        <i class="fas fa-user-graduate"></i>
+        <label for="age">SELECT YOUR AGE:</label>
+        <select id="age">
+          <option value="">-- Choose Age Group --</option>
+          <option value="kids">Kids (3–10)</option>
+          <option value="teens">Teens (11–20)</option>
+          <option value="adults">Adults (21+)</option>
+        </select>
+      </div>
+
+      <div class="select-block">
+        <i class="fas fa-palette"></i>
+        <label>CHOOSE A THEME:</label>
+        <div class="theme-buttons">
+          <button onclick="chooseTheme('sports')">🏀 SPORTS</button>
+          <button onclick="chooseTheme('art')">🎨 ART</button>
+          <button onclick="chooseTheme('news')">📰 NEWS</button>
+          <button onclick="chooseTheme('portfolio')">💼 PORTFOLIO</button>
+          <button onclick="chooseTheme('store')">🛒 STORE</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="message" class="message-box"></div>
+    <button id="continueBtn" class="continue-btn">Continue</button>
+
+    <div class="qr-code">
+      <p>Start your journey on another device:</p>
+      <img src="https://api.qrserver.com/v1/create-qr-code/?size=140x140&data=https://yoursite.com" alt="QR Code">
+      <p><small>www.yoursite.com</small></p>
+    </div>
+  </div>
+
+ <script>
+  const themes = {
+    // 🧒 Kids
+    "kids-sports": "url('https://media.istockphoto.com/id/823676052/vector/soccer-ball.jpg?s=612x612&w=0&k=20&c=MwgF9rnj6YMofAXkFqYtaO0f3B9r91GjA2DFEsmegew=')",
+    "kids-art": "url('https://c1.wallpaperflare.com/preview/6/885/294/back-to-school-pencils-rainbow-art.jpg')",
+    "kids-news": "url('https://c4.wallpaperflare.com/wallpaper/541/643/697/city-action-disney-heroes-wallpaper-preview.jpg')",
+    "kids-portfolio": "url('https://images.unsplash.com/photo-1568605114967-8130f3a36994?fit=crop&w=1600&q=80')",
+    "kids-store": "url('https://images.unsplash.com/photo-1596462502278-27bfdc403348?fit=crop&w=1600&q=80')",
+
+    // 🧑 Teens
+    "teens-sports": "url('https://images.unsplash.com/photo-1571019613618-1f2d3b50f6d4?fit=crop&w=1600&q=80')",
+    "teens-art": "url('https://images.unsplash.com/photo-1573497491208-6b1acb260507?fit=crop&w=1600&q=80')",
+    "teens-news": "url('https://images.unsplash.com/photo-1581093588401-3e09b4de04b7?fit=crop&w=1600&q=80')",
+    "teens-portfolio": "url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?fit=crop&w=1600&q=80')",
+    "teens-store": "url('https://images.unsplash.com/photo-1577412647305-991150c7eab7?fit=crop&w=1600&q=80')",
+
+    // 👨 Adults
+    "adults-sports": "url('https://images.unsplash.com/photo-1572177812156-58036aae4397?fit=crop&w=1600&q=80')",
+    "adults-art": "url('https://images.unsplash.com/photo-1517694712202-14dd9538aa97?fit=crop&w=1600&q=80')",
+    "adults-news": "url('https://images.unsplash.com/photo-1554224154-22dec7ec8818?fit=crop&w=1600&q=80')",
+    "adults-portfolio": "url('https://images.unsplash.com/photo-1603575436609-7e8aa2e9c1f5?fit=crop&w=1600&q=80')",
+    "adults-store": "url('https://images.unsplash.com/photo-1606813903659-8429bd3a090b?fit=crop&w=1600&q=80')"
+  };
+
+  function chooseTheme(theme) {
+    const age = document.getElementById('age').value;
+    const message = document.getElementById('message');
+    const btn = document.getElementById('continueBtn');
+
+    if (!age) {
+      alert("Please select an age group first!");
+      return;
+    }
+
+    const key = `${age}-${theme}`;
+    const selectedBg = themes[key] || "none";
+
+    document.body.style.background = selectedBg;
+    document.body.style.backgroundSize = 'cover';
+    document.body.style.backgroundAttachment = 'fixed';
+
+    message.innerHTML = `🎉 Theme <b>${theme.toUpperCase()}</b> selected for <b>${age.toUpperCase()}</b> level.<br>Click Continue to start your journey!`;
+    message.style.display = 'block';
+    btn.style.display = 'inline-block';
+    document.querySelector('.container').style.background = 'rgba(0, 0, 0, 0.35)';
+    document.querySelector('.container').style.backdropFilter = 'blur(5px)';
+
+
+    btn.onclick = () => {
+      window.location.href = `game.html?age=${age}&theme=${theme}`;
+    };
+  }
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Enter') {
+      const el = document.activeElement;
+      if (el.tagName === 'BUTTON') el.click();
+    }
+  });
+</script>
+
+</body>
+</html>

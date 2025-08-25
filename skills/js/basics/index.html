@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>JavaScript Basics | Mohammad Choopani</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0; padding: 0;
+    }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f0f4ff;
+      color: #102030;
+      line-height: 1.6;
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      scroll-behavior: smooth;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      color: #2a2a8e;
+      text-shadow: 1px 1px 3px rgba(0, 0, 128, 0.2);
+      animation: fadeInDown 1s ease forwards;
+    }
+
+    .intro-section {
+      max-width: 720px;
+      width: 100%;
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+
+    .intro-section video {
+      width: 100%;
+      border-radius: 12px;
+      outline: 2px solid #2a2a8e;
+      margin-bottom: 1rem;
+      box-shadow: 0 8px 20px rgba(0, 0, 128, 0.3);
+    }
+
+    .intro-text {
+      font-size: 1.1rem;
+      color: #334;
+    }
+
+    .lesson-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      max-width: 960px;
+      width: 100%;
+      margin-top: 2rem;
+      animation: fadeInUp 1s ease forwards;
+    }
+
+    .lesson-card {
+      background: #fff;
+      border-radius: 12px;
+      padding: 1.5rem;
+      text-decoration: none;
+      color: #102030;
+      box-shadow: 0 4px 14px rgba(0, 0, 128, 0.1);
+      transition: all 0.3s ease;
+    }
+
+    .lesson-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 8px 24px rgba(0, 0, 128, 0.2);
+    }
+
+    .lesson-title {
+      font-size: 1.2rem;
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .lesson-desc {
+      font-size: 0.95rem;
+      color: #444;
+    }
+
+    .back-btn {
+      margin-top: 3rem;
+      padding: 1rem 2rem;
+      background-color: #2a2a8e;
+      color: white;
+      font-weight: bold;
+      font-size: 1rem;
+      border: none;
+      border-radius: 10px;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      transition: background-color 0.3s ease;
+    }
+
+    .back-btn:hover {
+      background-color: #1a1a6e;
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(15px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-15px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>JavaScript: Basics</h1>
+
+  <section class="intro-section">
+    <video controls poster="../../assets/images/js-poster.jpg">
+      <source src="../../assets/videos/js-basics.mp4" type="video/mp4" />
+      Your browser does not support the video tag.
+    </video>
+    <p class="intro-text">
+      In this section, you'll learn the fundamentals of JavaScript programming. Let's build the core concepts together.
+    </p>
+  </section>
+
+  <section class="lesson-grid">
+    <a href="variables.html" class="lesson-card">
+      <h2 class="lesson-title"><i class="fas fa-box"></i> Variables</h2>
+      <p class="lesson-desc">Learn how to declare, assign, and manage variables using <code>let</code>, <code>const</code>, and <code>var</code>.</p>
+    </a>
+    <a href="data-types.html" class="lesson-card">
+      <h2 class="lesson-title"><i class="fas fa-layer-group"></i> Data Types</h2>
+      <p class="lesson-desc">Understand primitive types like strings, numbers, booleans, null, undefined, and symbols.</p>
+    </a>
+    <a href="operators.html" class="lesson-card">
+      <h2 class="lesson-title"><i class="fas fa-equals"></i> Operators</h2>
+      <p class="lesson-desc">Explore arithmetic, comparison, logical, and assignment operators in JavaScript.</p>
+    </a>
+    <a href="type-conversion.html" class="lesson-card">
+      <h2 class="lesson-title"><i class="fas fa-random"></i> Type Conversion</h2>
+      <p class="lesson-desc">Learn how JavaScript handles automatic and manual type conversion between types.</p>
+    </a>
+  </section>
+
+  <a href="../index.html" class="back-btn">
+    <i class="fas fa-arrow-left"></i> Back to JavaScript Main
+  </a>
+
+</body>
+</html>

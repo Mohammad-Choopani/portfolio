@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>CSS Colors & Backgrounds | Mohammad Choopani</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    :root{
+      --ink:#1a3c5d;
+      --brand:#004a99;
+      --brand-2:#0066cc;
+      --paper:#ffffff;
+      --page-grad: linear-gradient(135deg, #f0f8ff, #d9eafa);
+      --glass:#0b12201a;
+      --ring:#cce4ff;
+      --shadow:0 12px 30px rgba(0,0,0,.15);
+
+      /* Editor theme (dark default) */
+      --ed-bg:#0f1117;
+      --ed-ink:#d4d4d4;
+      --ed-accent:#80aaff;
+      --ed-border:#232634;
+      --ed-gutter:#141824;
+      --ed-number:#7f8ea3;
+      --ed-error-bg:#ffeded;
+      --ed-error-ink:#b00020;
+      --ed-btn:#004a99;
+      --ed-btn-hover:#003366;
+    }
+    .theme-light{
+      --ed-bg:#f7f9ff;
+      --ed-ink:#1f2a44;
+      --ed-accent:#0b65c2;
+      --ed-border:#d8e5ff;
+      --ed-gutter:#e9f1ff;
+      --ed-number:#5e6c85;
+      --ed-error-bg:#ffe9ec;
+      --ed-error-ink:#8d0018;
+      --ed-btn:#0b65c2;
+      --ed-btn-hover:#084f97;
+    }
+
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: var(--page-grad);
+      color: var(--ink);
+      padding: 2rem 1.5rem;
+      line-height: 1.8;
+    }
+
+    h1{
+      font-size:2.6rem;
+      text-align:center;
+      color:var(--brand);
+      margin-bottom:1.5rem;
+      text-shadow:1px 1px 4px #cce4ff;
+    }
+
+    .video-container{
+      max-width:850px;margin:2rem auto;border-radius:18px;overflow:hidden;box-shadow:var(--shadow)
+    }
+    video{width:100%;height:auto;display:block}
+
+    .content{
+      max-width:850px;margin:2rem auto;background:var(--paper);border-radius:18px;padding:2rem;box-shadow:0 6px 20px rgba(0,0,0,.1)
+    }
+
+    .content p{font-size:1.1rem;margin-bottom:1rem;color:#1f4966}
+    .content h2{color:var(--brand);margin:2rem 0 1rem;font-size:1.5rem}
+    .content h3{color:var(--brand-2);margin:1.5rem 0 .8rem;font-size:1.2rem}
+
+    ul{margin:.5rem 0 1.2rem 1.5rem}
+    ul li{margin-bottom:.7rem;padding-left:1rem;position:relative}
+    ul li::before{content:'✔️';position:absolute;left:-1.2rem}
+
+    pre{
+      background:#f4f8ff;
+      padding:1rem;border-radius:10px;overflow-x:auto;border:1px solid #cce0ff
+    }
+
+    /* --- Modern Console --- */
+    .console-box{
+      margin-top:2.5rem;border-radius:14px;padding:1rem;box-shadow:0 0 0 1px var(--ed-border), 0 10px 24px rgba(0,0,0,.25);background:linear-gradient(180deg,var(--ed-gutter),var(--ed-bg));
+      transition:background .3s ease, color .3s ease;
+    }
+    .console-header{
+      display:flex;align-items:center;justify-content:space-between;margin-bottom:.75rem;color:var(--ed-ink)
+    }
+    .console-header .left{display:flex;align-items:center;gap:.75rem}
+    .console-pill{
+      font-size:.85rem;background:rgba(255,255,255,.06);padding:.35rem .6rem;border-radius:999px;border:1px solid var(--ed-border)
+    }
+    .console-controls{
+      display:flex;align-items:center;gap:.65rem;color:var(--ed-ink);font-size:.9rem
+    }
+    .console-controls label{display:flex;align-items:center;gap:.4rem;cursor:pointer}
+    .console-actions{display:flex;gap:.6rem;flex-wrap:wrap}
+    .btn{
+      background:var(--ed-btn);color:#fff;border:none;padding:.6rem 1.1rem;border-radius:8px;cursor:pointer;
+      transition:background .2s ease, transform .15s ease;font-weight:600
+    }
+    .btn:hover{background:var(--ed-btn-hover);transform:translateY(-1px)}
+    .btn.secondary{background:transparent;color:var(--ed-ink);border:1px solid var(--ed-border)}
+    .btn.secondary:hover{background:rgba(255,255,255,.06)}
+    .btn.ghost{background:transparent;border:1px dashed var(--ed-border);color:var(--ed-ink)}
+    .kbd{font-family:ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;border:1px solid var(--ed-border);border-bottom-width:2px;padding:.1rem .35rem;border-radius:6px;background:rgba(255,255,255,.06)}
+
+    .editor-grid{display:grid;grid-template-columns:1fr 1fr;gap:.8rem}
+    @media (max-width:800px){.editor-grid{grid-template-columns:1fr}}
+
+    .editor{
+      background:var(--ed-bg);border:1px solid var(--ed-border);border-radius:10px;overflow:hidden;
+    }
+    .editor-title{
+      display:flex;align-items:center;justify-content:space-between;padding:.55rem .75rem;border-bottom:1px solid var(--ed-border);color:var(--ed-ink);background:linear-gradient(180deg,rgba(255,255,255,.04),transparent)
+    }
+    .editor-title .label{display:flex;align-items:center;gap:.5rem}
+    .editor-title .badge{font-size:.75rem;padding:.15rem .5rem;border:1px solid var(--ed-border);border-radius:999px}
+
+    .editor-body{display:grid;grid-template-columns:48px 1fr;align-items:stretch}
+    .gutter{
+      background:var(--ed-gutter);color:var(--ed-number);padding:.6rem .4rem .6rem .6rem;text-align:right;user-select:none;font:13px/1.6 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;border-right:1px solid var(--ed-border);overflow:hidden
+    }
+    .gutter pre{background:none;border:none;padding:0;margin:0;white-space:pre;word-wrap:normal}
+
+    textarea.code{
+      background:transparent;color:var(--ed-ink);border:none;outline:none;padding:.6rem;font:13px/1.6 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;resize:vertical;min-height:160px
+    }
+    textarea.code::placeholder{color:#7f8ea38f}
+
+    .error{
+      display:none;margin-top:.6rem;padding:.65rem .8rem;background:var(--ed-error-bg);color:var(--ed-error-ink);
+      border-left:5px solid #e53935;border-radius:8px;font-weight:600
+    }
+
+    iframe{
+      width:100%;height:300px;margin-top:1rem;border:none;border-radius:10px;background:#fff
+    }
+
+    .nav-buttons{
+      display:flex;justify-content:center;gap:1.5rem;flex-wrap:wrap;margin-top:3rem
+    }
+    .nav-button{
+      display:inline-flex;align-items:center;gap:.5rem;text-decoration:none;font-weight:600;color:var(--brand);
+      border:2px solid var(--brand);padding:.6rem 1.2rem;border-radius:10px;transition:all .3s ease
+    }
+    .nav-button:hover{background-color:var(--brand);color:#fff;transform:translateY(-3px)}
+
+    @media (max-width:600px){
+      h1{font-size:2rem}
+      .content{padding:1.3rem}
+      .nav-button{font-size:.95rem}
+    }
+  </style>
+</head>
+<body>
+
+  <h1>CSS Colors & Backgrounds</h1>
+
+  <div class="video-container">
+    <video controls>
+      <source src="../../../assets/videos/css/lesson5.mp4" type="video/mp4" />
+      Your browser does not support the video tag.
+    </video>
+  </div>
+
+  <section class="content">
+    <p>Colors and backgrounds are essential in making your webpage visually engaging. With CSS you can set text colors, background colors, background images, and even apply gradients or multiple layers of backgrounds.</p>
+
+    <h2>1) Text Colors</h2>
+    <ul>
+      <li>Names: <code>red</code>, <code>blue</code>, <code>rebeccapurple</code></li>
+      <li>Hex: <code>#ff0000</code>, <code>#09f</code></li>
+      <li>RGB / RGBA: <code>rgb(255,0,0)</code>, <code>rgba(0,0,0,.6)</code></li>
+      <li>HSL / HSLA: <code>hsl(210 100% 40%)</code>, <code>hsla(210 100% 40% / .8)</code></li>
+    </ul>
+    <pre>
+&lt;h1&gt;Welcome to My Website&lt;/h1&gt;
+&lt;p&gt;This is a paragraph.&lt;/p&gt;
+
+h1 { color: darkred; }
+p  { color: navy; }
+    </pre>
+
+    <h2>2) Background Color</h2>
+    <pre>
+&lt;div class="box"&gt;This is a box&lt;/div&gt;
+
+.box {
+  background-color: lightyellow;
+  padding: 20px;
+  border: 1px solid #ccc;
+}
+    </pre>
+
+    <h2>3) Background Images</h2>
+    <pre>
+body {
+  background-image: url("background.jpg");
+}
+    </pre>
+
+    <h3>Repeat &amp; Position</h3>
+    <pre>
+body {
+  background-image: url("pattern.png");
+  background-repeat: no-repeat;    /* repeat | repeat-x | repeat-y | no-repeat */
+  background-position: center top; /* keywords or percentages */
+}
+    </pre>
+
+    <h3>Size &amp; Attachment</h3>
+    <pre>
+body {
+  background-image: url("hero.jpg");
+  background-size: cover;          /* contain | cover | 100% 100% */
+  background-attachment: fixed;    /* scroll | fixed */
+}
+    </pre>
+
+    <h2>4) CSS Gradients</h2>
+    <h3>Linear</h3>
+    <pre>div { background: linear-gradient(90deg, orange, yellow); }</pre>
+    <h3>Radial</h3>
+    <pre>div { background: radial-gradient(circle, lightblue, darkblue); }</pre>
+    <h3>Conic</h3>
+    <pre>div { background: conic-gradient(from 0deg, red, yellow, green, blue, red); }</pre>
+
+    <h2>5) Multiple Backgrounds</h2>
+    <pre>
+div {
+  background-image: url("stars.png"), linear-gradient(black, darkblue);
+  background-repeat: repeat, no-repeat;
+  background-size: auto, cover;
+}
+    </pre>
+
+    <!-- =================== MODERN INTERACTIVE CONSOLE =================== -->
+    <div class="console-box" id="console" aria-label="Interactive HTML/CSS console">
+      <div class="console-header">
+        <div class="left">
+          <span class="console-pill">Interactive Console</span>
+          <span class="console-pill">CSS Colors & Backgrounds</span>
+        </div>
+        <div class="console-controls">
+          <label><input type="checkbox" id="liveToggle"> Live preview</label>
+          <label><input type="checkbox" id="themeToggle"> Light theme</label>
+          <span class="console-pill"><span class="kbd">Ctrl/⌘</span> + <span class="kbd">Enter</span> to Run</span>
+        </div>
+      </div>
+
+      <div class="editor-grid">
+        <!-- HTML Editor -->
+        <div class="editor" id="htmlEditor">
+          <div class="editor-title">
+            <div class="label"><i class="fa-solid fa-code"></i> HTML</div>
+            <span class="badge">base markup</span>
+          </div>
+          <div class="editor-body">
+            <div class="gutter"><pre id="htmlNums">1</pre></div>
+            <textarea id="htmlInput" class="code" spellcheck="false" placeholder="Paste full page or a fragment (e.g., &lt;div&gt;...&lt;/div&gt;)">&lt;h1&gt;Hello World&lt;/h1&gt;
+&lt;p&gt;This is a sample paragraph.&lt;/p&gt;
+&lt;div class="box"&gt;This is a demo box&lt;/div&gt;</textarea>
+          </div>
+          <div id="htmlError" class="error" role="alert"></div>
+        </div>
+
+        <!-- CSS Editor -->
+        <div class="editor" id="cssEditor">
+          <div class="editor-title">
+            <div class="label"><i class="fa-solid fa-palette"></i> CSS</div>
+            <span class="badge">style step-by-step</span>
+          </div>
+          <div class="editor-body">
+            <div class="gutter"><pre id="cssNums">1</pre></div>
+            <textarea id="cssInput" class="code" spellcheck="false" placeholder="Write CSS without &lt;style&gt; tags">body { background: #fdfdfd; }
+h1 { color: darkred; }
+p  { color: navy; }
+.box { background: lightyellow; padding: 20px; border-radius: 12px; }</textarea>
+          </div>
+          <div id="cssError" class="error" role="alert"></div>
+        </div>
+      </div>
+
+      <div class="console-actions" style="margin-top:.8rem">
+        <button id="runBtn" class="btn" type="button" title="Ctrl/Cmd + Enter">Run</button>
+        <button id="resetBtn" class="btn secondary" type="button">Reset</button>
+        <button id="clearBtn" class="btn ghost" type="button">Clear Output</button>
+      </div>
+
+      <iframe id="previewFrame" title="Preview"></iframe>
+    </div>
+    <!-- ================= END MODERN INTERACTIVE CONSOLE ================ -->
+
+  </section>
+
+  <footer>
+    <div class="nav-buttons">
+      <a href="../../index.html" class="nav-button">
+        <i class="fas fa-arrow-left"></i> Back to Curriculum
+      </a>
+      <a href="../css-borders/css-borders.html" class="nav-button">
+        Next Lesson <i class="fas fa-arrow-right"></i>
+      </a>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      const root = document.documentElement;
+
+      // Elements
+      const htmlTA = document.getElementById('htmlInput');
+      const cssTA  = document.getElementById('cssInput');
+      const htmlNums = document.getElementById('htmlNums');
+      const cssNums  = document.getElementById('cssNums');
+      const frame    = document.getElementById('previewFrame');
+      const runBtn   = document.getElementById('runBtn');
+      const resetBtn = document.getElementById('resetBtn');
+      const clearBtn = document.getElementById('clearBtn');
+      const liveToggle  = document.getElementById('liveToggle');
+      const themeToggle = document.getElementById('themeToggle');
+
+      const htmlErr = document.getElementById('htmlError');
+      const cssErr  = document.getElementById('cssError');
+
+      // Storage keys (per lesson)
+      const STORAGE_HTML = 'lesson_colors_bg_html';
+      const STORAGE_CSS  = 'lesson_colors_bg_css';
+      const STORAGE_THEME = 'lesson_colors_bg_theme';
+      const STORAGE_LIVE  = 'lesson_colors_bg_live';
+
+      // Load persisted values
+      try {
+        const savedHTML = localStorage.getItem(STORAGE_HTML);
+        const savedCSS  = localStorage.getItem(STORAGE_CSS);
+        const savedTheme = localStorage.getItem(STORAGE_THEME);
+        const savedLive  = localStorage.getItem(STORAGE_LIVE);
+
+        if (savedHTML) htmlTA.value = savedHTML;
+        if (savedCSS)  cssTA.value  = savedCSS;
+
+        if (savedTheme === 'light') {
+          document.body.classList.add('theme-light');
+          themeToggle.checked = true;
+        }
+        if (savedLive === '1') {
+          liveToggle.checked = true;
+        }
+      } catch(e){}
+
+      // Line numbers
+      function updateLineNumbers(textarea, gutterEl){
+        const lines = textarea.value.split('\n').length || 1;
+        let out = '';
+        for (let i=1;i<=lines;i++) out += i + (i<lines?'\n':'');
+        gutterEl.textContent = out;
+      }
+      updateLineNumbers(htmlTA, htmlNums);
+      updateLineNumbers(cssTA, cssNums);
+
+      function syncScroll(srcTA, gutterEl){
+        gutterEl.parentElement.scrollTop = srcTA.scrollTop;
+      }
+
+      htmlTA.addEventListener('input', ()=>{updateLineNumbers(htmlTA, htmlNums); save(); if(liveToggle.checked) debouncedRun();});
+      cssTA.addEventListener('input',  ()=>{updateLineNumbers(cssTA, cssNums);  save(); if(liveToggle.checked) debouncedRun();});
+      htmlTA.addEventListener('scroll', ()=>syncScroll(htmlTA, htmlNums));
+      cssTA .addEventListener('scroll', ()=>syncScroll(cssTA, cssNums));
+
+      // Tab / Shift+Tab support
+      function handleTab(e, ta){
+        if (e.key === 'Tab'){
+          e.preventDefault();
+          const start = ta.selectionStart;
+          const end   = ta.selectionEnd;
+          const value = ta.value;
+          const sel = value.slice(start, end);
+          if (e.shiftKey){
+            // outdent
+            const before = value.slice(0,start);
+            const selected = sel.replace(/^ {1,4}/gm,'');
+            const after = value.slice(end);
+            ta.value = before + selected + after;
+            const removed = sel.length - selected.length;
+            ta.selectionStart = start;
+            ta.selectionEnd = end - removed;
+          }else{
+            // indent
+            const before = value.slice(0,start);
+            const selected = sel.replace(/^/gm,'    ');
+            const after = value.slice(end);
+            ta.value = before + selected + after;
+            ta.selectionStart = start + 4;
+            ta.selectionEnd = end + (selected.length - sel.length);
+          }
+          updateLineNumbers(ta, ta === htmlTA ? htmlNums : cssNums);
+          if (liveToggle.checked) debouncedRun();
+        }
+      }
+      htmlTA.addEventListener('keydown', (e)=>handleTab(e, htmlTA));
+      cssTA .addEventListener('keydown', (e)=>handleTab(e, cssTA));
+
+      // Shortcuts
+      document.addEventListener('keydown', (e)=>{
+        if ((e.ctrlKey || e.metaKey) && e.key === 'Enter'){ run(); }
+      });
+
+      // Validation
+      function isFullHtmlDoc(str){
+        return /<!doctype html/i.test(str) || /<html[\s>]/i.test(str);
+      }
+      function validateHtmlFragment(str){
+        const tpl = document.createElement('template');
+        tpl.innerHTML = str.trim();
+        return tpl.content.querySelector('*') !== null;
+      }
+      function validateHtmlFull(str){
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(str, 'text/html');
+        return !!doc.body && !!doc.body.querySelector('*');
+      }
+      function validateCss(css){
+        const trimmed = css.trim();
+        if (!trimmed) return {ok:true,msg:''};
+        if (typeof CSSStyleSheet !== 'undefined' && CSSStyleSheet.prototype.replaceSync){
+          try{
+            const sheet = new CSSStyleSheet();
+            sheet.replaceSync(trimmed);
+            return {ok:true,msg:''};
+          }catch(e){
+            return {ok:false,msg:'CSS syntax error: ' + (e && e.message ? e.message : 'Invalid CSS.')};
+          }
+        }
+        const hasBlock = /[^{]+\{[^}]*\}/.test(trimmed);
+        return hasBlock ? {ok:true,msg:''} : {ok:false,msg:'CSS must include at least one rule block (e.g., selector { property: value; })'};
+      }
+
+      function buildFromFragment(html, css){
+        return `<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<style>${css || ''}</style>
+</head>
+<body>
+${html || ''}
+</body>
+</html>`;
+      }
+      function injectCssIntoFullDoc(fullHtml, css){
+        if (!css.trim()) return fullHtml;
+        if (/<head[\s>]/i.test(fullHtml)){
+          return fullHtml.replace(/<\/head>/i, `<style>${css}</style></head>`);
+        }
+        if (/<html[\s>]/i.test(fullHtml)){
+          return fullHtml.replace(/<html[^>]*>/i, (m)=> `${m}<head><style>${css}</style></head>`);
+        }
+        return buildFromFragment(fullHtml, css);
+      }
+
+      function showError(el, text){
+        el.textContent = text;
+        el.style.display = 'block';
+      }
+      function hideErrors(){
+        htmlErr.style.display = 'none'; cssErr.style.display = 'none';
+        htmlErr.textContent=''; cssErr.textContent='';
+      }
+
+      function run(){
+        hideErrors();
+
+        let html = htmlTA.value;
+        const css = cssTA.value;
+
+        if (!html.trim()){
+          showError(htmlErr, 'Please enter valid HTML (a full document or at least one element).');
+          frame.srcdoc = '';
+          return;
+        }
+
+        const full = isFullHtmlDoc(html);
+        const htmlOk = full ? validateHtmlFull(html) : validateHtmlFragment(html);
+        if (!htmlOk){
+          showError(htmlErr, 'HTML is not valid. Provide a full document or at least one HTML element.');
+          frame.srcdoc = '';
+          return;
+        }
+
+        const cssCheck = validateCss(css);
+        if (!cssCheck.ok){
+          showError(cssErr, cssCheck.msg);
+          frame.srcdoc = '';
+          return;
+        }
+
+        const output = full ? injectCssIntoFullDoc(html, css) : buildFromFragment(html, css);
+        frame.srcdoc = output;
+      }
+
+      // Debounced live preview
+      let t=null;
+      function debouncedRun(){
+        clearTimeout(t);
+        t = setTimeout(run, 250);
+      }
+
+      // Theme & Live toggles
+      themeToggle.addEventListener('change', ()=>{
+        document.body.classList.toggle('theme-light', themeToggle.checked);
+        try{ localStorage.setItem(STORAGE_THEME, themeToggle.checked ? 'light' : 'dark'); }catch(e){}
+      });
+      liveToggle.addEventListener('change', ()=>{
+        try{ localStorage.setItem(STORAGE_LIVE, liveToggle.checked ? '1' : '0'); }catch(e){}
+        if (liveToggle.checked) debouncedRun();
+      });
+
+      // Buttons
+      runBtn.addEventListener('click', run);
+      resetBtn.addEventListener('click', ()=>{
+        htmlTA.value = '';
+        cssTA.value  = '';
+        updateLineNumbers(htmlTA, htmlNums);
+        updateLineNumbers(cssTA, cssNums);
+        hideErrors();
+        frame.srcdoc = '';
+        save();
+      });
+      clearBtn.addEventListener('click', ()=>{
+        frame.srcdoc = '';
+      });
+
+      // Autosave
+      function save(){
+        try{
+          localStorage.setItem(STORAGE_HTML, htmlTA.value);
+          localStorage.setItem(STORAGE_CSS,  cssTA.value);
+        }catch(e){}
+      }
+
+      // Initial preview if live is on
+      if (liveToggle.checked){ run(); }
+
+    })();
+  </script>
+</body>
+</html>

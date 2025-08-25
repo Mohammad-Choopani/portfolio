@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>JavaScript Functions – Arrow Functions</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code&family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #f5faff;
+      --accent: #00bcd4;
+      --dark: #0a0a0a;
+      --gray: #555;
+      --code-bg: #272822;
+      --hover-bg: #e0f7fa;
+      --btn-back: #ccc;
+      --btn-next: #00bcd4;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      font-family: 'Roboto', sans-serif;
+      background: var(--bg);
+      color: var(--dark);
+      margin: 0;
+      padding: 2rem 1rem 6rem;
+    }
+
+    .container {
+      max-width: 960px;
+      margin: auto;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 2.4rem;
+      color: var(--accent);
+    }
+
+    p.lead {
+      text-align: center;
+      font-size: 1.1rem;
+      color: var(--gray);
+      margin-bottom: 2rem;
+    }
+
+    .video-frame {
+      margin: 2.5rem 0;
+      border: 6px solid var(--accent);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    }
+
+    .video-frame video {
+      width: 100%;
+      display: block;
+    }
+
+    section {
+      background: white;
+      padding: 1.5rem;
+      margin-bottom: 3rem;
+      border-radius: 12px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+      transition: all 0.3s ease;
+    }
+
+    section:hover {
+      transform: translateY(-6px);
+      background: var(--hover-bg);
+      box-shadow: 0 12px 28px rgba(0,0,0,0.12);
+    }
+
+    h2 {
+      margin-bottom: 0.8rem;
+    }
+
+    .explanation {
+      font-size: 1.05rem;
+      line-height: 1.7;
+      margin-bottom: 1rem;
+    }
+
+    .code-block {
+      background: var(--code-bg);
+      color: #eee;
+      font-family: 'Fira Code', monospace;
+      padding: 1rem;
+      border-radius: 8px;
+      overflow-x: auto;
+      font-size: 0.95rem;
+    }
+
+    .try-box {
+      margin-top: 1.5rem;
+    }
+
+    .try-box input {
+      width: 100%;
+      padding: 0.6rem;
+      font-size: 1rem;
+      border-radius: 8px;
+      border: 1px solid #aaa;
+      margin-bottom: 0.7rem;
+    }
+
+    .try-box button {
+      width: 100%;
+      padding: 0.6rem 1.2rem;
+      background: var(--dark);
+      color: white;
+      font-weight: bold;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .try-box button:hover {
+      background: #222;
+      transform: scale(1.03);
+    }
+
+    .output {
+      margin-top: 0.6rem;
+      color: #28a745;
+      font-weight: bold;
+    }
+
+    footer {
+      text-align: center;
+      font-size: 0.9rem;
+      color: #777;
+      margin-top: 4rem;
+    }
+
+    .back-btn, .next-btn {
+      position: fixed;
+      bottom: 1.5rem;
+      padding: 0.6rem 1.4rem;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+      z-index: 10;
+    }
+
+    .back-btn {
+      left: 2rem;
+      background: var(--btn-back);
+      color: #333;
+    }
+
+    .next-btn {
+      right: 2rem;
+      background: var(--btn-next);
+      color: white;
+    }
+
+    @media (max-width: 600px) {
+      h1 { font-size: 2rem; }
+      .back-btn, .next-btn {
+        font-size: 0.85rem;
+        bottom: 1rem;
+        padding: 0.5rem 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1><i class="fas fa-bolt"></i> Arrow Functions</h1>
+    <p class="lead">Master the modern way to write functions in JavaScript!</p>
+
+    <div class="video-frame">
+      <video controls poster="../../assets/images/js-arrow.jpg">
+        <source src="../../assets/videos/js-arrow-functions.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+    </div>
+
+    <section>
+      <h2>📌 What are Arrow Functions?</h2>
+      <div class="explanation">
+        Arrow functions are a shorter way to write functions using the <code>=&gt;</code> syntax. They are especially useful in callbacks, array methods, and one-liners.
+        <ul>
+          <li>No <code>function</code> keyword</li>
+          <li><code>this</code> behaves differently (lexical binding)</li>
+          <li>No <code>arguments</code> object</li>
+        </ul>
+      </div>
+      <div class="code-block">
+<pre><code>// Traditional function
+function add(a, b) {
+  return a + b;
+}
+
+// Arrow function
+const addArrow = (a, b) => a + b;
+
+console.log(addArrow(5, 3)); // 8</code></pre>
+      </div>
+    </section>
+
+    <section>
+      <h2>🎯 Practice: Create a Greeting</h2>
+      <div class="explanation">Use an arrow function to greet the user:</div>
+      <div class="code-block">
+<pre><code>const greet = name => `Hello, ${name}!`; 
+console.log(greet("Mohammad"));</code></pre>
+      </div>
+
+      <div class="try-box">
+        <input type="text" id="nameInput" placeholder="Enter your name" />
+        <button onclick="greetUser()">Greet Me</button>
+        <div class="output" id="greetOutput"></div>
+      </div>
+    </section>
+
+    <section>
+      <h2>💡 Advanced Example: Filter Even Numbers</h2>
+      <div class="explanation">Use an arrow function inside <code>filter()</code> to find even numbers:</div>
+      <div class="code-block">
+<pre><code>const numbers = [1, 2, 3, 4, 5, 6];
+const evens = numbers.filter(n => n % 2 === 0);
+console.log(evens); // [2, 4, 6]</code></pre>
+      </div>
+    </section>
+
+    <footer>
+      &copy; 2025 Mohammad Choopani | You're leveling up with every line of code 🚀
+    </footer>
+  </div>
+
+  <a href="scope.html" class="back-btn"><i class="fas fa-arrow-left"></i> Back to Scope</a>
+  <!-- <a href="../03-conditions/index.html" class="next-btn">Next: Conditions & Loops <i class="fas fa-arrow-right"></i></a> -->
+<a href="index.html" class="next-btn">Back to JS Main <i class="fas fa-arrow-right"></i></a>
+  <script>
+    const greetUser = () => {
+      const name = document.getElementById('nameInput').value;
+      const output = name ? `Hello, ${name}! 👋` : 'Please enter your name.';
+      document.getElementById('greetOutput').textContent = output;
+    };
+  </script>
+</body>
+</html>

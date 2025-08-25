@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Images & Links | Mohammad Choopani</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #e4f8ee, #d1f0db);
+      color: #1a3e2e;
+      padding: 2rem 1.5rem;
+      line-height: 1.8;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      text-align: center;
+      color: #2e7d32;
+      margin-bottom: 1.5rem;
+      text-shadow: 1px 1px 3px #b5e9c3;
+    }
+
+    .video-container {
+      max-width: 800px;
+      margin: 2rem auto;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    video {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .content {
+      max-width: 800px;
+      margin: 2rem auto;
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 2rem;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+    }
+
+    .content p {
+      font-size: 1.1rem;
+      margin-bottom: 1rem;
+      color: #2b5d3b;
+    }
+
+    .content h2 {
+      color: #267a3e;
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+      font-size: 1.4rem;
+    }
+
+    pre {
+      background: #f4f4f4;
+      padding: 1rem;
+      border-radius: 8px;
+      overflow-x: auto;
+    }
+
+    .console-box {
+      margin-top: 2rem;
+      background: #222;
+      color: #0f0;
+      border-radius: 10px;
+      padding: 1rem;
+      box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    }
+
+    .console-box textarea {
+      width: 100%;
+      height: 130px;
+      background: #111;
+      color: #0f0;
+      border: none;
+      padding: 1rem;
+      font-family: monospace;
+      font-size: 1rem;
+      border-radius: 6px;
+      resize: vertical;
+    }
+
+    .console-box button {
+      background: #4caf50;
+      color: #fff;
+      border: none;
+      padding: 0.6rem 1.2rem;
+      margin-top: 1rem;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .console-box button:hover {
+      background: #388e3c;
+    }
+
+    .console-output {
+      margin-top: 1rem;
+      background: #000;
+      color: #0f0;
+      padding: 1rem;
+      border-radius: 6px;
+      font-family: monospace;
+      min-height: 40px;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+    }
+
+    .error-message {
+      display: none;
+      margin-top: 0.5rem;
+      padding: 0.6rem;
+      background-color: #ffdddd;
+      color: #c0392b;
+      border-left: 5px solid #e74c3c;
+      border-radius: 5px;
+      font-weight: bold;
+    }
+
+    .nav-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      margin-top: 3rem;
+    }
+
+    .nav-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      text-decoration: none;
+      font-weight: 600;
+      color: #2e7d32;
+      border: 2px solid #4caf50;
+      padding: 0.6rem 1.2rem;
+      border-radius: 10px;
+      transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+    }
+
+    .nav-button:hover {
+      background-color: #4caf50;
+      color: #fff;
+      transform: translateY(-3px);
+    }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 2rem;
+      }
+
+      .content {
+        padding: 1.5rem;
+      }
+
+      .nav-button {
+        font-size: 0.95rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Images & Links</h1>
+
+  <div class="video-container">
+    <video controls>
+      <source src="../../../assets/videos/html/lesson4.mp4" type="video/mp4" />
+      Your browser does not support the video tag.
+    </video>
+  </div>
+
+  <section class="content">
+    <p>In this lesson, you’ll learn how to use <strong>images</strong> and <strong>hyperlinks</strong> to make your webpages more interactive and connected.</p>
+
+    <h2>Example Image:</h2>
+    <pre>
+&lt;img src="image.jpg" alt="Sample Image" width="300" /&gt;
+    </pre>
+
+    <h2>Example Link:</h2>
+    <pre>
+&lt;a href="https://example.com"&gt;Visit Example&lt;/a&gt;
+    </pre>
+
+    <div class="console-box">
+      <h2 style="color:#fff;">Try it Yourself:</h2>
+      <textarea id="codeInput" placeholder="Type valid HTML with &lt;img&gt; or &lt;a&gt; tags..."></textarea>
+      <button onclick="runCode()">Run Code</button>
+      <div id="errorMsg" class="error-message">⚠️ Please enter valid HTML code!</div>
+      <div id="output" class="console-output"></div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="nav-buttons">
+      <a href="../../index.html" class="nav-button">
+        <i class="fas fa-arrow-left"></i> Back to Curriculum
+      </a>
+      <a href="../forms/forms.html" class="nav-button">
+        Next Lesson <i class="fas fa-arrow-right"></i>
+      </a>
+    </div>
+  </footer>
+
+  <script>
+    function runCode() {
+      const input = document.getElementById("codeInput").value.trim();
+      const output = document.getElementById("output");
+      const errorMsg = document.getElementById("errorMsg");
+
+      if (input === "") {
+        output.innerHTML = "";
+        errorMsg.style.display = "none";
+        return;
+      }
+
+      const isHTML = /<\/?[a-z][\s\S]*>/i.test(input);
+
+      if (isHTML) {
+        output.innerHTML = input;
+        errorMsg.style.display = "none";
+      } else {
+        output.innerHTML = "";
+        errorMsg.style.display = "block";
+      }
+    }
+  </script>
+
+</body>
+</html>

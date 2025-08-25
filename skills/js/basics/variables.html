@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>JavaScript Variables – let, const, var</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f9fafc;
+      --accent: #f0db4f;
+      --dark: #1e1e1e;
+      --gray: #6c757d;
+      --code-bg: #2d2d2d;
+      --shadow: rgba(0, 0, 0, 0.15);
+      --btn-back-bg: #e0e0e0;
+      --btn-back-hover: #d0d0d0;
+      --btn-next-bg: #1e90ff;
+      --btn-next-hover: #1c78d0;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Roboto', sans-serif;
+      background: var(--bg);
+      color: var(--dark);
+      margin: 0;
+      padding: 2rem 1rem 6rem; /* padding-bottom بیشتر برای جا دکمه‌ها */
+    }
+
+    .container {
+      max-width: 960px;
+      margin: auto;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      text-align: center;
+      color: var(--accent);
+      margin-bottom: 0.5rem;
+    }
+
+    p.lead {
+      text-align: center;
+      color: var(--gray);
+      font-size: 1.1rem;
+      margin-bottom: 2rem;
+    }
+
+    .video-frame {
+      margin: 3rem 0;
+      border: 6px solid var(--accent);
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 15px 35px var(--shadow);
+      transition: transform 0.4s ease;
+    }
+
+    .video-frame video {
+      width: 100%;
+      height: auto;
+      display: block;
+      transition: transform 0.4s ease;
+    }
+
+    .video-frame:hover video {
+      transform: scale(1.02);
+    }
+
+    section {
+      margin-bottom: 3rem;
+      transition: all 0.4s ease;
+    }
+
+    section:hover {
+      box-shadow: 0 12px 28px rgba(0,0,0,0.15);
+      transform: translateY(-4px);
+      background: #fffefc;
+      border-radius: 10px;
+    }
+
+    h2 {
+      color: var(--dark);
+      margin-bottom: 1rem;
+    }
+
+    .explanation {
+      background: #fff;
+      border-left: 5px solid var(--accent);
+      padding: 1rem 1.5rem;
+      border-radius: 8px;
+      margin-bottom: 1rem;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.07);
+    }
+
+    .code-block {
+      background: var(--code-bg);
+      color: #eee;
+      font-family: 'Fira Code', monospace;
+      padding: 1rem;
+      border-radius: 10px;
+      overflow-x: auto;
+      margin: 1rem 0;
+      font-size: 0.95rem;
+      line-height: 1.4;
+    }
+
+    .try-box {
+      background: #ffffff;
+      border: 2px solid #ddd;
+      padding: 1rem;
+      border-radius: 10px;
+      margin-top: 1rem;
+    }
+
+    .try-box input {
+      width: 100%;
+      padding: 0.6rem 1rem;
+      margin-bottom: 0.7rem;
+      font-size: 1rem;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      transition: border-color 0.3s ease;
+    }
+
+    .try-box input:focus {
+      border-color: var(--accent);
+      outline: none;
+      box-shadow: 0 0 5px var(--accent);
+    }
+
+    .try-box button {
+      padding: 0.6rem 1.2rem;
+      background: var(--dark);
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.3s ease, transform 0.2s ease;
+      width: 100%;
+      font-size: 1rem;
+    }
+
+    .try-box button:hover {
+      background: #333;
+      transform: translateY(-2px);
+    }
+
+    .output {
+      margin-top: 0.8rem;
+      font-weight: 700;
+      color: #2a7;
+      min-height: 1.2em;
+      font-size: 1.05rem;
+      word-wrap: break-word;
+    }
+
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* دکمه‌های برگشت و بعدی */
+    .back-btn, .next-btn {
+      position: fixed;
+      bottom: 1.5rem;
+      padding: 0.65rem 1.4rem;
+      border: none;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      cursor: pointer;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+      z-index: 999;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .back-btn {
+      left: 2rem;
+      background: var(--btn-back-bg);
+      color: #333;
+    }
+
+    .next-btn {
+      right: 2rem;
+      background: var(--btn-next-bg);
+      color: #fff;
+    }
+
+    .back-btn:hover,
+    .back-btn:focus {
+      background: var(--btn-back-hover);
+      transform: translateY(-2px);
+      outline: none;
+    }
+
+    .next-btn:hover,
+    .next-btn:focus {
+      background: var(--btn-next-hover);
+      transform: translateY(-2px);
+      outline: none;
+    }
+
+    footer {
+      text-align: center;
+      font-size: 0.9rem;
+      color: #888;
+      margin-top: 4rem;
+    }
+
+    /* ریسپانسیو */
+    @media (max-width: 768px) {
+      body {
+        padding: 1.5rem 1rem 7rem;
+      }
+
+      h1 {
+        font-size: 2rem;
+      }
+
+      .video-frame {
+        margin: 2rem 0;
+        border-width: 4px;
+        border-radius: 14px;
+      }
+
+      .back-btn, .next-btn {
+        bottom: 1rem;
+        padding: 0.55rem 1rem;
+        font-size: 0.85rem;
+      }
+
+      .back-btn {
+        right: 1rem;
+      }
+
+      .next-btn {
+        left: 1rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      /* دکمه‌ها پایین وسط، کنار هم */
+      .back-btn, .next-btn {
+        position: fixed;
+        bottom: 1rem;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 45%;
+        border-radius: 8px;
+        padding: 0.55rem 0;
+        font-size: 0.85rem;
+        justify-content: center;
+      }
+
+      .back-btn {
+        bottom: 3.8rem;
+        left: 5%;
+        transform: none;
+        width: 45%;
+      }
+
+      .next-btn {
+        bottom: 1rem;
+        left: auto;
+        right: 5%;
+        transform: none;
+        width: 45%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1><i class="fas fa-code"></i> JavaScript Variables</h1>
+    <p class="lead">A complete guide to using <code>let</code>, <code>const</code>, and <code>var</code> in modern JavaScript</p>
+
+    <div class="video-frame">
+      <video controls poster="../../../../assets/images/js-variable-thumbnail.jpg" preload="metadata">
+        <source src="../../../../assets/videos/js-variables.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+    </div>
+
+    <!-- LET Section -->
+    <section class="fade-in">
+      <h2>🔸 let</h2>
+      <div class="explanation">
+        <p>The <code>let</code> keyword is used to declare variables that can be reassigned...</p>
+        <ul>
+          <li>Can be updated but not re-declared in the same scope.</li>
+          <li>Exists only inside the block <code>{}</code> where it’s defined.</li>
+          <li>Does not hoist like <code>var</code>.</li>
+          <li>Commonly used in loops, conditions, and modern functions.</li>
+        </ul>
+      </div>
+      <div class="code-block">
+<pre><code>let age = 25;
+age = 30; // ✅ Allowed
+console.log(age);</code></pre>
+      </div>
+      <div class="try-box">
+        <input type="number" id="letInput" placeholder="Enter your age" />
+        <button onclick="tryLet()">Check Age</button>
+        <div class="output" id="letOutput"></div>
+      </div>
+    </section>
+
+    <!-- CONST Section -->
+    <section class="fade-in">
+      <h2>🔸 const</h2>
+      <div class="explanation">
+        <p>The <code>const</code> keyword is used to declare variables that cannot be reassigned...</p>
+        <ul>
+          <li>Cannot be updated or re-declared.</li>
+          <li>Safe for values you never want to accidentally change.</li>
+          <li>Still allows object and array mutation (careful!).</li>
+        </ul>
+      </div>
+      <div class="code-block">
+<pre><code>const name = "Mohammad";
+console.log(name); // Output: Mohammad</code></pre>
+      </div>
+      <div class="try-box">
+        <input type="text" id="constInput" placeholder="Enter your name" />
+        <button onclick="tryConst()">Greet Me</button>
+        <div class="output" id="constOutput"></div>
+      </div>
+    </section>
+
+    <!-- VAR Section -->
+    <section class="fade-in">
+      <h2>🔸 var</h2>
+      <div class="explanation">
+        <p>The <code>var</code> keyword is the old way of declaring variables in JavaScript...</p>
+        <ul>
+          <li>Can be re-declared and updated.</li>
+          <li>Is hoisted (can be used before it's declared).</li>
+          <li>Exists within functions (not blocks).</li>
+          <li>Replaced by <code>let</code> and <code>const</code> in ES6.</li>
+        </ul>
+      </div>
+      <div class="code-block">
+<pre><code>var country = "Canada";
+country = "Iran";
+console.log(country);</code></pre>
+      </div>
+      <div class="try-box">
+        <input type="text" id="varInput" placeholder="Enter your country" />
+        <button onclick="tryVar()">Show Country</button>
+        <div class="output" id="varOutput"></div>
+      </div>
+    </section>
+
+    <footer>
+      &copy; 2025 Mohammad Choopani | Your journey into JavaScript starts here 🚀
+    </footer>
+  </div>
+
+  <!-- Navigation Buttons -->
+   
+  <!-- <a href="data-types.html" class="back-btn"><i class="fas fa-arrow-left"></i> Data Types</a>
+  <a href="type-conversion.html" class="next-btn">Type Conversion <i class="fas fa-arrow-right"></i></a> -->
+  <a href="index.html" class="back-btn" aria-label="Back to Basics"><i class="fas fa-arrow-left"></i> Back to Basics</a>
+  <a href="data-types.html" class="next-btn" aria-label="Next Lesson">Next Lesson <i class="fas fa-arrow-right"></i></a>
+
+  <script>
+    function tryLet() {
+      let age = document.getElementById('letInput').value;
+      document.getElementById('letOutput').textContent = age ? `You entered: ${age} – You're getting wiser! 😄` : '';
+    }
+
+    function tryConst() {
+      const name = document.getElementById('constInput').value;
+      document.getElementById('constOutput').textContent = name ? `Hello ${name}! Your name is constant 🔒` : '';
+    }
+
+    function tryVar() {
+      var country = document.getElementById('varInput').value;
+      document.getElementById('varOutput').textContent = country ? `You're from: ${country} 🌍` : '';
+    }
+
+    function scrollToTop() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function goToNext() {
+      // مسیر صفحه بعدی را اینجا قرار بده
+      window.location.href = "next-course.html";
+    }
+
+    // fade-in effect on scroll
+    window.addEventListener('scroll', () => {
+      const elements = document.querySelectorAll('.fade-in');
+      elements.forEach(el => {
+        const position = el.getBoundingClientRect().top;
+        if (position < window.innerHeight - 100) {
+          el.classList.add('visible');
+        }
+      });
+    });
+
+    // اجرا کردن fade-in ها بلافاصله اگر صفحه از قبل پایین بود
+    window.addEventListener('load', () => {
+      const elements = document.querySelectorAll('.fade-in');
+      elements.forEach(el => {
+        const position = el.getBoundingClientRect().top;
+        if (position < window.innerHeight - 100) {
+          el.classList.add('visible');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

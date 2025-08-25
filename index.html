@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>Mohammad Choopani | Portfolio</title>
+  <meta name="description" content="Portfolio of Mohammad Choopani - Full-Stack Developer & Digital Industrial Innovator" />
+  <meta name="theme-color" content="#d14d72" />
+  <link rel="manifest" href="./manifest.webmanifest">
+<link rel="apple-touch-icon" href="./assets/icons/icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+
+  <link rel="icon" href="assets/favicon.ico" />
+
+  <!-- Structured Data: Person -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "@id": "https://your-domain.com/#person",
+    "name": "Mohammad Choopani",
+    "jobTitle": "Full-Stack Developer & Digital Industrial Innovator",
+    "url": "https://your-domain.com/",
+    "image": "https://your-domain.com/assets/images/portrait.jpg",
+    "sameAs": [
+      "https://github.com/Mohammad-Choopani",
+      "https://www.linkedin.com/in/your-profile",
+      "https://youtube.com/@yourchannel"
+    ]
+  }
+  </script>
+
+  <!-- Structured Data: Website -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": "https://your-domain.com/#website",
+    "url": "https://your-domain.com/",
+    "name": "Mohammad Choopani Portfolio",
+    "inLanguage": "en",
+    "publisher": {
+      "@id": "https://your-domain.com/#person"
+    }
+  }
+  </script>
+
+  <!-- Styles & Libraries -->
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+
+  <!-- Scripts -->
+  <script defer src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+  <script defer src="script.js"></script>
+</head>
+
+
+<body>
+
+  <!-- Particles Layer -->
+  <div id="particles-js" aria-hidden="true"></div>
+
+  <!-- Hero Section -->
+  <header class="hero">
+    <video
+      class="background-video"
+      autoplay
+      muted
+      loop
+      playsinline
+      preload="metadata"
+      poster="assets/videos/intro-poster.jpg"
+    >
+      <source src="assets/videos/intro-video.mp4" type="video/mp4" />
+    </video>
+    <div class="overlay">
+      <h1>Hi, I'm Mohammad Choopani</h1>
+      <p>Full-Stack Developer | Digital Industrial Innovator</p>
+    </div>
+  </header>
+
+  <!-- Navigation -->
+  <nav class="main-nav" aria-label="Primary">
+    <div class="logo">Choopani</div>
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+      <i class="fas fa-bars" aria-hidden="true"></i>
+    </button>
+    <ul id="nav-list" class="nav-list" hidden>
+      <li><a href="#resources" class="nav-link">Resources</a></li>
+      <li><a href="#skills" class="nav-link">Skills</a></li>
+      <li><a href="#contact" class="nav-link">Contact</a></li>
+    </ul>
+  </nav>
+
+  <main>
+
+    <!-- Resources Section -->
+    <section id="resources" class="resources" aria-labelledby="resources-title">
+      <h2 id="resources-title">Resources</h2>
+      <div class="grid-cards">
+        <a href="resume/resume.html" class="card" target="_blank" rel="noopener">
+          <img src="assets/images/library-7976837_1280.jpg" alt="Resume" width="600" height="400" loading="lazy" decoding="async"/>
+          <span>Resume</span>
+        </a>
+        <a href="https://github.com/Mohammad-Choopani/smart-industrial-dashboard" class="card" target="_blank" rel="noopener">
+          <img src="https://img.freepik.com/free-photo/cute-cat-studio_23-2150932369.jpg?semt=ais_hybrid&w=740&q=80" alt="GitHub" width="600" height="400" loading="lazy" decoding="async"/>
+          <span>GitHub</span>
+        </a>
+        <a href="skills/animation.html" class="card" target="_blank" rel="noopener">
+          <img src="assets/images/man-2590655_1280.jpg" alt="Gallery" width="600" height="400" loading="lazy" decoding="async"/>
+          <span>Gallery</span>
+        </a>
+        <a href="https://youtube.com/@yourchannel" class="card" target="_blank" rel="noopener">
+          <img src="https://images.unsplash.com/photo-1653753336046-72a1d70bb9f7?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0" alt="YouTube" width="600" height="400" loading="lazy" decoding="async"/>
+          <span>YouTube</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="skills" aria-labelledby="skills-title">
+      <h2 id="skills-title">My Skills</h2>
+
+      <!-- Web Programming -->
+      <div class="skill-category">
+        <h3><i class="fas fa-code" aria-hidden="true"></i> Web Programming</h3>
+        <div class="grid-cards">
+          <a href="skills/html/index.html" class="card">
+            <img src="assets/images/istockphoto-1159333830-1024x1024.jpg" alt="HTML" width="600" height="400" loading="lazy" decoding="async"/>
+            <span>HTML</span>
+          </a>
+          <a href="skills/css/index.html" class="card">
+            <img src="assets/images/pexels-realtoughcandy-11035386.jpg" alt="CSS" width="600" height="400" loading="lazy" decoding="async"/>
+            <span>CSS</span>
+          </a>
+          <a href="skills/js/index.html" class="card">
+            <img src="https://images.unsplash.com/photo-1667372393086-9d4001d51cf1?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0" alt="JavaScript" width="600" height="400" loading="lazy" decoding="async"/>
+            <span>JavaScript</span>
+          </a>
+          <a href="skills/react.html" class="card">
+            <img src="https://www.shutterstock.com/shutterstock/photos/1853300929/display_1500/stock-photo-react-js-inscription-against-laptop-and-code-background-learn-react-programming-language-1853300929.jpg" alt="React" width="600" height="400" loading="lazy" decoding="async"/>
+            <span>React</span>
+          </a>
+          <a href="skills/git.html" class="card">
+            <img src="https://static1.howtogeekimages.com/wordpress/wp-content/uploads/2024/12/octocat-teacher.png" alt="Git & GitHub" width="600" height="400" loading="lazy" decoding="async"/>
+            <span>Git & GitHub</span>
+          </a>
+          <a href="skills/nodejs.html" class="card">
+            <img src="https://www.shutterstock.com/shutterstock/photos/401797948/display_1500/stock-photo-open-source-cross-platform-runtime-environment-node-js-me-if-you-can-word-node-js-of-the-yellow-401797948.jpg" alt="Node.js" width="600" height="400" loading="lazy" decoding="async"/>
+            <span>Node.js</span>
+          </a>
+          <a href="skills/php.html" class="card">
+            <img src="https://media.istockphoto.com/id/2160564625/photo/hundred-dollar-bills-are-viewed-under-a-magnifying-glass-the-monetary-system-of-the-united.jpg?s=1024x1024&w=is&k=20&c=WK7bmUKTibNE1yx8-0vFjg7lLSO4THbxlxCjHUfyIt8=" alt="PHP" width="600" height="400" loading="lazy" decoding="async"/>
+            <span>PHP</span>
+          </a>
+          <a href="skills/mysql.html" class="card">
+            <img src="https://images.unsplash.com/photo-1662027044921-6febc57a0c53?q=80&w=2062&auto=format&fit=crop&ixlib=rb-4.1.0" alt="MySQL" width="600" height="400" loading="lazy" decoding="async"/>
+            <span>MySQL</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Architecture -->
+      <div class="skill-category">
+        <h3><i class="fas fa-drafting-compass" aria-hidden="true"></i> Software Architecture</h3>
+        <div class="grid-cards">
+          <a href="skills/autocad.html" class="card">
+            <img src="https://media.istockphoto.com/id/172774849/photo/mechanical-drawing-and-tools.jpg?s=2048x2048&w=is&k=20&c=tKHFnzw3NL6cDkl_S5zf-Fq1rYBRRNvLEqFXbr2fqVY=" alt="AutoCAD" width="600" height="400" loading="lazy" decoding="async"/>
+            <span>AutoCAD</span>
+          </a>
+          <a href="skills/lumion.html" class="card">
+            <img src="https://rpicentre.com/ups/Lumion.jpg" alt="Lumion" width="600" height="400" loading="lazy" decoding="async"/>
+            <span>Lumion</span>
+          </a>
+          <a href="skills/3dsmax.html" class="card">
+            <img src="https://www.seiler-ds.com/wp-content/uploads/sites/11/2020/08/autodesk-3ds-max-badge-2048.jpg" alt="3ds Max" width="600" height="400" loading="lazy" decoding="async"/>
+            <span>3ds Max</span>
+          </a>
+          <a href="skills/sketchup.html" class="card">
+            <img src="https://cadsoftsolutions.co.uk/cdn/shop/files/SketchUp-2024-collection-header-images.png?v=1712595923&width=3840" alt="SketchUp" width="600" height="400" loading="lazy" decoding="async"/>
+            <span>SketchUp</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Digital Industrial Twin -->
+      <div class="skill-category">
+        <h3><i class="fas fa-network-wired" aria-hidden="true"></i> Digital Industrial Twin (IoT)</h3>
+        <div class="grid-cards">
+          <a href="skills/iot.html" class="card">
+            <img src="https://media.istockphoto.com/id/1563859638/photo/blue-digital-iot-logo-and-ring-rotation-around-logo-with-ai-icon-spread-and-line-linked-on.jpg?s=612x612&w=0&k=20&c=pYS8U4gqNa8KnRWrew8V06o0N6JOmNI60TsKFecrH6c=" alt="IoT Systems" width="600" height="400" loading="lazy" decoding="async"/>
+            <span>IoT Systems</span>
+          </a>
+          <a href="skills/data.html" class="card">
+            <img src="https://media.licdn.com/dms/image/v2/D4D12AQEM71XGQUE1EQ/article-cover_image-shrink_720_1280/article-cover_image-shrink_720_1280/0/1698237654756" alt="Data Integration" width="600" height="400" loading="lazy" decoding="async"/>
+            <span>Data Integration</span>
+          </a>
+          <a href="skills/monitoring.html" class="card">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRmevgrvPqdTNAkt4QsuhbS4lkLGhnFv1qZ0Q&s" alt="Factory Monitoring" width="600" height="400" loading="lazy" decoding="async"/>
+            <span>Factory Monitoring</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact" aria-labelledby="contact-title">
+      <h2 id="contact-title">Get in Touch</h2>
+      <form id="contact-form" novalidate>
+        <fieldset>
+          <label for="name"><i class="fas fa-user" aria-hidden="true"></i> Name</label>
+          <input id="name" name="name" type="text" required />
+          <label for="email"><i class="fas fa-envelope" aria-hidden="true"></i> Email</label>
+          <input id="email" name="email" type="email" required />
+        </fieldset>
+        <fieldset>
+          <label for="message"><i class="fas fa-comment-dots" aria-hidden="true"></i> Message</label>
+          <textarea id="message" name="message" rows="5" required></textarea>
+        </fieldset>
+        <button type="submit">Send Message</button>
+        <p id="form-message" role="alert" aria-live="polite"></p>
+      </form>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; <span id="year"></span> Mohammad Choopani. All rights reserved.</p>
+  </footer>
+  <script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('./sw.js').catch(console.error);
+    });
+  }
+</script>
+
+</body>
+</html>

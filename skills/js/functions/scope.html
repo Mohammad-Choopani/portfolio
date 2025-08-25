@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>JavaScript Functions – Scope</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code&family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #f9fafc;
+      --accent: #f0db4f;
+      --dark: #1e1e1e;
+      --gray: #6c757d;
+      --code-bg: #2d2d2d;
+      --shadow: rgba(0, 0, 0, 0.15);
+      --hover-highlight: #fef8dc;
+      --btn-back-bg: #e0e0e0;
+      --btn-next-bg: #1e90ff;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      font-family: 'Roboto', sans-serif;
+      background: var(--bg);
+      color: var(--dark);
+      margin: 0;
+      padding: 2rem 1rem 6rem;
+    }
+
+    .container {
+      max-width: 960px;
+      margin: auto;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      text-align: center;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+
+    p.lead {
+      text-align: center;
+      color: var(--gray);
+      font-size: 1.1rem;
+      margin-bottom: 2rem;
+    }
+
+    .video-frame {
+      margin: 3rem 0;
+      border: 6px solid var(--accent);
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 15px 35px var(--shadow);
+    }
+
+    .video-frame video {
+      width: 100%;
+      display: block;
+    }
+
+    section {
+      margin-bottom: 3rem;
+      background: #fff;
+      padding: 1.5rem;
+      border-radius: 10px;
+      box-shadow: 0 10px 28px rgba(0,0,0,0.08);
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+    }
+
+    section:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 18px 36px rgba(0, 0, 0, 0.12);
+      background: var(--hover-highlight);
+    }
+
+    h2 {
+      margin-bottom: 1rem;
+    }
+
+    .explanation {
+      line-height: 1.7;
+      font-size: 1.05rem;
+      margin-bottom: 1rem;
+    }
+
+    .code-block {
+      background: var(--code-bg);
+      color: #eee;
+      font-family: 'Fira Code', monospace;
+      padding: 1rem;
+      border-radius: 10px;
+      overflow-x: auto;
+      margin: 1rem 0;
+    }
+
+    .try-box {
+      background: #fff;
+      border: 2px solid #ccc;
+      padding: 1rem;
+      border-radius: 10px;
+    }
+
+    input {
+      width: 100%;
+      padding: 0.7rem 1rem;
+      margin-bottom: 0.7rem;
+      border-radius: 8px;
+      border: 1px solid #bbb;
+    }
+
+    button {
+      padding: 0.6rem 1.2rem;
+      background: var(--dark);
+      color: #fff;
+      font-weight: bold;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      width: 100%;
+    }
+
+    button:hover {
+      background: #333;
+      transform: scale(1.03);
+    }
+
+    .output {
+      margin-top: 0.8rem;
+      font-weight: 600;
+      color: #28a745;
+    }
+
+    .back-btn, .next-btn {
+      position: fixed;
+      bottom: 1.5rem;
+      padding: 0.7rem 1.4rem;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 0.95rem;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      z-index: 99;
+    }
+
+    .back-btn {
+      left: 2rem;
+      background: var(--btn-back-bg);
+      color: #333;
+    }
+
+    .next-btn {
+      right: 2rem;
+      background: var(--btn-next-bg);
+      color: white;
+    }
+
+    footer {
+      text-align: center;
+      font-size: 0.9rem;
+      color: #777;
+      margin-top: 4rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1><i class="fas fa-layer-group"></i> Scope in JavaScript</h1>
+    <p class="lead">Learn how variable scope works in JavaScript and avoid common pitfalls!</p>
+
+    <div class="video-frame">
+      <video controls poster="../../assets/images/js-scope.jpg">
+        <source src="../../assets/videos/js-scope.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+    </div>
+
+    <section>
+      <h2>🔍 What is Scope?</h2>
+      <div class="explanation">
+        Scope defines **where a variable is accessible** in your code. JavaScript has three main types of scope:
+        <ul>
+          <li><strong>Global Scope:</strong> Available anywhere in your script.</li>
+          <li><strong>Function Scope:</strong> Available only inside a function.</li>
+          <li><strong>Block Scope:</strong> Available inside <code>{}</code> blocks (only with <code>let</code> and <code>const</code>).</li>
+        </ul>
+      </div>
+      <div class="code-block">
+<pre><code>let x = 10; // Global
+
+function test() {
+  let y = 20; // Function Scope
+  if (true) {
+    let z = 30; // Block Scope
+    console.log(x, y, z); // ✅
+  }
+  console.log(z); // ❌ ReferenceError
+}
+
+test();</code></pre>
+      </div>
+    </section>
+
+    <section>
+      <h2>🧠 Try It Yourself</h2>
+      <div class="try-box">
+        <input type="number" id="inputAge" placeholder="Enter your age" />
+        <button onclick="checkScope()">Check Access</button>
+        <div class="output" id="scopeResult"></div>
+      </div>
+    </section>
+
+    <footer>
+      &copy; 2025 Mohammad Choopani | Mastering JavaScript, step by step 🚀
+    </footer>
+  </div>
+
+  <a href="return-values.html" class="back-btn"><i class="fas fa-arrow-left"></i> Back to Return</a>
+  <a href="arrow-functions.html" class="next-btn">Next: Arrow Functions <i class="fas fa-arrow-right"></i></a>
+
+  <script>
+    function checkScope() {
+      let age = parseInt(document.getElementById('inputAge').value);
+      if (!age) return;
+
+      let message = "";
+      if (age >= 18) {
+        let permission = "Access Granted ✅";
+        message = `You are ${age}. ${permission}`;
+      } else {
+        message = `You are ${age}. Access Denied ❌`;
+      }
+
+      document.getElementById('scopeResult').textContent = message;
+    }
+  </script>
+</body>
+</html>

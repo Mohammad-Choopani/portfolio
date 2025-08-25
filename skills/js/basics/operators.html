@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>JavaScript Operators</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f9fafc;
+      --accent: #f0db4f;
+      --dark: #1e1e1e;
+      --gray: #6c757d;
+      --code-bg: #2d2d2d;
+      --shadow: rgba(0, 0, 0, 0.15);
+      --btn-back-bg: #e0e0e0;
+      --btn-back-hover: #d0d0d0;
+      --btn-next-bg: #1e90ff;
+      --btn-next-hover: #1c78d0;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      font-family: 'Roboto', sans-serif;
+      background: var(--bg);
+      color: var(--dark);
+      margin: 0;
+      padding: 2rem 1rem 6rem;
+    }
+
+    .container { max-width: 960px; margin: auto; }
+
+    h1 {
+      font-size: 2.5rem;
+      text-align: center;
+      color: var(--accent);
+      margin-bottom: 0.5rem;
+    }
+
+    p.lead {
+      text-align: center;
+      color: var(--gray);
+      font-size: 1.1rem;
+      margin-bottom: 2rem;
+    }
+
+    .video-frame {
+      margin: 3rem 0;
+      border: 6px solid var(--accent);
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 15px 35px var(--shadow);
+    }
+
+    .video-frame video {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    h2 {
+      margin-top: 2rem;
+      color: var(--dark);
+    }
+
+    .explanation {
+      background: #fff;
+      border-left: 5px solid var(--accent);
+      padding: 1rem 1.5rem;
+      border-radius: 8px;
+      margin-bottom: 1rem;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.07);
+    }
+
+    .code-block {
+      background: var(--code-bg);
+      color: #eee;
+      font-family: 'Fira Code', monospace;
+      padding: 1rem;
+      border-radius: 10px;
+      overflow-x: auto;
+      margin: 1rem 0;
+      font-size: 0.95rem;
+      line-height: 1.4;
+    }
+
+    .try-box {
+      background: #ffffff;
+      border: 2px solid #ddd;
+      padding: 1rem;
+      border-radius: 10px;
+      margin-top: 1rem;
+    }
+
+    .try-box input {
+      width: 100%;
+      padding: 0.6rem 1rem;
+      margin-bottom: 0.7rem;
+      font-size: 1rem;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+
+    .try-box button {
+      padding: 0.6rem 1.2rem;
+      background: var(--dark);
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-weight: 700;
+      width: 100%;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+
+    .output {
+      margin-top: 0.8rem;
+      font-weight: 700;
+      color: #2a7;
+      min-height: 1.2em;
+      font-size: 1.05rem;
+    }
+
+    .back-btn, .next-btn {
+      position: fixed;
+      bottom: 1.5rem;
+      padding: 0.65rem 1.4rem;
+      border: none;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      cursor: pointer;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+      z-index: 999;
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      text-decoration: none;
+    }
+
+    .back-btn {
+      left: 2rem;
+      background: var(--btn-back-bg);
+      color: #333;
+    }
+
+    .next-btn {
+      right: 2rem;
+      background: var(--btn-next-bg);
+      color: #fff;
+    }
+
+    .back-btn:hover { background: var(--btn-back-hover); }
+    .next-btn:hover { background: var(--btn-next-hover); }
+
+    footer {
+      text-align: center;
+      font-size: 0.9rem;
+      color: #888;
+      margin-top: 4rem;
+    }
+
+    @media (max-width: 480px) {
+      .back-btn {
+        bottom: 3.8rem;
+        left: 5%;
+        width: 45%;
+      }
+
+      .next-btn {
+        bottom: 1rem;
+        right: 5%;
+        width: 45%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1><i class="fas fa-equals"></i> JavaScript Operators</h1>
+    <p class="lead">Learn how to use arithmetic, comparison, logical, and assignment operators</p>
+
+    <div class="video-frame">
+      <video controls poster="../../../../assets/images/operators-thumbnail.jpg" preload="metadata">
+        <source src="../../../../assets/videos/operators.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+    </div>
+
+    <section>
+      <h2>➕ Arithmetic Operators</h2>
+      <div class="explanation">
+        <p>Used for basic math operations:</p>
+        <ul>
+          <li><code>+</code> Addition</li>
+          <li><code>-</code> Subtraction</li>
+          <li><code>*</code> Multiplication</li>
+          <li><code>/</code> Division</li>
+          <li><code>%</code> Modulus (remainder)</li>
+          <li><code>**</code> Exponentiation</li>
+        </ul>
+      </div>
+      <div class="code-block">
+<pre><code>let a = 10, b = 3;
+console.log(a + b);  // 13
+console.log(a % b);  // 1</code></pre>
+      </div>
+    </section>
+
+    <section>
+      <h2>🔍 Comparison Operators</h2>
+      <div class="explanation">
+        <p>Compare values and return true or false:</p>
+        <ul>
+          <li><code>==</code>, <code>===</code></li>
+          <li><code>!=</code>, <code>!==</code></li>
+          <li><code>&gt;</code>, <code>&lt;</code>, <code>&gt;=</code>, <code>&lt;=</code></li>
+        </ul>
+      </div>
+      <div class="code-block">
+<pre><code>let x = 5, y = '5';
+console.log(x == y);  // true (type coercion)
+console.log(x === y); // false (strict equality)</code></pre>
+      </div>
+    </section>
+
+    <section>
+      <h2>🔗 Logical Operators</h2>
+      <div class="explanation">
+        <p>Used for logic operations:</p>
+        <ul>
+          <li><code>&&</code> (AND)</li>
+          <li><code>||</code> (OR)</li>
+          <li><code>!</code> (NOT)</li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <h2>📝 Assignment Operators</h2>
+      <div class="explanation">
+        <p>Used to assign values:</p>
+        <ul>
+          <li><code>=</code> Basic assignment</li>
+          <li><code>+=</code>, <code>-=</code>, <code>*=</code>, <code>/=</code></li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <h2>🧪 Try it yourself</h2>
+      <div class="try-box">
+        <input type="text" id="opInput" placeholder="Example: 4 + 2 * 3" />
+        <button onclick="evaluateExpression()">Evaluate</button>
+        <div class="output" id="opOutput"></div>
+      </div>
+    </section>
+
+    <footer>
+      &copy; 2025 Mohammad Choopani | Logic is power 🧠
+    </footer>
+  </div>
+
+  <a href="data-types.html" class="back-btn"><i class="fas fa-arrow-left"></i> Data Types</a>
+  <a href="type-conversion.html" class="next-btn">Type Conversion <i class="fas fa-arrow-right"></i></a>
+
+  <script>
+    function evaluateExpression() {
+      const input = document.getElementById("opInput").value;
+      try {
+        const result = eval(input);
+        document.getElementById("opOutput").textContent = `Result: ${result}`;
+      } catch (err) {
+        document.getElementById("opOutput").textContent = `Invalid expression ❌`;
+      }
+    }
+  </script>
+</body>
+</html>

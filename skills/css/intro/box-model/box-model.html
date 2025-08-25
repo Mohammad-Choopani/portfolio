@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>CSS Box Model — Beginner Console (Borders → Margins → Padding → Sizing)</title>
+  <style>
+    /* Minimal, beginner-friendly styles (no :root vars) */
+    * { box-sizing: border-box; }
+    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Tahoma, sans-serif; margin: 0; background: linear-gradient(135deg,#f8fbff,#e7f1ff); color: #173a56; }
+    .wrap { max-width: 1100px; margin: 0 auto; padding: 20px; }
+    h1 { font-size: 28px; text-align: center; margin: 16px 0; color: #0b5bb3; text-shadow: 0 1px 0 #fff; }
+
+    /* Video frame */
+    .video-container{max-width: 980px; margin: 16px auto 10px; border-radius: 16px; overflow: hidden; box-shadow:0 14px 32px rgba(0,0,0,.12); background:#000}
+    video{width:100%; height:auto; display:block}
+
+    /* Lesson tabs */
+    .tabs { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; margin: 12px auto 16px; }
+    .tab { border: 1px solid #c8daf4; background: #fff; padding: 8px 12px; border-radius: 10px; cursor: pointer; font-weight: 700; color:#0b5bb3; }
+    .tab[aria-selected="true"] { background: #0b5bb3; color: #fff; }
+
+    /* Lesson card */
+    .card { background:#fff; border:1px solid #dbe7ff; border-radius:12px; padding:16px; box-shadow:0 6px 18px rgba(0,0,0,.06); }
+    .card h2 { font-size:22px; margin:.25rem 0 .6rem; color:#0b5bb3 }
+    .card p, .card ul { margin:.5rem 0; line-height:1.9; font-size:1.08rem; }
+    .tip { background:#f0f6ff; border:1px dashed #b9cff5; border-radius:10px; padding:12px; font-size:1rem; }
+    .guide .code-actions{display:flex;gap:.5rem;flex-wrap:wrap;margin:.5rem 0}
+    .guide pre{background:#f6f9ff;border:1px solid #dce8ff;border-radius:10px;padding:12px;overflow:auto;margin:.5rem 0; font:14px/1.7 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace}
+
+    /* Console (HTML + CSS) */
+    .console { margin-top: 14px; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    @media (max-width: 900px) { .console { grid-template-columns: 1fr; } }
+    .ed { background:#0f1117; border:1px solid #232634; border-radius:10px; overflow: hidden; color:#d4d4d4; }
+    .ed header { display:flex; align-items:center; justify-content:space-between; padding:8px 10px; border-bottom:1px solid #232634; }
+    .ed header .title { font-weight:700 }
+    .ed textarea { width:100%; min-height:240px; padding:12px; border:none; outline:none; background:transparent; color:#d4d4d4; font:15px/1.7 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; resize:vertical; }
+
+    .controls { display:flex; flex-wrap:wrap; gap:8px; align-items:center; margin-top:10px; }
+    button.btn { border:none; background:#0b5bb3; color:#fff; padding:9px 14px; border-radius:10px; cursor:pointer; font-weight:800; }
+    button.btn.secondary { background:#ffffff; color:#0b5bb3; border:1px solid #c8daf4; }
+    button.btn.ghost { background:transparent; color:#0b5bb3; border:1px dashed #c8daf4; }
+    .controls label { display:flex; align-items:center; gap:6px; }
+
+    iframe { width:100%; height:380px; border:none; border-radius:10px; background:#fff; margin-top:10px }
+
+    /* Errors */
+    .err{display:none;margin-top:8px;padding:10px 12px;background:#ffefef;color:#9c1c28;border-left:4px solid #e22;border-radius:8px;font-weight:600}
+
+    /* Footer nav buttons */
+    .nav-buttons{display:flex;justify-content:center;gap:1rem;flex-wrap:wrap;margin:26px 0 6px}
+    .nav-button{display:inline-flex;align-items:center;gap:.5rem;text-decoration:none;font-weight:700;color:#0b5bb3;border:2px solid #0b5bb3;padding:.55rem 1.1rem;border-radius:10px;transition:all .25s ease}
+    .nav-button:hover{background-color:#0b5bb3;color:#fff;transform:translateY(-2px)}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>CSS Box Model — Beginner Console (Borders → Margins → Padding → Sizing)</h1>
+
+    <!-- Video block (lesson-specific source is set by JS) -->
+    <div class="video-container">
+      <video id="lessonVideo" controls>
+        <source id="videoSource" src="../../../assets/videos/css/lesson-box-model.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+    </div>
+
+    <div class="tabs" role="tablist" aria-label="Lessons">
+      <button class="tab" role="tab" id="tab-borders" aria-controls="lessonPanel" aria-selected="true">1) Borders</button>
+      <button class="tab" role="tab" id="tab-margins" aria-controls="lessonPanel" aria-selected="false">2) Margins</button>
+      <button class="tab" role="tab" id="tab-padding" aria-controls="lessonPanel" aria-selected="false">3) Padding</button>
+      <button class="tab" role="tab" id="tab-sizing" aria-controls="lessonPanel" aria-selected="false">4) Sizing</button>
+    </div>
+
+    <div class="card" id="lessonPanel" role="tabpanel" aria-labelledby="tab-borders">
+      <h2 id="lessonTitle">Lesson: Borders</h2>
+      <div class="tip" id="lessonTip">
+        <strong>How CSS targets HTML</strong>
+        <div style="white-space:pre-wrap; font-family:ui-monospace,Menlo,Consolas,monospace; margin-top:4px">selector {
+  property: value;
+}
+/* Example (simple border): */
+.style-solid { border: 3px solid steelblue; }</div>
+      </div>
+      <ul id="lessonTasks"></ul>
+      <details id="refToggle" style="margin-top:.35rem">
+        <summary><strong>Show quick examples for this lesson</strong></summary>
+        <pre id="lessonExamples"></pre>
+      </details>
+      <div id="lessonGuide" class="guide"></div>
+
+      <!-- Global, hidden base CSS so all tabs can insert it -->
+      <pre id="base-css" style="display:none">*{box-sizing:border-box}
+body{font-family:system-ui,Segoe UI,Roboto,sans-serif; margin:0; padding:16px; background:#fdfdfd; color:#173a56}
+.playground{max-width:960px; margin:0 auto}
+.row{display:flex; flex-wrap:wrap; gap:12px; margin:12px 0}
+.box{background:#fff; padding:16px; border:2px solid transparent; border-radius:8px; min-width:160px; text-align:center}
+.btn{padding:10px 14px; background:#fff; border:2px solid transparent; border-radius:8px; cursor:pointer;}</pre>
+    </div>
+
+    <div class="console">
+      <section class="ed" aria-label="HTML editor">
+        <header>
+          <span class="title">HTML</span>
+          <small style="opacity:.8">(Start from scratch or paste from guide)</small>
+        </header>
+        <textarea id="htmlTA" spellcheck="false" placeholder="Type your HTML here..."></textarea>
+        <div id="htmlError" class="err" role="alert" aria-live="polite"></div>
+      </section>
+
+      <section class="ed" aria-label="CSS editor">
+        <header>
+          <span class="title">Your CSS</span>
+          <small style="opacity:.8">(Start from scratch or paste from guide)</small>
+        </header>
+        <textarea id="cssTA" spellcheck="false" placeholder="Type your CSS here..."></textarea>
+        <div id="cssError" class="err" role="alert" aria-live="polite"></div>
+      </section>
+    </div>
+
+    <div class="controls">
+      <button id="runBtn" class="btn" type="button" title="Ctrl/Cmd + Enter">Run</button>
+      <button id="resetCssBtn" class="btn secondary" type="button">Reset CSS (empty)</button>
+      <button id="clearCssBtn" class="btn ghost" type="button">Clear CSS</button>
+      <button id="resetLessonBtn" class="btn secondary" type="button">Reset Lesson (empty)</button>
+      <button id="appendRefBtn" class="btn ghost" type="button">Append Reference CSS</button>
+      <button id="fontMinusBtn" class="btn ghost" type="button" title="Code font smaller">Aa−</button>
+      <button id="fontPlusBtn" class="btn ghost" type="button" title="Code font larger">Aa+</button>
+      <label><input type="checkbox" id="liveToggle" /> Live preview</label>
+    </div>
+
+    <iframe id="preview" sandbox="allow-scripts allow-forms" title="Preview"></iframe>
+
+    <footer>
+      <div class="nav-buttons">
+        <a href="../../index.html" class="nav-button">← Back to Curriculum</a>
+        <a href="../css-positioning/css-positioning.html" class="nav-button">Next Lesson →</a>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    // ===== Per-lesson data (guide + reference CSS + video) — English only =====
+    const BASE_SCAFFOLD_CSS = `*{box-sizing:border-box}
+body{font-family:system-ui,Segoe UI,Roboto,sans-serif; margin:0; padding:16px; background:#fdfdfd; color:#173a56}
+.playground{max-width:960px; margin:0 auto}
+.row{display:flex; flex-wrap:wrap; gap:12px; margin:12px 0}
+.box{background:#fff; padding:16px; border:2px solid transparent; border-radius:8px; min-width:160px; text-align:center}
+.btn{padding:10px 14px; background:#fff; border:2px solid transparent; border-radius:8px; cursor:pointer;}`;
+
+    const LESSONS = {
+      borders: {
+        title: 'Lesson: Borders',
+        video: '../../../assets/videos/css/borders-intro.mp4',
+        tasks: [
+          'Build the HTML boxes for the border demo.',
+          'Type the base CSS and learn what each property does (font, layout, row/box).',
+          'Add border styles: style, per-side, radius, focus, and optional border-image.'
+        ],
+        referenceCSS: `/* Border styles */
+.style-solid  { border: 3px solid steelblue; }
+.style-dashed { border: 3px dashed #0b5bb3; }
+.style-dotted { border: 3px dotted #e67e22; }
+.style-double { border: 6px double #9b59b6; }
+/* Per-side */
+.side-top    { border-top:    4px solid steelblue; padding: 20px; }
+.side-right  { border-right:  4px solid #e67e22;  padding: 20px; }
+.side-bottom { border-bottom: 4px solid #2ecc71;  padding: 20px; }
+.side-left   { border-left:   4px solid #9b59b6;  padding: 20px; }
+/* Radius */
+.radius-small   { border: 3px solid steelblue; border-radius: 12px; }
+.radius-pill    { border: 2px solid #0b5bb3;  border-radius: 999px; }
+.radius-ellipse { border: 4px solid #333;      border-radius: 32px / 12px; }
+/* Focus (outline vs border) */
+.btn-focus { border: 3px solid #22c55e; border-radius: 10px; color:#166534; background:#fff; }
+.btn-focus:focus-visible { outline: 3px solid #ffbf47; outline-offset: 2px; }
+/* Border-image with fallback */
+.frame-img { border:16px solid #cfd8e3; border-image: url("border.png") 30 / 16px / 0 round; }`,
+        examples: `.style-solid { border: 3px solid steelblue; }
+.side-top { border-top: 4px solid tomato; }
+.radius-pill { border-radius: 999px; border: 2px solid #0b5bb3; }
+.btn-focus:focus-visible { outline: 3px solid gold; }`,
+        guide: `
+<h3>Step 1 — Write minimal HTML (skeleton)</h3>
+<p>Create a <code>.playground</code> container and groups of boxes inside <code>.row</code>. Each box gets a class we will target in CSS.</p>
+<div class="code-actions">
+  <button class="btn ghost ins" data-target="html" data-mode="replace" data-src="#b-html-1">Insert HTML skeleton</button>
+</div>
+<pre id="b-html-1">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+  &lt;meta charset=&quot;UTF-8&quot;&gt;
+  &lt;title&gt;Borders Lab&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;div class=&quot;playground&quot;&gt;
+    &lt;h2&gt;Borders&lt;/h2&gt;
+    &lt;div class=&quot;row&quot;&gt;
+      &lt;div class=&quot;box style-solid&quot;&gt;.style-solid&lt;/div&gt;
+      &lt;div class=&quot;box style-dashed&quot;&gt;.style-dashed&lt;/div&gt;
+      &lt;div class=&quot;box style-dotted&quot;&gt;.style-dotted&lt;/div&gt;
+      &lt;div class=&quot;box style-double&quot;&gt;.style-double&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;row&quot;&gt;
+      &lt;div class=&quot;box side-top&quot;&gt;.side-top&lt;/div&gt;
+      &lt;div class=&quot;box side-right&quot;&gt;.side-right&lt;/div&gt;
+      &lt;div class=&quot;box side-bottom&quot;&gt;.side-bottom&lt;/div&gt;
+      &lt;div class=&quot;box side-left&quot;&gt;.side-left&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;row&quot;&gt;
+      &lt;div class=&quot;box radius-small&quot;&gt;.radius-small&lt;/div&gt;
+      &lt;div class=&quot;box radius-pill&quot;&gt;.radius-pill&lt;/div&gt;
+      &lt;div class=&quot;box radius-ellipse&quot;&gt;.radius-ellipse&lt;/div&gt;
+      &lt;button class=&quot;btn btn-focus&quot;&gt;.btn-focus (Focus me)&lt;/button&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;row&quot;&gt;
+      &lt;div class=&quot;box frame-img&quot;&gt;.frame-img&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+
+<h3>Step 2 — Base CSS (What & Why)</h3>
+<ul>
+  <li><code>* { box-sizing: border-box; }</code> → width/height include padding + border → predictable layout.</li>
+  <li><code>body { font-family: system-ui,... }</code> → set a readable, system-default font across the page.</li>
+  <li><code>.playground { max-width:960px; margin:0 auto }</code> → center the container and limit its width.</li>
+  <li><code>.row { display:flex; flex-wrap:wrap; gap:12px }</code> → lay out children in a row, allow wrapping, add spacing.</li>
+  <li><code>.box</code> → white card with inner space (padding) and rounded corners.</li>
+  <li><code>.btn</code> → button look and feel.</li>
+</ul>
+<div class="code-actions">
+  <button class="btn ghost ins" data-target="css" data-mode="append" data-src="#base-css">Insert base CSS</button>
+</div>
+
+<h3>Step 3 — Border styles</h3>
+<p>Add solid/dashed/dotted/double, per-side borders, rounded corners, and focus styles.</p>
+<div class="code-actions">
+  <button class="btn ghost ins" data-target="css" data-mode="append" data-src="#b-css-1">Insert border styles</button>
+</div>
+<pre id="b-css-1">.style-solid  { border: 3px solid steelblue; }
+.style-dashed { border: 3px dashed #0b5bb3; }
+.style-dotted { border: 3px dotted #e67e22; }
+.style-double { border: 6px double #9b59b6; }
+.side-top    { border-top:    4px solid steelblue; padding: 20px; }
+.side-right  { border-right:  4px solid #e67e22;  padding: 20px; }
+.side-bottom { border-bottom: 4px solid #2ecc71;  padding: 20px; }
+.side-left   { border-left:   4px solid #9b59b6;  padding: 20px; }
+.radius-small   { border: 3px solid steelblue; border-radius: 12px; }
+.radius-pill    { border: 2px solid #0b5bb3;  border-radius: 999px; }
+.radius-ellipse { border: 4px solid #333;      border-radius: 32px / 12px; }
+.btn-focus { border: 3px solid #22c55e; border-radius: 10px; color:#166534; background:#fff; }
+.btn-focus:focus-visible { outline: 3px solid #ffbf47; outline-offset: 2px; }</pre>
+
+<h3>Try it — border vs outline</h3>
+<p><code>outline</code> does not affect layout and is great for accessible focus rings.</p>
+<pre>.btn-focus:focus-visible { outline: 3px solid gold; }</pre>
+
+<h3>Step 4 — (Optional) Decorative frame</h3>
+<div class="code-actions">
+  <button class="btn ghost ins" data-target="css" data-mode="append" data-src="#b-css-2">Insert border-image example</button>
+</div>
+<pre id="b-css-2">.frame-img { border:16px solid #cfd8e3; /* fallback */
+  border-image: url(&quot;border.png&quot;) 30 / 16px / 0 round; }</pre>
+`
+      },
+      margins: {
+        title: 'Lesson: Margins',
+        video: '../../../assets/videos/css/margins-intro.mp4',
+        tasks: [
+          'Build the HTML for a no-gap row.',
+          'Insert base CSS, then margin utilities.',
+          'Observe external spacing & margin-collapsing.'
+        ],
+        referenceCSS: `.m-all { margin: 16px; }
+.m-x   { margin-left: 16px; margin-right: 16px; }
+.m-y   { margin-top: 16px;  margin-bottom: 16px; }
+.m-t   { margin-top: 24px; }
+.m-r   { margin-right: 24px; }
+.m-b   { margin-bottom: 24px; }
+.m-l   { margin-left: 24px; }`,
+        examples: `.m-all { margin: 16px; }
+.m-t { margin-top: 24px; }`,
+        guide: `
+<h3>Step 1 — HTML (no-gap row)</h3>
+<p>Remove the row gap so margins are visible between boxes.</p>
+<div class="code-actions">
+  <button class="btn ghost ins" data-target="html" data-mode="replace" data-src="#m-html-1">Insert margin HTML</button>
+</div>
+<pre id="m-html-1">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;&lt;meta charset=&quot;UTF-8&quot;&gt;&lt;title&gt;Margins Lab&lt;/title&gt;&lt;/head&gt;
+&lt;body&gt;
+  &lt;div class=&quot;playground&quot;&gt;
+    &lt;h2&gt;Margins&lt;/h2&gt;
+    &lt;div class=&quot;row no-gap&quot;&gt;
+      &lt;div class=&quot;box m-all&quot;&gt;.m-all&lt;/div&gt;
+      &lt;div class=&quot;box m-x&quot;&gt;.m-x&lt;/div&gt;
+      &lt;div class=&quot;box m-y&quot;&gt;.m-y&lt;/div&gt;
+      &lt;div class=&quot;box m-t&quot;&gt;.m-t&lt;/div&gt;
+      &lt;div class=&quot;box m-r&quot;&gt;.m-r&lt;/div&gt;
+      &lt;div class=&quot;box m-b&quot;&gt;.m-b&lt;/div&gt;
+      &lt;div class=&quot;box m-l&quot;&gt;.m-l&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+
+<h3>Step 2 — Base CSS</h3>
+<p>Re-use the same base CSS: container, flex row, and cards.</p>
+<div class="code-actions">
+  <button class="btn ghost ins" data-target="css" data-mode="append" data-src="#base-css">Insert base CSS</button>
+</div>
+
+<h3>Step 3 — Margin utilities</h3>
+<p>Margins create <em>external</em> spacing. Try each and see how siblings move.</p>
+<div class="code-actions">
+  <button class="btn ghost ins" data-target="css" data-mode="append" data-src="#m-css-1">Insert margin CSS</button>
+</div>
+<pre id="m-css-1">.m-all { margin: 16px; }
+.m-x   { margin-left: 16px; margin-right: 16px; }
+.m-y   { margin-top: 16px;  margin-bottom: 16px; }
+.m-t   { margin-top: 24px; }
+.m-r   { margin-right: 24px; }
+.m-b   { margin-bottom: 24px; }
+.m-l   { margin-left: 24px; }</pre>
+
+<h3>Concept — Margin collapsing</h3>
+<p>Two adjacent vertical margins (parent/child or siblings) can collapse into a single margin equal to the larger one. Place two <code>.m-t</code> boxes back-to-back to observe it.</p>
+`
+      },
+      padding: {
+        title: 'Lesson: Padding',
+        video: '../../../assets/videos/css/padding-intro.mp4',
+        tasks: [
+          'Build HTML boxes for the padding demo.',
+          'Insert base CSS, then padding utilities.',
+          'Compare inner (padding) vs outer (margin) spacing.'
+        ],
+        referenceCSS: `.p-all { padding: 24px; }
+.p-x   { padding-left: 24px; padding-right: 24px; }
+.p-y   { padding-top: 24px;  padding-bottom: 24px; }
+.p-t   { padding-top: 16px; }
+.p-r   { padding-right: 16px; }
+.p-b   { padding-bottom: 16px; }
+.p-l   { padding-left: 16px; }`,
+        examples: `.p-all { padding: 24px; }
+.p-y { padding-top: 24px; padding-bottom: 24px; }`,
+        guide: `
+<h3>Step 1 — HTML</h3>
+<div class="code-actions">
+  <button class="btn ghost ins" data-target="html" data-mode="replace" data-src="#p-html-1">Insert padding HTML</button>
+</div>
+<pre id="p-html-1">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;&lt;meta charset=&quot;UTF-8&quot;&gt;&lt;title&gt;Padding Lab&lt;/title&gt;&lt;/head&gt;
+&lt;body&gt;
+  &lt;div class=&quot;playground&quot;&gt;
+    &lt;h2&gt;Padding&lt;/h2&gt;
+    &lt;div class=&quot;row&quot;&gt;
+      &lt;div class=&quot;box p-all&quot;&gt;.p-all&lt;/div&gt;
+      &lt;div class=&quot;box p-x&quot;&gt;.p-x&lt;/div&gt;
+      &lt;div class=&quot;box p-y&quot;&gt;.p-y&lt;/div&gt;
+      &lt;div class=&quot;box p-t&quot;&gt;.p-t&lt;/div&gt;
+      &lt;div class=&quot;box p-r&quot;&gt;.p-r&lt;/div&gt;
+      &lt;div class=&quot;box p-b&quot;&gt;.p-b&lt;/div&gt;
+      &lt;div class=&quot;box p-l&quot;&gt;.p-l&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+
+<h3>Step 2 — Base CSS</h3>
+<div class="code-actions">
+  <button class="btn ghost ins" data-target="css" data-mode="append" data-src="#base-css">Insert base CSS</button>
+</div>
+
+<h3>Step 3 — Padding utilities</h3>
+<p>Padding increases <em>internal</em> spacing. Content moves inward; the outer distance to siblings doesn't change.</p>
+<div class="code-actions">
+  <button class="btn ghost ins" data-target="css" data-mode="append" data-src="#p-css-1">Insert padding CSS</button>
+</div>
+<pre id="p-css-1">.p-all { padding: 24px; }
+.p-x   { padding-left: 24px; padding-right: 24px; }
+.p-y   { padding-top: 24px;  padding-bottom: 24px; }
+.p-t   { padding-top: 16px; }
+.p-r   { padding-right: 16px; }
+.p-b   { padding-bottom: 16px; }
+.p-l   { padding-left: 16px; }</pre>
+`
+      },
+      sizing: {
+        title: 'Lesson: Sizing',
+        video: '../../../assets/videos/css/sizing-intro.mp4',
+        tasks: [
+          'Build the HTML boxes for the sizing demo.',
+          'Insert base CSS, then width/height/min/max.',
+          'Compare content-box vs border-box.'
+        ],
+        referenceCSS: `.row.sizing .box { flex: 0 0 auto; }
+.w-fixed   { width: 180px; }
+.w-percent { width: 50%; max-width: 420px; }
+.w-minmax  { min-width: 160px; max-width: 280px; }
+.h-fixed   { height: 120px; display:flex; align-items:center; justify-content:center; }
+.box-content { box-sizing: content-box !important; width: 200px; padding: 16px; border: 6px solid steelblue; }
+.box-border  { box-sizing: border-box;              width: 200px; padding: 16px; border: 6px solid #0b5bb3; }`,
+        examples: `.w-fixed { width: 180px; }
+.box-border { box-sizing: border-box; width: 200px; padding: 16px; border: 6px solid #0b5bb3; }`,
+        guide: `
+<h3>Step 1 — HTML</h3>
+<div class="code-actions">
+  <button class="btn ghost ins" data-target="html" data-mode="replace" data-src="#s-html-1">Insert sizing HTML</button>
+</div>
+<pre id="s-html-1">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;&lt;meta charset=&quot;UTF-8&quot;&gt;&lt;title&gt;Sizing Lab&lt;/title&gt;&lt;/head&gt;
+&lt;body&gt;
+  &lt;div class=&quot;playground&quot;&gt;
+    &lt;h2&gt;Sizing &amp; Box-Sizing&lt;/h2&gt;
+    &lt;div class=&quot;row sizing&quot;&gt;
+      &lt;div class=&quot;box w-fixed&quot;&gt;.w-fixed&lt;/div&gt;
+      &lt;div class=&quot;box w-percent&quot;&gt;.w-percent&lt;/div&gt;
+      &lt;div class=&quot;box w-minmax&quot;&gt;.w-minmax&lt;/div&gt;
+      &lt;div class=&quot;box h-fixed&quot;&gt;.h-fixed&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;row sizing&quot;&gt;
+      &lt;div class=&quot;box box-content&quot;&gt;.box-content (content-box)&lt;/div&gt;
+      &lt;div class=&quot;box box-border&quot;&gt;.box-border (border-box)&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+
+<h3>Step 2 — Base CSS</h3>
+<div class="code-actions">
+  <button class="btn ghost ins" data-target="css" data-mode="append" data-src="#base-css">Insert base CSS</button>
+</div>
+
+<h3>Step 3 — Width/Height & Box-Sizing</h3>
+<ul>
+  <li><code>.w-fixed</code> → fixed pixel width.</li>
+  <li><code>.w-percent</code> → percentage of parent width (watch <code>max-width</code> cap).</li>
+  <li><code>.w-minmax</code> → minimum and maximum width bounds.</li>
+  <li><code>.h-fixed</code> → fixed height; use flex to center content.</li>
+  <li><code>.box-content</code> vs <code>.box-border</code> → content-box vs border-box sizing difference.</li>
+</ul>
+<div class="code-actions">
+  <button class="btn ghost ins" data-target="css" data-mode="append" data-src="#s-css-1">Insert sizing CSS</button>
+</div>
+<pre id="s-css-1">.row.sizing .box { flex: 0 0 auto; }
+.w-fixed   { width: 180px; }
+.w-percent { width: 50%; max-width: 420px; }
+.w-minmax  { min-width: 160px; max-width: 280px; }
+.h-fixed   { height: 120px; display:flex; align-items:center; justify-content:center; }
+.box-content { box-sizing: content-box !important; width: 200px; padding: 16px; border: 6px solid steelblue; }
+.box-border  { box-sizing: border-box;              width: 200px; padding: 16px; border: 6px solid #0b5bb3; }</pre>
+`
+      }
+    };
+
+    // Elements
+    const tabs = {
+      borders: document.getElementById('tab-borders'),
+      margins: document.getElementById('tab-margins'),
+      padding: document.getElementById('tab-padding'),
+      sizing:  document.getElementById('tab-sizing')
+    };
+    const htmlTA = document.getElementById('htmlTA');
+    const cssTA  = document.getElementById('cssTA');
+    const preview= document.getElementById('preview');
+    const runBtn = document.getElementById('runBtn');
+    const resetCssBtn = document.getElementById('resetCssBtn');
+    const clearCssBtn = document.getElementById('clearCssBtn');
+    const resetLessonBtn = document.getElementById('resetLessonBtn');
+    const appendRefBtn = document.getElementById('appendRefBtn');
+    const fontMinusBtn = document.getElementById('fontMinusBtn');
+    const fontPlusBtn = document.getElementById('fontPlusBtn');
+    const liveToggle = document.getElementById('liveToggle');
+    const lessonTitle = document.getElementById('lessonTitle');
+    const lessonTasks = document.getElementById('lessonTasks');
+    const lessonExamples = document.getElementById('lessonExamples');
+    const lessonGuide = document.getElementById('lessonGuide');
+    const videoEl = document.getElementById('lessonVideo');
+    const videoSrc = document.getElementById('videoSource');
+    const htmlErr = document.getElementById('htmlError');
+    const cssErr  = document.getElementById('cssError');
+    const lessonPanel = document.getElementById('lessonPanel');
+
+    let current = 'borders';
+
+    function setSelected(tabKey){
+      Object.entries(tabs).forEach(([k,btn])=>{
+        btn.setAttribute('aria-selected', k===tabKey ? 'true' : 'false');
+      });
+      lessonPanel.setAttribute('aria-labelledby', 'tab-' + tabKey);
+    }
+
+    function renderTasks(list){
+      lessonTasks.innerHTML = '';
+      list.forEach(t=>{
+        const li = document.createElement('li');
+        li.textContent = t;
+        lessonTasks.appendChild(li);
+      });
+    }
+
+    function showErr(el, msg){ el.textContent = msg; el.style.display = 'block'; }
+    function clearErrs(){ htmlErr.style.display='none'; cssErr.style.display='none'; htmlErr.textContent=''; cssErr.textContent=''; }
+
+    function isLikelyHTML(str){
+      return /<!doctype html/i.test(str) || /<html[^>]*>/i.test(str) || /<[a-zA-Z][^>]*>/i.test(str);
+    }
+
+    function validateHTML(str){
+      const s = (str||'').trim();
+      if (!s) return { ok:false, msg:'HTML cannot be empty.' };
+      if (!s.includes('<') || !s.includes('>')) return { ok:false, msg:'Only HTML is allowed in the HTML editor. Add tags like <div>…</div>.' };
+      if (!isLikelyHTML(s)) return { ok:false, msg:'Only HTML is allowed in the HTML editor.' };
+      try{
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(s, 'text/html');
+        const hasAnyElement = doc && doc.body && doc.body.querySelector('*');
+        if (!hasAnyElement) return { ok:false, msg:'HTML must contain at least one element.' };
+        if (doc.querySelector('parsererror')) return { ok:false, msg:'HTML parse error. Please fix your tags.' };
+      }catch(e){ return { ok:false, msg:'Invalid HTML.' } }
+      return { ok:true };
+    }
+
+    function validateCSS(css){
+      const t = (css||'').trim();
+      if (!t) return { ok:true };
+      if (t.includes('<') || t.includes('</')) return { ok:false, msg:'HTML is not allowed in the CSS editor.' };
+      if (typeof CSSStyleSheet !== 'undefined' && CSSStyleSheet.prototype && CSSStyleSheet.prototype.replaceSync){
+        try{ const sheet = new CSSStyleSheet(); sheet.replaceSync(t); return { ok:true }; }
+        catch(e){ return { ok:false, msg: 'CSS syntax error: ' + (e && e.message ? e.message : 'Invalid CSS.') }; }
+      }
+      if (!/[{}]/.test(t)) return { ok:false, msg:'Include selectors with { }.' };
+      return { ok:true };
+    }
+
+    function injectCss(fullHtml, css){
+      if (!css.trim()) return fullHtml;
+      if (fullHtml.includes('</head>')) {
+        return fullHtml.replace('</head>', `<style>
+${css}
+</style></head>`);
+      }
+      return `<!DOCTYPE html><html><head><meta charset="UTF-8"><style>
+${css}
+</style></head><body>${fullHtml}</body></html>`;
+    }
+
+    function run(){
+      clearErrs();
+      const h = htmlTA.value; const c = cssTA.value;
+      const hv = validateHTML(h); if (!hv.ok){ showErr(htmlErr, hv.msg); preview.srcdoc=''; return; }
+      const cv = validateCSS(c); if (!cv.ok){ showErr(cssErr, cv.msg); preview.srcdoc=''; return; }
+      const out = injectCss(h, c);
+      preview.srcdoc = out;
+    }
+
+    // Live preview
+    let liveTimer = null;
+    function debounceRun(){
+      clearTimeout(liveTimer);
+      liveTimer = setTimeout(run, 160);
+    }
+
+    cssTA.addEventListener('input', ()=>{ if(liveToggle.checked) debounceRun(); });
+    htmlTA.addEventListener('input', ()=>{ if(liveToggle.checked) debounceRun(); });
+
+    // Buttons
+    runBtn.addEventListener('click', run);
+    resetCssBtn.addEventListener('click', ()=>{ cssTA.value = ''; run(); });
+    clearCssBtn.addEventListener('click', ()=>{ cssTA.value = ''; run(); });
+    resetLessonBtn.addEventListener('click', ()=> loadLesson(current));
+    appendRefBtn.addEventListener('click', ()=>{ appendToCSS((LESSONS[current].referenceCSS || '')); });
+
+    // Code font size controls
+    let codeFont = 15; // px
+    function applyCodeFont(){
+      document.querySelectorAll('.ed textarea, .guide pre').forEach(el=>{ el.style.fontSize = codeFont + 'px'; el.style.lineHeight = '1.7'; });
+    }
+    fontMinusBtn.addEventListener('click', ()=>{ codeFont = Math.max(12, codeFont-1); applyCodeFont(); });
+    fontPlusBtn.addEventListener('click', ()=>{ codeFont = Math.min(22, codeFont+1); applyCodeFont(); });
+
+    function appendToCSS(code){
+      const add = (code || '').trim();
+      if (!add) return;
+      cssTA.value = cssTA.value ? (cssTA.value.replace(/\s*$/,'') + '\n\n' + add) : add;
+      cssTA.focus();
+      run();
+    }
+
+    // Guide "Insert" handlers — APPEND for CSS, REPLACE for HTML (unless data-mode says otherwise)
+    document.addEventListener('click', (e)=>{
+      const b = e.target.closest('.ins');
+      if(!b) return;
+      const srcSel = b.getAttribute('data-src');
+      const target = b.getAttribute('data-target');     // "html" | "css"
+      const modeAttr = b.getAttribute('data-mode');     // "append" | "replace" (optional)
+      const srcEl = document.querySelector(srcSel);
+      if(!srcEl){ console.warn('Source not found:', srcSel); return; }
+      const code = srcEl.textContent.trim();
+      const mode = modeAttr || (target === 'css' ? 'append' : 'replace');
+      if(target==='html'){
+        if(mode==='append'){ htmlTA.value = htmlTA.value ? (htmlTA.value.replace(/\s*$/,'') + '\n\n' + code) : code; }
+        else { htmlTA.value = code; }
+        htmlTA.focus();
+        run();
+      } else if(target==='css'){
+        if(mode==='replace'){ cssTA.value = code; }
+        else { appendToCSS(code); } // default append
+      }
+    });
+
+    function loadLesson(key){
+      current = key;
+      const data = LESSONS[key];
+      setSelected(key);
+      lessonTitle.textContent = data.title;
+      renderTasks(data.tasks || []);
+      lessonExamples.textContent = data.examples || '';
+      lessonGuide.innerHTML = data.guide || '';
+      if (data.video) { videoSrc.src = data.video; videoEl.load(); }
+      // Keep editors EMPTY by default for step-by-step learning
+      htmlTA.value = '';
+      cssTA.value = '';
+      htmlTA.placeholder = 'Type your HTML here... (or use the Insert buttons in the guide)';
+      cssTA.placeholder  = 'Type your CSS here... (or use the Insert buttons in the guide)';
+      preview.srcdoc = '';
+      htmlTA.focus();
+      applyCodeFont();
+    }
+
+    // Tabs
+    tabs.borders.addEventListener('click', ()=> loadLesson('borders'));
+    tabs.margins.addEventListener('click', ()=> loadLesson('margins'));
+    tabs.padding.addEventListener('click', ()=> loadLesson('padding'));
+    tabs.sizing .addEventListener('click', ()=> loadLesson('sizing'));
+
+    // Start
+    loadLesson('borders');
+
+    // Keyboard shortcut
+    document.addEventListener('keydown', (e)=>{ if ((e.ctrlKey||e.metaKey) && e.key==='Enter') run(); });
+  </script>
+</body>
+</html>

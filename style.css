@@ -1,0 +1,280 @@
+/* Reset */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: rgba(209, 77, 114, 0.3);
+  color: #333;
+  line-height: 1.6;
+}
+/* Hero */
+.hero {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.background-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  text-align: center;
+  padding: 1rem;
+}
+
+.overlay h1 {
+  font-size: 3rem;
+  font-weight: 800;
+  margin-bottom: 0.5rem;
+}
+
+.overlay p {
+  font-size: 1.3rem;
+  font-weight: 500;
+}
+
+/* Navigation */
+.main-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #f6d6d6;
+  padding: 1rem 2rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.logo {
+  font-weight: 800;
+  font-size: 1.3rem;
+  color: #d14d72;
+}
+
+.hamburger {
+  display: none;
+  font-size: 1.8rem;
+  background: none;
+  border: none;
+  color: #d14d72;
+  cursor: pointer;
+}
+
+.nav-list {
+  list-style: none;
+  display: flex;
+  gap: 2rem;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: #333;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+  color: #d14d72;
+}
+
+/* Mobile Nav */
+@media (max-width: 768px) {
+  .hamburger {
+    display: block;
+  }
+
+  .nav-list {
+    display: none;
+    flex-direction: column;
+    background-color: #fce3e3;
+    padding: 1rem;
+    position: absolute;
+    top: 60px;
+    right: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  }
+
+  .nav-list.show {
+    display: flex;
+  }
+}
+
+/* Sections */
+main {
+  max-width: 1200px;
+  margin: 4rem auto;
+  padding: 0 1rem;
+}
+
+section h2 {
+  color: #d14d72;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+/* Card Grid */
+.grid-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 2rem;
+  margin-bottom: 4rem;
+}
+
+.card {
+  background: #fff;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+  text-align: center;
+  text-decoration: none;
+  color: #333;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  display: block;
+}
+
+.card span {
+  display: block;
+  padding: 1rem;
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 10px 24px rgba(209, 77, 114, 0.3);
+}
+
+/* Skills Categories */
+.skill-category {
+  margin-bottom: 3rem;
+}
+
+.skill-category h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  text-align: left;
+  color: #555;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Contact */
+.contact form {
+  background: white;
+  padding: 2rem;
+  border-radius: 15px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  max-width: 600px;
+  margin: auto;
+}
+
+fieldset {
+  border: none;
+  margin-bottom: 1.5rem;
+}
+
+label {
+  display: block;
+  margin-bottom: 0.4rem;
+  font-weight: 600;
+}
+
+input[type="text"],
+input[type="email"],
+textarea {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  font-size: 1rem;
+  border: 2px solid #f4c6c6;
+  border-radius: 12px;
+  resize: vertical;
+  margin-bottom: 1rem;
+  font-family: inherit;
+}
+
+input:focus,
+textarea:focus {
+  outline: none;
+  border-color: #d14d72;
+  box-shadow: 0 0 8px rgba(209, 77, 114, 0.4);
+}
+
+button[type="submit"] {
+  width: 100%;
+  padding: 1rem;
+  background-color: #d14d72;
+  color: white;
+  font-size: 1.1rem;
+  font-weight: 700;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:hover {
+  background-color: #b24063;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 1.5rem;
+  background-color: #d14d72;
+  color: white;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+#particles-js {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+.hero,
+.background-video,
+.overlay {
+  position: relative;
+  z-index: 1;
+}
+#particles-js {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+.hero,
+.background-video,
+.overlay {
+  position: relative;
+  z-index: 1;
+}

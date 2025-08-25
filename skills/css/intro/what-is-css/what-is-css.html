@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>What is CSS? | Mohammad Choopani</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #f0f8ff, #d9eafa);
+      color: #1a3c5d;
+      padding: 2rem 1.5rem;
+      line-height: 1.8;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      text-align: center;
+      color: #004a99;
+      margin-bottom: 1.5rem;
+      text-shadow: 1px 1px 3px #c2e2ff;
+    }
+
+    .video-container {
+      max-width: 800px;
+      margin: 2rem auto;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    video {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .content {
+      max-width: 800px;
+      margin: 2rem auto;
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 2rem;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+    }
+
+    .content p {
+      font-size: 1.1rem;
+      margin-bottom: 1rem;
+      color: #1f4966;
+    }
+
+    .content h2, .content h3 {
+      color: #004a99;
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+      font-size: 1.3rem;
+    }
+
+    ul {
+      margin-left: 1.2rem;
+      padding-left: 1rem;
+    }
+
+    ul li {
+      margin-bottom: 0.75rem;
+      position: relative;
+      padding-left: 1.2rem;
+    }
+
+    ul li::before {
+      content: '🎯';
+      position: absolute;
+      left: 0;
+    }
+
+    pre {
+      background: #f4f4f4;
+      padding: 1rem;
+      border-radius: 8px;
+      overflow-x: auto;
+    }
+
+    .console-box {
+      margin-top: 2rem;
+      background: #222;
+      color: #0f0;
+      border-radius: 10px;
+      padding: 1rem;
+      box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    }
+
+    .console-box textarea {
+      width: 100%;
+      height: 130px;
+      background: #111;
+      color: #0f0;
+      border: none;
+      padding: 1rem;
+      font-family: monospace;
+      font-size: 1rem;
+      border-radius: 6px;
+      resize: vertical;
+    }
+
+    .console-box button {
+      background: #004a99;
+      color: #fff;
+      border: none;
+      padding: 0.6rem 1.2rem;
+      margin-top: 1rem;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .console-box button:hover {
+      background: #003366;
+    }
+
+    .console-output {
+      margin-top: 1rem;
+      background: #000;
+      color: #0f0;
+      padding: 1rem;
+      border-radius: 6px;
+      font-family: monospace;
+      min-height: 40px;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+    }
+
+    .error-message {
+      display: none;
+      margin-top: 0.5rem;
+      padding: 0.6rem;
+      background-color: #ffdddd;
+      color: #c0392b;
+      border-left: 5px solid #e74c3c;
+      border-radius: 5px;
+      font-weight: bold;
+    }
+
+    .nav-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      margin-top: 3rem;
+    }
+
+    .nav-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      text-decoration: none;
+      font-weight: 600;
+      color: #004a99;
+      border: 2px solid #004a99;
+      padding: 0.6rem 1.2rem;
+      border-radius: 10px;
+      transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+    }
+
+    .nav-button:hover {
+      background-color: #004a99;
+      color: #fff;
+      transform: translateY(-3px);
+    }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 2rem;
+      }
+
+      .content {
+        padding: 1.5rem;
+      }
+
+      .nav-button {
+        font-size: 0.95rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>What is CSS?</h1>
+
+  <div class="video-container">
+    <video controls>
+      <source src="../../../assets/videos/css/lesson1.mp4" type="video/mp4" />
+      Your browser does not support the video tag.
+    </video>
+  </div>
+
+  <section class="content">
+    <p><strong>CSS</strong> stands for <em>Cascading Style Sheets</em>. It describes how HTML elements should be displayed on the screen, paper, or in other media. While HTML structures your content, CSS makes it visually appealing.</p>
+
+    <h2>💡 Why Use CSS?</h2>
+    <p>Without CSS, all web pages would look plain and unstyled. CSS allows you to:</p>
+    <ul>
+      <li>Change colors, fonts, and layouts</li>
+      <li>Create responsive designs for different screen sizes</li>
+      <li>Separate content (HTML) from design (CSS)</li>
+    </ul>
+
+    <h2>🔗 Ways to Apply CSS to HTML</h2>
+    <p>You can apply CSS to your HTML in three main ways:</p>
+
+    <h3>1. Inline CSS</h3>
+    <p>Use the <code>style</code> attribute inside an HTML tag:</p>
+    <pre>
+&lt;p style="color: blue;"&gt;This is a blue paragraph.&lt;/p&gt;
+    </pre>
+
+    <h3>2. Internal CSS</h3>
+    <p>Define CSS rules inside a <code>&lt;style&gt;</code> tag in the <code>&lt;head&gt;</code> of your HTML document:</p>
+    <pre>
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;style&gt;
+    p {
+      color: green;
+    }
+  &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;p&gt;This is a green paragraph.&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+    </pre>
+
+    <h3>3. External CSS</h3>
+    <p>Link to a separate CSS file using the <code>&lt;link&gt;</code> element:</p>
+    <pre>
+&lt;head&gt;
+  &lt;link rel="stylesheet" href="styles.css"&gt;
+&lt;/head&gt;
+    </pre>
+    <p>And in <code>styles.css</code> file:</p>
+    <pre>
+p {
+  color: red;
+}
+    </pre>
+
+    <h2>🎨 CSS Syntax Overview</h2>
+    <p>A CSS rule consists of a selector and a declaration block:</p>
+    <pre>
+selector {
+  property: value;
+}
+    </pre>
+    <p>Example:</p>
+    <pre>
+h1 {
+  color: purple;
+  font-size: 24px;
+}
+    </pre>
+
+  <div class="console-box">
+  <h2 style="color:#fff;">🎯 Try it Yourself:</h2>
+
+  <label for="htmlInput" style="color:#fff;display:block;margin-bottom:5px;">HTML:</label>
+  <textarea id="htmlInput" placeholder="Type HTML code here..."></textarea>
+
+  <label for="cssInput" style="color:#fff;display:block;margin:15px 0 5px;">CSS:</label>
+  <textarea id="cssInput" placeholder="Type CSS code here... (without &lt;style&gt;)"></textarea>
+
+  <button onclick="runCode()">Run Code</button>
+
+  <div id="errorMsg" class="error-message">⚠️ Please enter valid HTML and/or CSS code!</div>
+
+  <div style="margin-top:1rem; border: 1px solid #555; border-radius: 6px; overflow: hidden;">
+    <iframe id="previewFrame" style="width:100%; height:200px; border:none; background:#fff;"></iframe>
+  </div>
+</div>
+
+  </section>
+
+  <footer>
+    <div class="nav-buttons">
+      <a href="../../index.html" class="nav-button">
+        <i class="fas fa-arrow-left"></i> Back to Curriculum
+      </a>
+      <a href="../css-syntax/css-syntax.html" class="nav-button">
+        Next Lesson <i class="fas fa-arrow-right"></i>
+      </a>
+    </div>
+  </footer>
+
+  <script>
+  function runCode() {
+    const html = document.getElementById("htmlInput").value.trim();
+    const css = document.getElementById("cssInput").value.trim();
+    const errorMsg = document.getElementById("errorMsg");
+    const frame = document.getElementById("previewFrame");
+
+    if (html === "" && css === "") {
+      errorMsg.style.display = "none";
+      frame.srcdoc = "";
+      return;
+    }
+
+    const htmlValid = /<[^>]+>/.test(html);
+    const cssValid = /[a-zA-Z]+\s*\{[\s\S]*?\}/.test(css);
+
+    if (htmlValid || cssValid) {
+      const fullContent = `
+        <html>
+          <head>
+            <style>${css}</style>
+          </head>
+          <body>
+            ${html}
+          </body>
+        </html>
+      `;
+      frame.srcdoc = fullContent;
+      errorMsg.style.display = "none";
+    } else {
+      frame.srcdoc = "";
+      errorMsg.style.display = "block";
+    }
+  }
+</script>
+
+
+</body>
+</html>

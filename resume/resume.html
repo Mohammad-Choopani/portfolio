@@ -1,0 +1,481 @@
+<!-- resume/resume.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>My Resume | Mohammad Choopani</title>
+
+  <!-- FontAwesome CDN برای آیکون‌ها -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    crossorigin="anonymous"
+  />
+
+  <style>
+    /* Reset */
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f9f9f9;
+      margin: 0;
+      color: #333;
+      line-height: 1.5;
+      padding-bottom: 4rem;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+    a:hover {
+      color: #1abc9c;
+    }
+
+    /* Nav */
+    .resume-nav {
+      background-color: #222;
+      padding: 1rem 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+      display: flex;
+      justify-content: flex-start;
+    }
+    .back-button {
+      color: #fff;
+      font-weight: 600;
+      font-size: 1.1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .back-button i {
+      font-size: 1.2rem;
+    }
+
+    /* Container */
+    .container {
+      max-width: 900px;
+      margin: 2rem auto;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+      padding: 2rem 3rem;
+    }
+
+    /* Header About */
+    .resume-about {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      border-bottom: 2px solid #eee;
+      padding-bottom: 2rem;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+    }
+    .resume-about img {
+      width: 130px;
+      height: 160px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 3px solid #1abc9c;
+      box-shadow: 0 0 12px #1abc9caa;
+      transition: transform 0.3s ease;
+    }
+    .resume-about img:hover {
+      transform: scale(1.05);
+    }
+    .about-text {
+      flex: 1;
+      min-width: 250px;
+    }
+    .about-text h1 {
+      margin: 0;
+      font-size: 2.8rem;
+      color: #2c3e50;
+    }
+    .about-text h2 {
+      margin: 0.3rem 0 1rem 0;
+      color: #555;
+      font-weight: 500;
+    }
+    .about-text p {
+      margin: 0.4rem 0;
+      font-size: 1.1rem;
+    }
+
+    /* Contact Info */
+    .contact-info {
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+      margin-top: 1rem;
+      font-size: 1rem;
+      color: #444;
+    }
+    .contact-info div {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-weight: 600;
+    }
+    .contact-info a {
+      color: #2980b9;
+      font-weight: 600;
+    }
+    .contact-info a:hover {
+      color: #1abc9c;
+    }
+
+    /* Section titles */
+    section h3 {
+      border-bottom: 3px solid #1abc9c;
+      padding-bottom: 0.3rem;
+      margin-bottom: 1rem;
+      color: #16a085;
+      font-weight: 700;
+      letter-spacing: 1.1px;
+      font-size: 1.6rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    /* Skills */
+    .resume-skills ul {
+      list-style: square inside;
+      padding-left: 0;
+      font-size: 1.1rem;
+      color: #444;
+      margin-bottom: 3rem;
+    }
+
+    /* Experience */
+    .job {
+      margin-bottom: 2.5rem;
+      border-left: 4px solid #1abc9c;
+      padding-left: 1rem;
+      position: relative;
+      transition: background-color 0.3s ease;
+      cursor: pointer;
+      border-radius: 6px;
+    }
+    .job:hover {
+      background-color: #e8f6f3;
+    }
+    .job h4 {
+      margin: 0 0 0.4rem 0;
+      color: #34495e;
+      font-weight: 700;
+      font-size: 1.3rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .job h4 i {
+      color: #16a085;
+    }
+    .job p {
+      margin: 0 0 0.5rem 0;
+      font-size: 1rem;
+      color: #555;
+    }
+    /* Achievement box */
+    .achievement {
+      background: #d1f0e0;
+      border-radius: 8px;
+      padding: 0.8rem 1rem;
+      font-style: italic;
+      color: #117a56;
+      font-weight: 600;
+      margin-top: 0.8rem;
+      display: none;
+      user-select: none;
+    }
+    /* Education */
+    .resume-education p {
+      font-size: 1.1rem;
+      margin: 0.4rem 0;
+      color: #444;
+    }
+    /* Licenses */
+    .license-list {
+      list-style: none;
+      padding-left: 0;
+      font-size: 1.1rem;
+    }
+    .license-list li {
+      margin: 1rem 0;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .license-list a {
+      color: #2980b9;
+      font-weight: 600;
+      transition: color 0.3s ease;
+    }
+    .license-list a:hover {
+      color: #1abc9c;
+    }
+    .license-list i {
+      color: #f39c12;
+    }
+
+    /* Download button */
+    .resume-download {
+      text-align: center;
+      padding: 2rem 0 0 0;
+    }
+    .download-btn {
+      background-color: #27ae60;
+      color: white;
+      font-weight: 700;
+      padding: 0.85rem 2rem;
+      border-radius: 50px;
+      font-size: 1.2rem;
+      display: inline-block;
+      transition: background-color 0.3s ease;
+      box-shadow: 0 4px 8px rgba(39,174,96,0.6);
+    }
+    .download-btn:hover {
+      background-color: #1e8449;
+      box-shadow: 0 6px 12px rgba(30,132,73,0.8);
+    }
+
+    /* Footer Back Button */
+    .footer-back {
+      position:fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #16a085;
+      color: white;
+      padding: 0.7rem 1.2rem;
+      border-radius: 50px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 1.1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      text-decoration: none;
+      transition: background-color 0.3s ease;
+      z-index: 1;
+    }
+    .footer-back:hover {
+      background-color: #13876a;
+    }
+    .footer-back i {
+      font-size: 1.2rem;
+    }
+   /* layout for action buttons */
+.resume-download {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .75rem;
+  justify-content: center;
+}
+.download-btn { 
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px; /* touch target */
+}
+
+/* stack buttons on mobile */
+@media (max-width: 600px){
+  .download-btn { width: 100%; font-size: 1.05rem; padding: 1rem; }
+  .resume-download { gap: .6rem; }
+}
+@media print {
+  body { background:#fff; }
+  .resume-download, .footer-back { display: none !important; } /* دکمه‌ها تو PDF نیاد */
+  .container { box-shadow:none; border-radius:0; margin:0; padding:0 12px; }
+  .job, .projects .job, .experience .job { break-inside: avoid; page-break-inside: avoid; }
+  a[href]::after { content:" (" attr(href) ")"; font-size:.85em; color:#666; }
+}
+
+
+  </style>
+  
+</head>
+<body>
+
+  <!-- 🔙 Nav -->
+  <!-- <nav class="resume-nav">
+    <a href="../index.html" class="back-button">
+      <i class="fas fa-arrow-left"></i> Back to Home
+    </a>
+  </nav> -->
+
+  <!-- Container -->
+  <div class="container">
+    <!-- About -->
+    <section class="resume-about">
+      <img src="../resume/profile.jpeg" alt="Mohammad Choopani" />
+      <div class="about-text">
+        <h1>Mohammad Choopani</h1>
+        <h2>Full-Stack JavaScript Developer | Front-End Expert</h2>
+        <p>
+          I am a Full-Stack JavaScript Developer with a strong background in HTML, CSS, JavaScript, React.js, Node.js, and MongoDB.
+          I focus on scalable and efficient web applications and industrial automation.
+        </p>
+        <p>
+          Currently working at <strong>Plasman, Canada</strong> – seeking opportunities in industrial software and automation.
+        </p>
+
+        <!-- Contact info -->
+        <div class="contact-info">
+          <div><i class="fas fa-envelope"></i> <a href="mailto:mohamad.choupani1365@gmail.com">mohamad.choupani1365@gmail.com</a></div>
+          <div><i class="fas fa-phone"></i> <a href="tel:+12269759365">+1 (226) 975-9365</a></div>
+          <!-- <div><i class="fab fa-linkedin"></i> <a href="https://www.linkedin.com/in/mohamad-choopani" target="_blank" rel="noopener noreferrer">linkedin.com/in/mohamad-choopani</a></div> -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills -->
+    <section class="resume-skills">
+      <h3><i class="fas fa-code"></i> Key Skills</h3>
+      <ul>
+        <li><i class="fas fa-check-circle" style="color:#16a085;"></i> Front-End: HTML, CSS, JavaScript, React.js</li>
+        <li><i class="fas fa-check-circle" style="color:#16a085;"></i> Back-End: Node.js, Express.js</li>
+        <li><i class="fas fa-check-circle" style="color:#16a085;"></i> Database: MongoDB</li>
+        <li><i class="fas fa-check-circle" style="color:#16a085;"></i> Version Control: Git, GitHub</li>
+        <li><i class="fas fa-check-circle" style="color:#16a085;"></i> Web Performance Optimization</li>
+      </ul>
+    </section>
+
+    <!-- Experience -->
+    <section class="resume-experience">
+      <h3><i class="fas fa-briefcase"></i> Professional Experience</h3>
+
+      <div class="job" tabindex="0" data-achievement="✅ Optimized production workflows by 25% and enhanced team efficiency at Plasman. Reduced downtime by implementing lean processes.">
+        <h4><i class="fas fa-industry"></i> Production Specialist – Plasman (2024 - Present)</h4>
+        <p>Focus on manufacturing quality, efficiency, and process optimization.</p>
+        <div class="achievement"></div>
+      </div>
+
+      <div class="job" tabindex="0" data-achievement="✅ Supported machine operation and quality control ensuring 99.8% product consistency at Dayus Register & Grille. Implemented safety protocols reducing incidents by 15%.">
+        <h4><i class="fas fa-tools"></i> Manufacturing Assistant – Dayus Register & Grille (2023 - 2024)</h4>
+        <p>Daily support in production, machine operation, and quality control.</p>
+        <div class="achievement"></div>
+      </div>
+
+      <div class="job" tabindex="0" data-achievement="✅ Developed custom industrial software automating process monitoring, increasing data accuracy by 40%. Integrated real-time analytics dashboards.">
+        <h4><i class="fas fa-laptop-code"></i> Industrial Software Developer – Oil Extraction Plant (2021 - 2022)</h4>
+        <p>Custom software for process automation, data monitoring, and analytics.</p>
+        <div class="achievement"></div>
+      </div>
+
+      <div class="job" tabindex="0" data-achievement="✅ Built MES, SCADA, and smart factory systems enhancing production efficiency by 30%. Led a team of developers and technicians.">
+        <h4><i class="fas fa-cogs"></i> Factory System Developer (2017 - 2021)</h4>
+        <p>MES, SCADA, and automation systems for smart factories.</p>
+        <div class="achievement"></div>
+      </div>
+
+      <div class="job" tabindex="0" data-achievement="✅ Planned preventive maintenance schedules reducing downtime by 20%. Improved spare parts management and maintenance reporting systems.">
+        <h4><i class="fas fa-calendar-check"></i> Maintenance Planner (2013 - 2016)</h4>
+        <p>Preventive maintenance, scheduling, spare part management, and reporting.</p>
+        <div class="achievement"></div>
+      </div>
+    </section>
+
+    <!-- Education -->
+    <section class="resume-education">
+      <h3><i class="fas fa-graduation-cap"></i> Education</h3>
+      <p><strong>Master of Hydraulic Structures, Civil Engineering</strong></p>
+      <p>Gorgan University of Agricultural Sciences and Natural Resources (2017 - 2019)</p>
+      <p>Active in Full-Stack Community | GitHub projects | Hackathons</p>
+    </section>
+
+    <!-- Licenses -->
+    <section class="resume-licenses">
+      <h3><i class="fas fa-certificate"></i> Licenses & Certificates</h3>
+      <ul class="license-list">
+        <li>
+          <i class="fas fa-file-pdf"></i>
+          <a href="./resume-licence/Coursera A29IX7XH9N9J.pdf" target="_blank" download>
+            Coursera Certificate – A29IX7XH9N9J
+          </a>
+        </li>
+        <li>
+          <i class="fas fa-file-pdf"></i>
+          <a href="./resume-licence/Coursera Q1HW4A8GSCWI.pdf" target="_blank" download>
+            Coursera Certificate – Q1HW4A8GSCWI
+          </a>
+        </li>
+        <li>
+          <i class="fas fa-file-pdf"></i>
+          <a href="./resume-licence/Coursera 4H2ZIVB3GWR0.pdf" target="_blank" download>
+            Coursera Certificate – 4H2ZIVB3GWR0
+          </a>
+        </li>
+      </ul>
+    </section>
+
+    <!-- Download -->
+    <section class="resume-download">
+  <a href="./my-full-resume.pdf" class="download-btn pdf" target="_blank" rel="noopener">
+    ⬇️ Open / Download PDF
+  </a>
+  <button type="button" id="printBtn" class="download-btn">
+    🖨️ Print / Save as PDF
+  </button>
+</section>
+
+  </div>
+
+  <!-- Footer back button -->
+  <a href="../index.html" class="footer-back" title="Back to Home">
+    <i class="fas fa-arrow-left"></i> Back to Home
+  </a>
+
+  <script>
+    // جاوااسکریپت برای نمایش achievement هنگام کلیک یا فوکوس روی هر job
+    document.querySelectorAll('.job').forEach(job => {
+      const achievementBox = job.querySelector('.achievement');
+      job.addEventListener('click', () => {
+        const text = job.getAttribute('data-achievement');
+        achievementBox.textContent = text;
+        achievementBox.style.display = 'block';
+        // اسکرول به پایین برای دیدن Achievement
+        achievementBox.scrollIntoView({behavior: "smooth", block: "center"});
+      });
+      job.addEventListener('keydown', e => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          job.click();
+        }
+      });
+    });
+    
+  </script>
+  <script>
+  // Print button
+  const printBtn = document.getElementById('printBtn');
+  if (printBtn) {
+    printBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      window.print();
+    });
+  }
+
+  // iOS/Safari: باز شدن تب خالی با لینک PDF را کم می‌کند
+  (function () {
+    const isiOS = /iPad|iPhone|iPod/.test(navigator.userAgent) ||
+                  (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+    const pdfLink = document.querySelector('.download-btn.pdf');
+    if (isiOS && pdfLink) {
+      pdfLink.removeAttribute('download'); // در iOS بعضی وقت‌ها با download تب خالی باز می‌شود
+    }
+  })();
+</script>
+
+</body>
+</html>

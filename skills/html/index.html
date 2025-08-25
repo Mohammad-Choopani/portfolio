@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>HTML Course Curriculum | Mohammad Choopani</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0; padding: 0;
+    }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #e6f2e6;
+      color: #024d02;
+      line-height: 1.5;
+      padding: 1.5rem;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      scroll-behavior: smooth;
+    }
+    h1 {
+      font-size: 2.8rem;
+      margin-bottom: 1rem;
+      text-align: center;
+      text-shadow: 1px 1px 3px #c0e6c0;
+    }
+    .course-intro {
+      max-width: 720px;
+      width: 100%;
+      margin-bottom: 3rem;
+      text-align: center;
+      animation: fadeInUp 0.9s ease forwards;
+      opacity: 0;
+    }
+    .course-intro video {
+      width: 100%;
+      border-radius: 14px;
+      box-shadow: 0 8px 24px rgba(2, 77, 2, 0.4);
+      outline-offset: 4px;
+      outline: 2px solid #4CAF50;
+      transition: box-shadow 0.3s ease;
+    }
+    .course-intro video:hover {
+      box-shadow: 0 12px 32px rgba(2, 77, 2, 0.7);
+      cursor: pointer;
+    }
+    .intro-text {
+      margin-top: 1rem;
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: #145214;
+      user-select: none;
+      animation: fadeInUp 1.2s ease forwards;
+      opacity: 0;
+    }
+    .lesson-list {
+      max-width: 720px;
+      width: 100%;
+      background: #f7fff7;
+      border-radius: 16px;
+      box-shadow: 0 12px 36px rgba(2, 77, 2, 0.2);
+      padding: 2rem 2.5rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.8rem;
+      animation: fadeInUp 1.5s ease forwards;
+      opacity: 0;
+    }
+    .lesson-item {
+      background: #d9f0d9;
+      border-radius: 12px;
+      padding: 1.5rem 1.8rem;
+      box-shadow: 0 4px 14px rgba(2, 77, 2, 0.15);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+      text-decoration: none;
+      color: inherit;
+    }
+    .lesson-item:hover {
+      transform: translateY(-8px) scale(1.04);
+      box-shadow: 0 10px 28px rgba(2, 77, 2, 0.35);
+    }
+    .lesson-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: #124012;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .lesson-desc {
+      font-size: 0.95rem;
+      color: #2e7d32;
+    }
+    .lesson-meta {
+      font-size: 0.85rem;
+      color: #145214;
+      font-style: italic;
+    }
+
+    .back-btn {
+      margin-top: 4rem;
+      padding: 1rem 2rem;
+      background-color: #4CAF50;
+      color: white;
+      font-weight: bold;
+      font-size: 1rem;
+      border: none;
+      border-radius: 12px;
+      text-decoration: none;
+      transition: background-color 0.3s ease;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.2);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .back-btn:hover {
+      background-color: #388e3c;
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(15px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 600px) {
+      h1 { font-size: 2rem; }
+      .lesson-list { grid-template-columns: 1fr; }
+    }
+  </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+
+  <h1>HTML Course Curriculum</h1>
+
+  <section class="course-intro" tabindex="0">
+    <video controls poster="../../assets/images/html-course-poster.jpg">
+      <source src="../../assets/videos/welcome.mp4" type="video/mp4" />
+      Your browser does not support the video tag.
+    </video>
+    <p class="intro-text">
+      Welcome to this in-depth HTML course! Let's build the web from scratch!
+    </p>
+  </section>
+
+  <section class="lesson-list" aria-label="HTML Lessons List" tabindex="0">
+    <a href="intro/what-is-html.html" class="lesson-item">
+      <h2 class="lesson-title"><i class="fas fa-code"></i> What is HTML?</h2>
+      <p class="lesson-desc">Understand the foundation of the web: what HTML is, how it works, and why it matters.</p>
+      <p class="lesson-meta">Duration: 8 mins | Level: Beginner</p>
+    </a>
+    <a href="intro/text/headings.html" class="lesson-item">
+      <h2 class="lesson-title"><i class="fas fa-heading"></i> Headings & Paragraphs</h2>
+      <p class="lesson-desc">Learn how to structure content with headings, paragraphs, and formatting basics.</p>
+      <p class="lesson-meta">Duration: 12 mins | Level: Beginner</p>
+    </a>
+    <a href="intro/text/lists.html" class="lesson-item">
+      <h2 class="lesson-title"><i class="fas fa-list-ul"></i> Lists & Tables</h2>
+      <p class="lesson-desc">Discover how to create ordered, unordered lists, and basic tables.</p>
+      <p class="lesson-meta">Duration: 15 mins | Level: Beginner</p>
+    </a>
+    <a href="intro/media/images.html" class="lesson-item">
+      <h2 class="lesson-title"><i class="fas fa-image"></i> Images & Media</h2>
+      <p class="lesson-desc">Learn to embed images, audio, and video into your webpages.</p>
+      <p class="lesson-meta">Duration: 20 mins | Level: Beginner</p>
+    </a>
+    <a href="intro/forms/forms.html" class="lesson-item">
+      <h2 class="lesson-title"><i class="fas fa-pen-nib"></i> Forms & Inputs</h2>
+      <p class="lesson-desc">Master creating forms, input fields, and handling user input basics.</p>
+      <p class="lesson-meta">Duration: 18 mins | Level: Intermediate</p>
+    </a>
+    <a href="intro/semantic/semantic-elements.html" class="lesson-item">
+      <h2 class="lesson-title"><i class="fas fa-layer-group"></i> Semantic HTML</h2>
+      <p class="lesson-desc">Explore semantic tags for better accessibility and SEO.</p>
+      <p class="lesson-meta">Duration: 14 mins | Level: Intermediate</p>
+    </a>
+    <a href="intro/advanced/audio-video.html" class="lesson-item">
+      <h2 class="lesson-title"><i class="fas fa-video"></i> Advanced Media</h2>
+      <p class="lesson-desc">Dive deeper into audio and video embedding and customization.</p>
+      <p class="lesson-meta">Duration: 22 mins | Level: Advanced</p>
+    </a>
+    <a href="intro/seo/seo-basics.html" class="lesson-item">
+      <h2 class="lesson-title"><i class="fas fa-search"></i> SEO Basics</h2>
+      <p class="lesson-desc">Learn how to optimize your HTML for search engines.</p>
+      <p class="lesson-meta">Duration: 16 mins | Level: Intermediate</p>
+    </a>
+    <a href="intro/accessibility/accessibility.html" class="lesson-item">
+      <h2 class="lesson-title"><i class="fas fa-universal-access"></i> Accessibility</h2>
+      <p class="lesson-desc">Make your sites usable for everyone with accessibility best practices.</p>
+      <p class="lesson-meta">Duration: 14 mins | Level: Intermediate</p>
+    </a>
+    <a href="intro/project/final-project.html" class="lesson-item">
+      <h2 class="lesson-title"><i class="fas fa-project-diagram"></i> Final Project</h2>
+      <p class="lesson-desc">Apply what you learned by building a complete HTML webpage.</p>
+      <p class="lesson-meta">Duration: 40 mins | Level: Advanced</p>
+    </a>
+  </section>
+
+  <!-- اگر دکمه برگشت به صفحه اصلی نیاز بود -->
+  <a href="../../index.html" class="back-btn">
+    <i class="fas fa-arrow-left"></i> Back to Main Page
+  </a>
+
+</body>
+</html>

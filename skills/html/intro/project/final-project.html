@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Final Project | Mohammad Choopani</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(to bottom right, #d4edda, #c3e6cb);
+      color: #155724;
+      padding: 2rem 1.5rem;
+      line-height: 1.8;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 2.8rem;
+      margin-bottom: 1.5rem;
+      text-shadow: 1px 1px 3px #a1c99a;
+    }
+
+    .project-container {
+      max-width: 900px;
+      margin: 0 auto;
+      background: #f9fff9;
+      padding: 2rem;
+      border-radius: 16px;
+      box-shadow: 0 8px 24px rgba(21, 87, 33, 0.3);
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #155724;
+      background-color: #d4edda;
+      padding: 0.7rem 1.2rem;
+      border-radius: 8px;
+      font-weight: 600;
+      box-shadow: 0 2px 8px rgba(21, 87, 33, 0.15);
+      transition: background-color 0.3s ease;
+    }
+
+    nav a:hover {
+      background-color: #c3e6cb;
+    }
+
+    section.project-section {
+      margin-bottom: 2rem;
+    }
+
+    h2 {
+      border-bottom: 3px solid #a1c99a;
+      padding-bottom: 0.5rem;
+      margin-bottom: 1rem;
+      color: #1b5e20;
+    }
+
+    p {
+      font-size: 1.1rem;
+      color: #2e7d32;
+      margin-bottom: 1rem;
+    }
+
+    ul {
+      margin-left: 1.5rem;
+      list-style-type: disc;
+    }
+
+    ul li {
+      margin-bottom: 0.6rem;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 3rem;
+    }
+
+    .back-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      text-decoration: none;
+      font-weight: 600;
+      color: #155724;
+      border: 2px solid #a1c99a;
+      padding: 0.6rem 1.2rem;
+      border-radius: 10px;
+      transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+    }
+
+    .back-button:hover {
+      background-color: #a1c99a;
+      color: #fff;
+      transform: translateY(-3px);
+    }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 2rem;
+      }
+      nav {
+        flex-direction: column;
+        gap: 0.7rem;
+      }
+      .project-container {
+        padding: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="project-container">
+
+    <header>
+      <h1>Final Project: Build a Simple Webpage</h1>
+      <nav aria-label="Project Sections Navigation">
+        <a href="#overview">Overview</a>
+        <a href="#requirements">Requirements</a>
+        <a href="#steps">Steps</a>
+        <a href="#submission">Submission</a>
+      </nav>
+    </header>
+
+    <section id="overview" class="project-section" tabindex="0">
+      <h2>Overview</h2>
+      <p>
+        In this final project, you'll create a simple, well-structured HTML webpage using all the concepts you have learned.
+      </p>
+      <p>
+        This project will demonstrate your understanding of HTML elements, semantic tags, media embedding, forms, and accessibility.
+      </p>
+    </section>
+
+    <section id="requirements" class="project-section" tabindex="0">
+      <h2>Requirements</h2>
+      <ul>
+        <li>Use semantic HTML tags like <code>&lt;header&gt;</code>, <code>&lt;nav&gt;</code>, <code>&lt;main&gt;</code>, <code>&lt;footer&gt;</code>.</li>
+        <li>Include a header with a title and navigation links.</li>
+        <li>Embed an image with descriptive <code>alt</code> text.</li>
+        <li>Add a short paragraph describing yourself or a fictional character.</li>
+        <li>Create a simple contact form with at least two input fields.</li>
+        <li>Make sure your page is accessible (e.g., use <code>aria-labels</code> where appropriate).</li>
+      </ul>
+    </section>
+
+    <section id="steps" class="project-section" tabindex="0">
+      <h2>Steps</h2>
+      <ol>
+        <li>Plan your webpage layout on paper or a design tool.</li>
+        <li>Create an HTML file and structure it with semantic tags.</li>
+        <li>Add your content, including text, images, and forms.</li>
+        <li>Test your page in multiple browsers.</li>
+        <li>Validate your HTML using online tools like the <a href="https://validator.w3.org/" target="_blank" rel="noopener noreferrer">W3C Validator</a>.</li>
+      </ol>
+    </section>
+
+    <section id="submission" class="project-section" tabindex="0">
+      <h2>Submission</h2>
+      <p>
+        Upload your project files to your portfolio or GitHub repository. Share the link with your mentor or classmates for feedback.
+      </p>
+    </section>
+
+  </div>
+
+  <footer>
+    <a href="../../index.html" class="back-button">
+      <i class="fas fa-arrow-left"></i> Back to Curriculum
+    </a>
+  </footer>
+
+</body>
+</html>

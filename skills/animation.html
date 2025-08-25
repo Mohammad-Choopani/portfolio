@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Frame Animation Gallery</title>
+  <style>
+    /* کل بدنه با تصویر بک‌گراند */
+    body {
+      font-family: Arial, sans-serif;
+      background: url("../assets/images/background/factoryimage.jpeg") no-repeat center center fixed;
+      background-size: cover;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      margin: 0;
+      padding: 2rem;
+      gap: 1.5rem;
+    }
+
+    .frame-viewer {
+      width: 400px;
+      height: 400px;
+      background: rgba(0, 0, 0, 0.5); /* پوشش نیمه‌شفاف برای خوانایی */
+      overflow: hidden;
+      border-radius: 12px;
+      box-shadow: 0 0 25px rgba(0, 0, 0, 0.7);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .frame-viewer img {
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+      user-select: none;
+      pointer-events: none;
+    }
+
+    .controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+    }
+
+    button {
+      background: #b24063(0, 119, 204, 0.8);
+      color: #fff;
+      border: none;
+      padding: 0.8rem 1.2rem;
+      font-size: 1rem;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background: #b24063(0, 95, 163, 0.8);
+    }
+
+    .info {
+      font-size: 0.9rem;
+      opacity: 0.8;
+    }
+
+    a button {
+      background: #b25a75;
+      box-shadow: #b24063(0, 95, 163, 10);
+    }
+    .hidden {
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(0.9);
+  transition: all 0.6s ease;
+}
+
+.fade-in {
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: scale(1);
+}
+.controls button,
+.back-button {
+  background: linear-gradient(145deg, #b24063, #b24063);
+  color: white;
+  border: none;
+  padding: 0.9rem 1.4rem;
+  font-size: 1rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+  transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.controls button:hover,
+.back-button:hover {
+  transform: translateY(-3px);
+  background: linear-gradient(145deg, #b24063, #b24063);
+}
+  </style>
+</head>
+<body>
+
+  <!-- 🎵 موسیقی پس‌زمینه -->
+  <audio id="bg-music" src="../assets/audio/music.mp3" autoplay loop></audio>
+
+  <!-- نمایش فریم -->
+  <div class="frame-viewer hidden" id="viewer">
+    <img id="frame" src="../assets/images/animation/frame1.jpg" alt="Frame" />
+  </div>
+
+  <!-- کنترل‌ها -->
+  <div class="controls">
+    <button id="playPause">▶️ Play</button>
+    <button id="toggleLoop">🔁 Loop: On</button>
+    <button id="toggleMouse">🖱 Mouse Control: On</button>
+    <button id="toggleMusic">🔊 Music: On</button>
+  </div>
+
+  <p class="info">Click Play or Move Mouse on Frame</p>
+
+  <!-- دکمه بازگشت -->
+  <a href="../index.html">
+    <button>🔙 Back to Home</button>
+  </a>
+
+  <script>
+    const frameImg = document.getElementById("frame");
+    const viewer = document.getElementById("viewer");
+    const playPauseBtn = document.getElementById("playPause");
+    const toggleLoopBtn = document.getElementById("toggleLoop");
+    const toggleMouseBtn = document.getElementById("toggleMouse");
+    const toggleMusicBtn = document.getElementById("toggleMusic");
+    const music = document.getElementById("bg-music");
+
+    const totalFrames = 50;
+    let frameIndex = 1;
+    let playing = false;
+    let loop = true;
+    let useMouseControl = true;
+    let direction = 1;
+    let interval;
+    const framePaths = [];
+
+    // پیش‌بارگذاری فریم‌ها
+    for (let i = 1; i <= totalFrames; i++) {
+      const img = new Image();
+      img.src = `../assets/images/animation/frame${i}.jpg`;
+      framePaths.push(img.src);
+    }
+
+    const updateFrame = (index) => {
+      frameImg.src = framePaths[index - 1];
+    };
+
+    const play = () => {
+      if (playing) return;
+      playing = true;
+        // ✨ نمایش فریم‌ویو با افکت
+  viewer.classList.remove("hidden");
+  viewer.classList.add("fade-in");
+      playPauseBtn.textContent = "⏸ Pause";
+      interval = setInterval(() => {
+        frameIndex += direction;
+        if (frameIndex > totalFrames || frameIndex < 1) {
+          if (loop) {
+            direction *= -1;
+            frameIndex += direction * 2;
+          } else {
+            clearInterval(interval);
+            playing = false;
+            playPauseBtn.textContent = "▶️ Play";
+          }
+        }
+        updateFrame(frameIndex);
+      }, 150);
+    };
+
+    const pause = () => {
+      playing = false;
+      playPauseBtn.textContent = "▶️ Play";
+      clearInterval(interval);
+    };
+
+    playPauseBtn.addEventListener("click", () => {
+      playing ? pause() : play();
+    });
+
+    toggleLoopBtn.addEventListener("click", () => {
+      loop = !loop;
+      toggleLoopBtn.textContent = loop ? "🔁 Loop: On" : "🔂 Loop: Off";
+    });
+
+    toggleMouseBtn.addEventListener("click", () => {
+      useMouseControl = !useMouseControl;
+      toggleMouseBtn.textContent = useMouseControl ? "🖱 Mouse Control: On" : "🖱 Mouse Control: Off";
+    });
+
+    toggleMusicBtn.addEventListener("click", () => {
+      if (music.paused) {
+        music.play();
+        toggleMusicBtn.textContent = "🔊 Music: On";
+      } else {
+        music.pause();
+        toggleMusicBtn.textContent = "🔇 Music: Off";
+      }
+    });
+
+    viewer.addEventListener("mousemove", (e) => {
+      if (!useMouseControl || playing) return;
+      const bounds = viewer.getBoundingClientRect();
+      const relativeX = e.clientX - bounds.left;
+      const percentage = relativeX / bounds.width;
+      frameIndex = Math.min(totalFrames, Math.max(1, Math.floor(percentage * totalFrames)));
+      updateFrame(frameIndex);
+    });
+
+    document.addEventListener("visibilitychange", () => {
+      if (document.hidden) pause();
+    });
+  </script>
+
+</body>
+</html>

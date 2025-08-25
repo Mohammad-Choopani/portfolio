@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>CSS Selectors | Mohammad Choopani</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #f0f8ff, #e0f2f1);
+      color: #1a3c5d;
+      padding: 2rem 1.5rem;
+      line-height: 1.8;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 2.5rem;
+      color: #004a99;
+      margin-bottom: 1.5rem;
+      text-shadow: 1px 1px 3px #c2e2ff;
+    }
+
+    .video-container {
+      max-width: 800px;
+      margin: 2rem auto;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    video {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .content {
+      max-width: 800px;
+      margin: 2rem auto;
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 2rem;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+    }
+
+    .content h2, .content h3 {
+      color: #004a99;
+      margin-top: 1.75rem;
+      margin-bottom: 0.8rem;
+      font-size: 1.3rem;
+    }
+
+    .content p {
+      font-size: 1.05rem;
+      margin-bottom: 1rem;
+      color: #1f4966;
+    }
+
+    ul {
+      margin-left: 1.2rem;
+      padding-left: 1rem;
+    }
+
+    ul li {
+      margin-bottom: 0.75rem;
+      position: relative;
+      padding-left: 1.2rem;
+    }
+
+    ul li::before {
+      content: '🔹';
+      position: absolute;
+      left: 0;
+    }
+
+    pre {
+      background: #f4f4f4;
+      padding: 1rem;
+      border-radius: 8px;
+      overflow-x: auto;
+      color: #333;
+    }
+
+    .console-box {
+      margin-top: 2rem;
+      background: #222;
+      color: #0f0;
+      border-radius: 12px;
+      padding: 1rem;
+      box-shadow: 0 0 12px rgba(0,0,0,0.25);
+    }
+
+    .console-box h2 { color: #fff; margin-bottom: 0.75rem; }
+
+    .field {
+      margin-bottom: 1rem;
+    }
+
+    .field label {
+      display: block;
+      color: #dfefff;
+      font-weight: 600;
+      margin-bottom: 0.4rem;
+    }
+
+    .console-box textarea {
+      width: 100%;
+      min-height: 140px;
+      background: #111;
+      color: #0f0;
+      border: 1px solid #2e2e2e;
+      padding: 0.9rem 1rem;
+      font-family: monospace;
+      font-size: 0.95rem;
+      border-radius: 10px;
+      resize: vertical;
+      outline: none;
+    }
+
+    .console-box textarea.error {
+      border-color: #e74c3c !important;
+      box-shadow: inset 0 0 0 1px #e74c3c !important;
+    }
+
+    .error-inline {
+      display: none;
+      margin-top: 0.5rem;
+      background: #ffdddd;
+      color: #a6211d;
+      border-left: 5px solid #e74c3c;
+      border-radius: 6px;
+      padding: 0.55rem 0.75rem;
+      font-weight: 600;
+      font-size: 0.92rem;
+    }
+
+    .console-box button {
+      background: #004a99;
+      color: #fff;
+      border: none;
+      padding: 0.65rem 1.2rem;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.25s ease;
+      font-weight: 600;
+    }
+
+    .console-box button:hover {
+      background: #003a78;
+      transform: translateY(-1px);
+    }
+
+    iframe {
+      width: 100%;
+      height: 230px;
+      border: none;
+      background: #fff;
+      margin-top: 1rem;
+      border-radius: 10px;
+    }
+
+    .nav-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-top: 3rem;
+      flex-wrap: wrap;
+    }
+
+    .nav-button {
+      text-decoration: none;
+      padding: 0.6rem 1.2rem;
+      font-weight: bold;
+      color: #004a99;
+      border: 2px solid #004a99;
+      border-radius: 10px;
+      transition: 0.3s ease;
+    }
+
+    .nav-button:hover {
+      background: #004a99;
+      color: #fff;
+    }
+
+    @media (max-width: 600px) {
+      h1 { font-size: 2rem; }
+      .content { padding: 1.5rem; }
+      iframe { height: 270px; }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>CSS Selectors</h1>
+
+  <div class="video-container">
+    <video controls>
+      <source src="../../../assets/videos/css/lesson3.mp4" type="video/mp4" />
+      Your browser does not support the video tag.
+    </video>
+  </div>
+
+  <section class="content">
+    <p>CSS selectors define which HTML elements a style rule should apply to. They are the foundation of targeting elements and applying styles in your web pages.</p>
+
+    <h2>Common Selectors</h2>
+    <ul>
+      <li><strong>Type Selector</strong> → targets elements by tag name (e.g., <code>p</code>, <code>h1</code>)</li>
+      <li><strong>Class Selector</strong> → uses <code>.</code> before the class (e.g., <code>.box</code>)</li>
+      <li><strong>ID Selector</strong> → uses <code>#</code> before the ID (e.g., <code>#header</code>)</li>
+      <li><strong>Universal Selector</strong> → applies to all elements: <code>*</code></li>
+      <li><strong>Group Selector</strong> → combine multiple selectors with commas: <code>h1, p</code></li>
+      <li><strong>Descendant Selector</strong> → selects nested elements: <code>div p</code></li>
+    </ul>
+
+    <h2>Example:</h2>
+    <pre>
+/* Select all paragraphs */
+p {
+  color: darkgreen;
+}
+
+/* Select elements with class 'note' */
+.note {
+  background-color: lightyellow;
+}
+
+/* Select element with id 'main-title' */
+#main-title {
+  color: navy;
+  text-align: center;
+}
+    </pre>
+
+    <div class="console-box">
+      <h2>🎯 Try it Yourself</h2>
+
+      <div class="field">
+        <label for="htmlInput">HTML</label>
+        <textarea id="htmlInput" placeholder="Write your HTML here...">
+<h1 id="main-title">Welcome</h1>
+<p class="note">This is a note.</p>
+<p>This is a normal paragraph.</p>
+        </textarea>
+        <div id="htmlError" class="error-inline">⚠️ Please enter valid HTML code.</div>
+      </div>
+
+      <div class="field">
+        <label for="cssInput">CSS</label>
+        <textarea id="cssInput" placeholder="Write your CSS here...">
+#main-title {
+  color: darkblue;
+  font-size: 28px;
+}
+
+.note {
+  background-color: #ffffcc;
+  padding: 10px;
+}
+
+p {
+  color: darkgreen;
+}
+        </textarea>
+        <div id="cssError" class="error-inline">⚠️ Please enter valid CSS code.</div>
+      </div>
+
+      <button onclick="runCode()">Run Code</button>
+      <iframe id="previewFrame"></iframe>
+    </div>
+  </section>
+
+  <footer>
+    <div class="nav-buttons">
+      <a href="../css-syntax/css-syntax.html" class="nav-button">
+        <i class="fas fa-arrow-left"></i> Previous Lesson
+      </a>
+      <a href="../color-background/color-background.html" class="nav-button">
+        Next Lesson <i class="fas fa-arrow-right"></i>
+      </a>
+    </div>
+  </footer>
+
+  <script>
+    function isLikelyHTML(str) {
+      return /<\s*[a-zA-Z]+[\s\S]*?>/.test(str);
+    }
+
+    function isLikelyCSS(str) {
+      return /[^{]+\{[^}]*\}/.test(str);
+    }
+
+    function runCode() {
+      const htmlTA = document.getElementById('htmlInput');
+      const cssTA = document.getElementById('cssInput');
+      const html = htmlTA.value.trim();
+      const css = cssTA.value.trim();
+      const htmlError = document.getElementById('htmlError');
+      const cssError = document.getElementById('cssError');
+      const frame = document.getElementById('previewFrame');
+
+      const htmlValid = html.length === 0 || isLikelyHTML(html);
+      const cssValid = css.length === 0 || isLikelyCSS(css);
+
+      htmlError.style.display = htmlValid ? 'none' : 'block';
+      cssError.style.display = cssValid ? 'none' : 'block';
+
+      htmlTA.classList.toggle('error', !htmlValid);
+      cssTA.classList.toggle('error', !cssValid);
+
+      if (htmlValid && cssValid && (html || css)) {
+        const fullDoc = `
+          <html>
+            <head>
+              <style>${css}</style>
+            </head>
+            <body>${html}</body>
+          </html>
+        `;
+        frame.srcdoc = fullDoc;
+      } else {
+        frame.srcdoc = "";
+      }
+    }
+  </script>
+</body>
+</html>

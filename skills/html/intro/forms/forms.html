@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Complete HTML Form Tutorial | Mohammad Choopani</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <style>
+    :root {
+      --primary: #1565c0;
+      --accent: #00c853;
+      --bg: #f1f8ff;
+      --text: #1a3e2e;
+      --light: #ffffff;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      padding: 2rem 1rem;
+    }
+    h1, h2 {
+      color: #2e7d32;
+      text-align: center;
+      margin-bottom: 1.5rem;
+      font-size: 50px;
+    }
+    .video-container {
+      max-width: 800px;
+      margin: 0 auto 2rem auto;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+    }
+    video {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    .content {
+      max-width: 960px;
+      margin: auto;
+      background: var(--light);
+      border-radius: 16px;
+      padding: 2rem;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+    }
+    .content h2 {
+      color: #267a3e;
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+      font-size: 1.4rem;
+    }
+    .input-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.2rem;
+      list-style: none;
+      margin-bottom: 2rem;
+    }
+    .input-list li {
+      background: #f4f4f4;
+      border-left: 6px solid var(--primary);
+      padding: 1rem;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .input-list i {
+      font-size: 1.5rem;
+      color: var(--primary);
+    }
+    pre {
+      background: #fff;
+      padding: 0.5rem;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      overflow-x: auto;
+      margin-top: 0.5rem;
+      width: 100%;
+    }
+    .console-box {
+      background: #222;
+      color: #0f0;
+      border-radius: 10px;
+      padding: 1rem;
+      margin: 2rem 0;
+    }
+    .console-box textarea {
+      width: 100%;
+      background: #111;
+      color: #0f0;
+      border: none;
+      padding: 1rem;
+      font-family: monospace;
+      font-size: 1rem;
+      border-radius: 6px;
+      resize: vertical;
+    }
+    .console-box button {
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      padding: 0.6rem 1.5rem;
+      border-radius: 6px;
+      margin-top: 1rem;
+      cursor: pointer;
+      transition: background 0.3s, transform 0.2s;
+    }
+    .console-box button:hover {
+      background: #00a844;
+      transform: scale(1.05);
+    }
+    .console-output {
+      margin-top: 1rem;
+      background: #000;
+      color: #0f0;
+      padding: 1rem;
+      border-radius: 6px;
+      font-family: monospace;
+      min-height: 40px;
+    }
+    form.final-form {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+      background: #fafafa;
+      border-radius: 12px;
+      padding: 2rem;
+      box-shadow: 0 0 12px rgba(0,0,0,0.1);
+    }
+    .form-group {
+      display: flex;
+      flex-direction: column;
+    }
+    .form-group label {
+      margin-bottom: 0.3rem;
+      font-weight: bold;
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      padding: 0.6rem;
+      font-size: 1rem;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+    .checkbox-group, .radio-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      align-items: center;
+    }
+    .form-actions {
+      grid-column: 1 / -1;
+      text-align: center;
+      margin-top: 1rem;
+    }
+    .form-actions button {
+      background: var(--primary);
+      color: #fff;
+      padding: 0.7rem 1.5rem;
+      font-weight: bold;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .form-actions button:hover {
+      background: #0d47a1;
+    }
+    footer {
+      text-align: center;
+      margin-top: 3rem;
+    }
+
+    .navigation-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-top: 3rem;
+  flex-wrap: wrap;
+}
+
+.nav-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  font-weight: 600;
+  color: #2e7d32;
+  border: 2px solid #4caf50;
+  padding: 0.6rem 1.4rem;
+  border-radius: 10px;
+  transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+  background-color: transparent;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.nav-button:hover {
+  background-color: #4caf50;
+  color: #ffffff;
+  transform: translateY(-2px);
+}
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 2rem;
+      }
+
+      .content {
+        padding: 1.5rem;
+      }
+
+      .back-button {
+        font-size: 0.95rem;
+      }
+    }
+    .form-group textarea {
+  padding: 0.6rem;
+  font-size: 1rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  resize: vertical;
+  min-height: 120px;
+  line-height: 1.5;
+  font-family: 'Segoe UI', sans-serif;
+}
+  </style>
+</head>
+<body>
+    <h1>Form&input</h1>
+  <div class="content">
+
+  <div class="video-container">
+    <video controls poster="https://via.placeholder.com/800x450.png?text=HTML+Forms+Video">
+      <source src="../../../assets/videos/html/lesson4.mp4" type="video/mp4" />
+      Your browser does not support the video tag.
+    </video>
+  </div>
+  
+
+    <ul class="input-list">
+  <li><i class="fas fa-font"></i> Text Input
+    <pre>&lt;label for="text"&gt;Text:&lt;/label&gt;
+&lt;input type="text" id="text" placeholder="Enter text" value="Sample text"&gt;</pre>
+  </li>
+
+  <li><i class="fas fa-envelope"></i> Email
+    <pre>&lt;label for="email"&gt;Email:&lt;/label&gt;
+&lt;input type="email" id="email" placeholder="example@mail.com" value="john@example.com"&gt;</pre>
+  </li>
+
+  <li><i class="fas fa-lock"></i> Password
+    <pre>&lt;label for="password"&gt;Password:&lt;/label&gt;
+&lt;input type="password" id="password" placeholder="Enter password" value="123456"&gt;</pre>
+  </li>
+
+  <li><i class="fas fa-hashtag"></i> Number
+    <pre>&lt;label for="number"&gt;Number:&lt;/label&gt;
+&lt;input type="number" id="number" placeholder="Enter a number" value="10"&gt;</pre>
+  </li>
+
+  <li><i class="fas fa-venus-mars"></i> Radio
+    <pre>&lt;label&gt;Gender:&lt;/label&gt;
+&lt;input type="radio" id="male" name="gender" value="male"&gt;
+&lt;label for="male"&gt;Male&lt;/label&gt;
+&lt;input type="radio" id="female" name="gender" value="female"&gt;
+&lt;label for="female"&gt;Female&lt;/label&gt;</pre>
+  </li>
+
+  <li><i class="fas fa-check-square"></i> Checkbox
+    <pre>&lt;input type="checkbox" id="subscribe" value="yes" checked&gt;
+&lt;label for="subscribe"&gt;Subscribe to newsletter&lt;/label&gt;</pre>
+  </li>
+
+  <li><i class="fas fa-caret-down"></i> Select
+    <pre>&lt;label for="options"&gt;Choose an option:&lt;/label&gt;
+&lt;select id="options"&gt;
+  &lt;option value="1"&gt;Option 1&lt;/option&gt;
+  &lt;option value="2"&gt;Option 2&lt;/option&gt;
+&lt;/select&gt;</pre>
+  </li>
+
+  <li><i class="fas fa-align-left"></i> Textarea
+    <pre>&lt;label for="message"&gt;Message:&lt;/label&gt;
+&lt;textarea id="message" placeholder="Write your message"&gt;Hello&lt;/textarea&gt;</pre>
+  </li>
+
+  <li><i class="fas fa-sliders-h"></i> Range
+    <pre>&lt;label for="volume"&gt;Volume:&lt;/label&gt;
+&lt;input type="range" id="volume" value="50"&gt;</pre>
+  </li>
+
+  <li><i class="fas fa-palette"></i> Color
+    <pre>&lt;label for="color"&gt;Pick a color:&lt;/label&gt;
+&lt;input type="color" id="color" value="#ff0000"&gt;</pre>
+  </li>
+
+  <li><i class="fas fa-calendar-alt"></i> Date
+    <pre>&lt;label for="date"&gt;Select date:&lt;/label&gt;
+&lt;input type="date" id="date" value="2025-07-27"&gt;</pre>
+  </li>
+
+  <li><i class="fas fa-clock"></i> Time
+    <pre>&lt;label for="time"&gt;Select time:&lt;/label&gt;
+&lt;input type="time" id="time" value="12:30"&gt;</pre>
+  </li>
+
+  <li><i class="fas fa-calendar-week"></i> Week
+    <pre>&lt;label for="week"&gt;Select week:&lt;/label&gt;
+&lt;input type="week" id="week" value="2025-W30"&gt;</pre>
+  </li>
+
+  <li><i class="fas fa-calendar-day"></i> Month
+    <pre>&lt;label for="month"&gt;Select month:&lt;/label&gt;
+&lt;input type="month" id="month" value="2025-07"&gt;</pre>
+  </li>
+
+  <li><i class="fas fa-id-badge"></i> Label
+    <pre>&lt;label for="name"&gt;Name&lt;/label&gt;</pre>
+  </li>
+
+  <li><i class="fas fa-phone"></i> Tel
+    <pre>&lt;label for="tel"&gt;Phone:&lt;/label&gt;
+&lt;input type="tel" id="tel" placeholder="123-456-7890" value="123-456-7890"&gt;</pre>
+  </li>
+
+  <li><i class="fas fa-globe-americas"></i> URL
+    <pre>&lt;label for="url"&gt;Website:&lt;/label&gt;
+&lt;input type="url" id="url" placeholder="https://example.com" value="https://example.com"&gt;</pre>
+  </li>
+
+  <li><i class="fas fa-search"></i> Search
+    <pre>&lt;label for="search"&gt;Search:&lt;/label&gt;
+&lt;input type="search" id="search" placeholder="Search something..." value="HTML forms"&gt;</pre>
+  </li>
+</ul>
+
+
+    <div class="console-box">
+    <h2>Try it Yourself:</h2>
+    <textarea id="codeInput" placeholder="Write HTML code here..."></textarea>
+    <button onclick="runCode()">Run Code</button>
+    <div id="output" class="console-output"></div>
+  </div>
+
+    <form class="final-form" onsubmit="event.preventDefault(); alert('Form Submitted!');">
+      <div class="form-group"><label for="name">Full Name</label><input type="text" id="name" placeholder="Mohammad" value="Mohammad" required></div>
+      <div class="form-group"><label for="email">Email</label><input type="email" id="email" placeholder="example@mail.com" required></div>
+      <div class="form-group"><label for="password">Password</label><input type="password" id="password" placeholder="•••••••" required></div>
+      <div class="form-group"><label for="number">Age</label><input type="number" id="number" placeholder="38" min="1" max="120"></div>
+      <div class="form-group"><label>Gender</label>
+        <div class="radio-group">
+          <label><input type="radio" name="gender"> Male</label>
+          <label><input type="radio" name="gender"> Female</label>
+        </div>
+      </div>
+      <div class="form-group"><label><input type="checkbox" required> I accept the terms</label></div>
+      <div class="form-group"><label for="select">Country</label>
+        <select id="select">
+          <option>Canada</option>
+          <option>USA</option>
+        </select>
+      </div>
+      <div class="form-group"><label for="color">Favorite Color</label><input type="color" id="color"></div>
+      <div class="form-group"><label for="date">Birth Date</label><input type="date" id="date"></div>
+      <div class="form-group"><label for="month">Birth Month</label><input type="month" id="month"></div>
+      <div class="form-group"><label for="week">Target Week</label><input type="week" id="week"></div>
+      <div class="form-group"><label for="time">Meeting Time</label><input type="time" id="time"></div>
+      <div class="form-group"><label for="tel">Phone Number</label><input type="tel" id="tel" placeholder="123-456-7890"></div>
+      <div class="form-group"><label for="url">Website</label><input type="url" id="url" placeholder="https://yourdomain.com"></div>
+      <div class="form-group"><label for="search">Search</label><input type="search" id="search" placeholder="Search something..."></div>
+      <div class="form-group"><label for="message">Message</label><textarea id="message" rows="4" placeholder="Your message..."></textarea></div>
+
+      <div class="form-actions">
+        <button type="submit">Submit Form</button>
+      </div>
+    </form>
+  </div>
+    <footer class="navigation-buttons">
+    <a href="../../index.html" class="nav-button">
+      <i class="fas fa-arrow-left"></i> Back to Curriculum
+    </a>
+    <a href="../semantic/semantic-elements.html" class="nav-button">
+      Next Lesson <i class="fas fa-arrow-right"></i>
+    </a>
+  </footer>
+
+  <script>
+    function runCode() {
+      const input = document.getElementById("codeInput").value.trim();
+      const output = document.getElementById("output");
+      output.innerHTML = input ? input : "Please enter some HTML code.";
+    }
+    function runCode() {
+  const input = document.getElementById("codeInput").value.trim();
+  const output = document.getElementById("output");
+
+  // فقط اجازه HTML, CSS, JS
+  const allowedPattern = /<(\/?)(html|head|body|script|style|div|span|input|form|button|label|textarea|select|option|h[1-6]|p|br|ul|ol|li|table|tr|td|th|thead|tbody|footer|header|section|article|nav|link|meta|title|strong|em|b|i|a|img|video|source|iframe)[^>]*>/gi;
+
+  const hasValidTags = allowedPattern.test(input);
+  const hasForbiddenCode = /<\?php|<\?=|<script[^>]*src=|<iframe|<object|<embed|<form[^>]*action=|<meta[^>]*http-equiv=|<link[^>]*rel="import"/i.test(input);
+
+  if (!input) {
+    output.innerText = "Please enter some HTML code.";
+  } else if (hasForbiddenCode || !hasValidTags) {
+    output.innerText = "❌ Invalid or unsupported code. Only HTML/CSS/JS is allowed.";
+  } else {
+    output.innerHTML = input;
+  }
+}
+
+  </script>
+  
+
+</body>
+</html>

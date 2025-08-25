@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>JavaScript Course Curriculum | Mohammad Choopani</title>
+  
+  <style>
+    :root {
+      --primary: #f7df1e;
+      --dark: #1e1e1e;
+      --gray: #2d2d2d;
+      --light: #fefefe;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: var(--dark);
+      color: var(--light);
+      line-height: 1.6;
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      scroll-behavior: smooth;
+    }
+
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      color: var(--primary);
+      text-shadow: 0 0 10px #f7df1e80;
+    }
+
+    .course-intro {
+      max-width: 720px;
+      width: 100%;
+      margin-bottom: 2.5rem;
+      text-align: center;
+      animation: fadeInUp 0.8s ease forwards;
+      opacity: 0;
+    }
+
+    .course-intro video {
+      width: 100%;
+      border-radius: 12px;
+      box-shadow: 0 8px 24px rgba(247, 223, 30, 0.4);
+      outline: 2px solid var(--primary);
+    }
+
+    .intro-text {
+      margin-top: 1rem;
+      font-size: 1.25rem;
+      color: #e0e0e0;
+      animation: fadeInUp 1s ease forwards;
+      opacity: 0;
+    }
+
+    .lesson-list {
+      max-width: 1100px;
+      width: 100%;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.8rem;
+      margin-top: 2rem;
+      animation: fadeInUp 1.5s ease forwards;
+      opacity: 0;
+    }
+
+    .lesson-item {
+      background: var(--gray);
+      border-left: 6px solid var(--primary);
+      border-radius: 12px;
+      padding: 1.2rem 1.5rem;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      text-decoration: none;
+      color: var(--light);
+      box-shadow: 0 6px 16px rgba(0,0,0,0.25);
+    }
+
+    .lesson-item:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 24px rgba(255, 255, 0, 0.4);
+    }
+
+    .lesson-title {
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: var(--primary);
+      margin-bottom: 0.5rem;
+    }
+
+    .lesson-desc {
+      font-size: 0.95rem;
+      color: #cfcfcf;
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .back-btn {
+      margin-top: 3rem;
+      padding: 0.9rem 1.8rem;
+      background-color: var(--primary);
+      color: var(--dark);
+      font-weight: bold;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: background-color 0.3s ease;
+    }
+
+    .back-btn:hover {
+      background-color: #e6cd1b;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>JavaScript Course Curriculum</h1>
+
+  <section class="course-intro" tabindex="0">
+    <video controls poster="../../assets/images/js-course-poster.jpg">
+      <source src="../../assets/videos/js-intro.mp4" type="video/mp4" />
+      Your browser does not support the video tag.
+    </video>
+    <p class="intro-text">
+      Explore JavaScript in depth – From fundamentals to final projects.
+    </p>
+  </section>
+
+  <section class="lesson-list" aria-label="JavaScript Course Modules">
+    <a href="basics/index.html" class="lesson-item">
+      <div class="lesson-title">01. Basics</div>
+      <div class="lesson-desc">Variables, Data Types, Operators, Type Conversion</div>
+    </a>
+    <a href="functions/index.html" class="lesson-item">
+      <div class="lesson-title">02. Functions</div>
+      <div class="lesson-desc">Function Syntax, Return, Scope, Arrow Functions</div>
+    </a>
+    <a href="conditions-loops/index.html" class="lesson-item">
+      <div class="lesson-title">03. Conditions & Loops</div>
+      <div class="lesson-desc">If, Switch, For & While Loops</div>
+    </a>
+    <a href="04-arrays-objects/arrays.html" class="lesson-item">
+      <div class="lesson-title">04. Arrays & Objects</div>
+      <div class="lesson-desc">Arrays, Methods, Objects, Destructuring</div>
+    </a>
+    <a href="05-dom/dom-intro.html" class="lesson-item">
+      <div class="lesson-title">05. DOM</div>
+      <div class="lesson-desc">DOM Selection, Manipulation, Traversing</div>
+    </a>
+    <a href="06-events/event-basics.html" class="lesson-item">
+      <div class="lesson-title">06. Events</div>
+      <div class="lesson-desc">Event Listeners, Delegation, Form Events</div>
+    </a>
+    <a href="07-projects/color-changer.html" class="lesson-item">
+      <div class="lesson-title">07. Projects</div>
+      <div class="lesson-desc">Color Changer, Calculator, Todo App, Final Project</div>
+    </a>
+  </section>
+
+  <a href="../../index.html" class="back-btn">← Back to Main Page</a>
+
+</body>
+</html>

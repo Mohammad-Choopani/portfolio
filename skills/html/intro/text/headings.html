@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Headings & Paragraphs | Mohammad Choopani</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #e4f8ee, #d1f0db);
+      color: #1a3e2e;
+      padding: 2rem 1.5rem;
+      line-height: 1.8;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      text-align: center;
+      color: #2e7d32;
+      margin-bottom: 1.5rem;
+      text-shadow: 1px 1px 3px #b5e9c3;
+    }
+
+    .video-container {
+      max-width: 800px;
+      margin: 2rem auto;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    video {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .content {
+      max-width: 800px;
+      margin: 2rem auto;
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 2rem;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+    }
+
+    .content p {
+      font-size: 1.1rem;
+      margin-bottom: 1rem;
+      color: #2b5d3b;
+    }
+
+    .content h2 {
+      color: #267a3e;
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+      font-size: 1.4rem;
+    }
+
+    pre {
+      background: #f4f4f4;
+      padding: 1rem;
+      border-radius: 8px;
+      overflow-x: auto;
+    }
+
+    .console-box {
+      margin-top: 2rem;
+      background: #222;
+      color: #0f0;
+      border-radius: 10px;
+      padding: 1rem;
+      box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    }
+
+    .console-box textarea {
+      width: 100%;
+      height: 120px;
+      background: #111;
+      color: #0f0;
+      border: none;
+      padding: 1rem;
+      font-family: monospace;
+      font-size: 1rem;
+      border-radius: 6px;
+      resize: vertical;
+    }
+
+    .console-box button {
+      background: #4caf50;
+      color: #fff;
+      border: none;
+      padding: 0.6rem 1.2rem;
+      margin-top: 1rem;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .console-box button:hover {
+      background: #388e3c;
+    }
+
+    .console-output {
+      margin-top: 1rem;
+      background: #000;
+      color: #0f0;
+      padding: 1rem;
+      border-radius: 6px;
+      font-family: monospace;
+      min-height: 40px;
+    }
+
+    .console-error {
+      color: #ff5252;
+    }
+
+    /* Footer Navigation Buttons */
+    .navigation-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-top: 3rem;
+      flex-wrap: wrap;
+    }
+
+    .nav-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      text-decoration: none;
+      font-weight: 600;
+      color: #2e7d32;
+      border: 2px solid #4caf50;
+      padding: 0.6rem 1.4rem;
+      border-radius: 10px;
+      transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+      background-color: transparent;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    }
+
+    .nav-button:hover {
+      background-color: #4caf50;
+      color: #ffffff;
+      transform: translateY(-2px);
+    }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 2rem;
+      }
+
+      .content {
+        padding: 1.5rem;
+      }
+
+      .nav-button {
+        font-size: 0.95rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Headings & Paragraphs</h1>
+
+  <div class="video-container">
+    <video controls>
+      <source src="../../../assets/videos/html/lesson2.mp4" type="video/mp4" />
+      Your browser does not support the video tag.
+    </video>
+  </div>
+
+  <section class="content">
+    <p>In this lesson, you’ll learn how to structure your content using HTML <strong>headings</strong> and <strong>paragraphs</strong>.</p>
+
+    <h2>Topics Covered:</h2>
+    <ul>
+      <li>Using &lt;h1&gt; to &lt;h6&gt; tags to create a content hierarchy</li>
+      <li>Writing readable content using &lt;p&gt; tags</li>
+      <li>Basic formatting tips for textual content</li>
+    </ul>
+
+    <h2>Example:</h2>
+    <pre>
+&lt;h1&gt;Main Title&lt;/h1&gt;
+&lt;h2&gt;Subheading&lt;/h2&gt;
+&lt;p&gt;This is a paragraph explaining something important.&lt;/p&gt;
+    </pre>
+
+    <div class="console-box">
+      <h2 style="color:#fff;">Try it Yourself:</h2>
+      <textarea id="codeInput" placeholder="Type your HTML code here..."></textarea>
+      <button onclick="runCode()">Run Code</button>
+      <div id="output" class="console-output"></div>
+    </div>
+  </section>
+
+  <footer class="navigation-buttons">
+    <a href="../../index.html" class="nav-button">
+      <i class="fas fa-arrow-left"></i> Back to Curriculum
+    </a>
+    <a href="../text/lists.html" class="nav-button">
+      Next Lesson <i class="fas fa-arrow-right"></i>
+    </a>
+  </footer>
+
+  <script>
+    function runCode() {
+      const input = document.getElementById("codeInput").value.trim();
+      const output = document.getElementById("output");
+
+      if (!input) {
+        output.innerHTML = '';
+        return;
+      }
+
+      const isValidHTML = /<\s*(h[1-6]|p|div|span|strong|em|ul|ol|li|br|hr|a|img)[^>]*>/i.test(input);
+
+      if (isValidHTML) {
+        output.innerHTML = input;
+      } else {
+        output.innerHTML = '<span class="console-error">⛔⚠️ Only valid HTML code will be rendered in the output!</span>';
+      }
+    }
+  </script>
+
+</body>
+</html>

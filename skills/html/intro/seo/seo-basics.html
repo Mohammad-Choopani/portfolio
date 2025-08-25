@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>SEO Basics | Mohammad Choopani</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(to right, #f1f8e9, #e0f2f1);
+      color: #004d40;
+      padding: 2rem 1.5rem;
+      line-height: 1.8;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      text-align: center;
+      color: #00695c;
+      margin-bottom: 1.5rem;
+      text-shadow: 1px 1px 3px #a7ffeb;
+    }
+
+    .video-container {
+      max-width: 800px;
+      margin: 0 auto 2rem;
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    }
+
+    video {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .content {
+      max-width: 800px;
+      margin: 2rem auto;
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 2rem;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+      color: #00796b;
+      margin-top: 1.5rem;
+    }
+
+    p {
+      font-size: 1.1rem;
+      margin-bottom: 1rem;
+      color: #004d40;
+    }
+
+    ul {
+      margin-left: 1.5rem;
+    }
+
+    ul li {
+      margin-bottom: 0.75rem;
+      list-style-type: circle;
+    }
+
+    code {
+      background: #e0f7fa;
+      padding: 0.2rem 0.4rem;
+      border-radius: 4px;
+    }
+
+    pre {
+      background: #f4f4f4;
+      padding: 1rem;
+      border-radius: 8px;
+      overflow-x: auto;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 3rem;
+    }
+
+    .nav-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      text-decoration: none;
+      font-weight: 600;
+      color: #004d40;
+      border: 2px solid #00bfa5;
+      padding: 0.6rem 1.2rem;
+      border-radius: 10px;
+      transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+    }
+
+    .nav-button:hover {
+      background-color: #00bfa5;
+      color: #fff;
+      transform: translateY(-3px);
+    }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 2rem;
+      }
+
+      .content {
+        padding: 1.5rem;
+      }
+
+      .nav-button {
+        font-size: 0.95rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>SEO Basics</h1>
+
+  <!-- 🔽 فریم ویدیو آموزشی -->
+  <div class="video-container">
+    <video controls>
+      <source src="../../../assets/videos/html/lesson-seo.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+  </div>
+
+  <section class="content">
+    <p>SEO stands for <strong>Search Engine Optimization</strong>. It helps your website rank higher on Google and other search engines.</p>
+
+    <h2>1. Important HTML Tags for SEO</h2>
+    <ul>
+      <li><code>&lt;title&gt;</code>: Sets the title of the page shown in search results.</li>
+      <li><code>&lt;meta name="description"&gt;</code>: Provides a summary of the page content.</li>
+      <li><code>&lt;h1&gt;, &lt;h2&gt;, ...</code>: Use headings to structure content for search engines.</li>
+      <li><code>alt</code> attribute for images: Helps describe images to bots and for accessibility.</li>
+    </ul>
+
+    <h2>2. Best Practices</h2>
+    <ul>
+      <li>Use keywords naturally in your content and headings.</li>
+      <li>Use semantic HTML tags like <code>&lt;article&gt;</code>, <code>&lt;section&gt;</code>.</li>
+      <li>Keep URLs clean and readable.</li>
+      <li>Make your site mobile-friendly and fast-loading.</li>
+      <li>Use internal linking between your pages.</li>
+    </ul>
+
+    <h2>3. Example</h2>
+    <pre>
+&lt;head&gt;
+  &lt;title&gt;HTML SEO Tips&lt;/title&gt;
+  &lt;meta name="description" content="Learn basic HTML SEO tips for better ranking."&gt;
+&lt;/head&gt;
+    </pre>
+  </section>
+
+  <footer>
+    <div class="nav-buttons">
+      <a href="../../index.html" class="nav-button">
+        <i class="fas fa-arrow-left"></i> Back to Curriculum
+      </a>
+      <a href="../accessibility/accessibility.html" class="nav-button">
+        Next Lesson <i class="fas fa-arrow-right"></i>
+      </a>
+    </div>
+  </footer>
+
+</body>
+</html>
