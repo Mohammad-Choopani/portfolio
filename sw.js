@@ -1,54 +1,37 @@
-// sw.js
-// bump this on each deploy to force clients to refresh
-- const CACHE_VERSION = 'v1.0.0';
-+ const CACHE_VERSION = 'v1.0.1'; // bump on each deploy
-const RUNTIME = `runtime-${CACHE_VERSION}`;
-
+// sw.js — always-fresh (no version bumps needed)
+// Purpose: fetch everything straight from the network so new deploys show up
+// immediately. If you're offline, HTML requests fall back to a small message.
 
 self.addEventListener('install', (event) => {
-  self.skipWaiting();
+  // Activate this SW immediately
+  event.waitUntil(self.skipWaiting());
 });
 
 self.addEventListener('activate', (event) => {
-  event.waitUntil((async () => {
-    const keys = await caches.keys();
-    await Promise.all(keys.filter(k => k !== RUNTIME).map(k => caches.delete(k)));
-    await self.clients.claim();
-  })());
+  // Take control of all open clients
+  event.waitUntil(self.clients.claim());
 });
 
 self.addEventListener('fetch', (event) => {
-  const req = event.request;
-  const url = new URL(req.url);
+  if (event.request.method !== 'GET') return;
 
-  // Only GET + same-origin
-  if (req.method !== 'GET' || url.origin !== location.origin) return;
+  const accept = event.request.headers.get('accept') || '';
+  const isHTML = accept.includes('text/html');
 
-  // HTML → network-first (updates show quickly)
-  if (req.headers.get('accept')?.includes('text/html')) {
-    event.respondWith((async () => {
-      try {
-        const fresh = await fetch(req);
-        const cache = await caches.open(RUNTIME);
-        cache.put(req, fresh.clone());
-        return fresh;
-      } catch {
-        const cache = await caches.open(RUNTIME);
-        const cached = await cache.match(req);
-        return cached || new Response('<h1>Offline</h1>', { headers: { 'Content-Type': 'text/html' }});
-      }
-    })());
+  if (isHTML) {
+    // Network-first for HTML so updates appear right away
+    event.respondWith(
+      fetch(event.request, { cache: 'no-store' })
+        .catch(() =>
+          new Response(
+            '<!doctype html><meta charset="utf-8"><h1>Offline</h1><p>This page is not available offline.</p>',
+            { headers: { 'Content-Type': 'text/html; charset=utf-8' } }
+          )
+        )
+    );
     return;
   }
 
-  // Static assets → stale-while-revalidate
-  event.respondWith((async () => {
-    const cache = await caches.open(RUNTIME);
-    const cached = await cache.match(req);
-    const network = fetch(req).then(res => {
-      cache.put(req, res.clone());
-      return res;
-    }).catch(() => null);
-    return cached || network || fetch(req);
-  })());
+  // For non-HTML assets, also go straight to the network (no cache)
+  event.respondWith(fetch(event.request, { cache: 'no-store' }));
 });
