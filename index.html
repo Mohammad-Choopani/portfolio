@@ -205,24 +205,38 @@
       </div>
     </section>
 
-    <!-- Contact Section -->
     <section id="contact" class="contact" aria-labelledby="contact-title">
-      <h2 id="contact-title">Get in Touch</h2>
-      <form id="contact-form" novalidate>
-        <fieldset>
-          <label for="name"><i class="fas fa-user" aria-hidden="true"></i> Name</label>
-          <input id="name" name="name" type="text" required />
-          <label for="email"><i class="fas fa-envelope" aria-hidden="true"></i> Email</label>
-          <input id="email" name="email" type="email" required />
-        </fieldset>
-        <fieldset>
-          <label for="message"><i class="fas fa-comment-dots" aria-hidden="true"></i> Message</label>
-          <textarea id="message" name="message" rows="5" required></textarea>
-        </fieldset>
-        <button type="submit">Send Message</button>
-        <p id="form-message" role="alert" aria-live="polite"></p>
-      </form>
-    </section>
+  <h2 id="contact-title">Get in Touch</h2>
+
+  <form
+    id="contact-form"
+    action="https://formspree.io/f/xldwekay"
+    method="POST"
+    novalidate
+  >
+    <fieldset>
+      <label for="name"><i class="fas fa-user" aria-hidden="true"></i> Name</label>
+      <input id="name" name="name" type="text" required autocomplete="name" placeholder="Your name" />
+
+      <label for="email"><i class="fas fa-envelope" aria-hidden="true"></i> Email</label>
+      <input id="email" name="email" type="email" required autocomplete="email" inputmode="email" placeholder="you@example.com" />
+    </fieldset>
+
+    <fieldset>
+      <label for="message"><i class="fas fa-comment-dots" aria-hidden="true"></i> Message</label>
+      <textarea id="message" name="message" rows="5" required placeholder="How can I help you?"></textarea>
+    </fieldset>
+
+    <!-- Honeypot (spam protection) -->
+    <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="display:none" />
+
+    <input type="hidden" name="_subject" value="New message from portfolio" />
+
+    <button type="submit" id="contact-submit">Send Message</button>
+    <p id="form-message" role="alert" aria-live="polite"></p>
+  </form>
+</section>
+
 
   </main>
 
