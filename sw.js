@@ -1,7 +1,9 @@
 // sw.js
 // bump this on each deploy to force clients to refresh
-const CACHE_VERSION = 'v1.0.0';
+- const CACHE_VERSION = 'v1.0.0';
++ const CACHE_VERSION = 'v1.0.1'; // bump on each deploy
 const RUNTIME = `runtime-${CACHE_VERSION}`;
+
 
 self.addEventListener('install', (event) => {
   self.skipWaiting();
